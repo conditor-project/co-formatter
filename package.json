@@ -1,0 +1,23 @@
+{
+  "name": "co-formatter",
+  "version": "1.0.0",
+  "description": "module d'extraction et de reformatage de notice",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Genicot JB",
+  "license": "SEE LICENSE IN Licence.txt",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "fs": "0.0.1-security",
+    "lodash": "^4.17.4",
+    "mocha": "^3.3.0",
+    "xmldom": "^0.1.27",
+    "xpath": "0.0.24",
+    "xpath.js": "^1.0.7"
+  }
+}
