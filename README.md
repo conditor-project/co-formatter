@@ -1,19 +1,15 @@
-li-doTheJob
+co-formatter
 ===============
 
 ## Présentation ##
 
-Le module **li-dothejob** est un module minimal illustrant la partie fonctionnelle d'un `li-module`.
+Le module **co-formatter** est un module qui permet d'extraire des fichiers xml en format TEI les informations du chapeau Conditor.
 
 ### Fonctionnement ###
 
-`li-dothejob` effectue ses traitements dans une fonction `doTheJob()` dédiée.
+`co-formatter` effectue ses traitements dans une fonction `doTheJob()` dédiée.
 
-Dans notre cas minimal, le module effectue les opérations suivantes :
-  * récupération en entrée d'un `docObject` (objet JSON avec un champ `idIstex`), ainsi que d'une callback `cb`.
-  * test sur la valeur du champ `idIstex`
-  * renseigne un nouveau champ `canvasOK` avec la valeur `true`, sauf pour une valeur précise d'idIstex
-  * Les éventuelles erreurs sont renvoyées en paramètre de la callback `cb`
+
 
 ## Utilisation ##
 
