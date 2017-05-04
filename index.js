@@ -74,11 +74,4 @@ business.doTheJob = function (jsonLine, cb) {
 
 };
 
-business.finalJob = function (docObjects, cb) {
-    let err = [];
-    err.push(docObjects.pop());
-    docObjects[0].ending = 'finalJob';
-    return cb(err);
-};
-
 module.exports = business;
