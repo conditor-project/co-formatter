@@ -34,11 +34,19 @@ business.doTheJob = function (jsonLine, cb) {
 
 	let champs_unique='';
 
+	let champs_unique_init='';
+	
+	let count=0;
+	
 	persname_nodes.forEach(function(persname_node){
-		let doc_autor = new dom().parseFromString(persname_node.toString(),'text/xml');
-		let forename=select('//*[local-name(.)="forename"]',doc_autor);
-		let surname=select('//*[local-name(.)="surname"]',doc_autor);
-		champs_unique+=''+forename[0].firstChild+' '+surname[0].firstChild+' ';
+		if (count<3) {
+			let doc_autor = new dom().parseFromString(persname_node.toString(), 'text/xml');
+			let forename = select('//*[local-name(.)="forename"]', doc_autor);
+			let surname = select('//*[local-name(.)="surname"]', doc_autor);
+			champs_unique += '' + forename[0].firstChild + ' ' + surname[0].firstChild + ' ';
+			champs_unique_init += '' +forename[0].firstChild.toString().trim().charAt(0)+ ' '+surname[0].firstChild + ' ';
+			count++;
+		}
 	});
 
 
@@ -60,6 +68,7 @@ business.doTheJob = function (jsonLine, cb) {
 	**/
 	jsonLine.titre={'value':title.toString().trim()};
 	jsonLine.auteur={'value':champs_unique.trim()};
+	jsonLine.auteur_init={'value':champs_unique_init.trim()};
 	jsonLine.doi={'value':doi_nodes.trim()};
 	jsonLine.issn={'value':issn_nodes.trim()};
 	jsonLine.numero={'value':numero_nodes.trim()};
