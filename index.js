@@ -43,8 +43,8 @@ business.doTheJob = function (jsonLine, cb) {
 			let doc_autor = new dom().parseFromString(persname_node.toString(), 'text/xml');
 			let forename = select('//*[local-name(.)="forename"]', doc_autor);
 			let surname = select('//*[local-name(.)="surname"]', doc_autor);
-			champs_unique += '' + forename[0].firstChild + ' ' + surname[0].firstChild + ' ';
-			champs_unique_init += '' +forename[0].firstChild.toString().trim().charAt(0)+ ' '+surname[0].firstChild + ' ';
+			champs_unique += '' + surname[0].firstChild + ' ' +  forename[0].firstChild+ ' ';
+			champs_unique_init += '' +surname[0].firstChild + ' '+forename[0].firstChild.toString().trim().charAt(0)+ ' ';
 			count++;
 		}
 	});
