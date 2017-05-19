@@ -1,6 +1,6 @@
 [
   { "id": "1",
-    "path":"../test/dataset/in/notice_hal.xml"},
+    "path":"dataset/in/notice_hal.xml"},
   { "id": "2",
     "path":""}
 ]

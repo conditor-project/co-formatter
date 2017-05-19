@@ -5,8 +5,9 @@
 const
   	fs = require('fs'),
 	pkg = require('../package.json'),
-  	business = require('../index.js'),
-	testData = require('./dataset/in/test.json'),
+  	business = require(__dirname+'/../index.js'),
+	testData = require(__dirname+'/dataset/in/test.json'),
+        path = require('path'),
   	chai = require('chai'),
 	expect = chai.expect;
 
@@ -14,7 +15,10 @@ const
 
 describe(pkg.name + '/index.js', function () {
   describe('#doTheJob', function () {
-	let docObject=testData[0];
+    
+    let docObject=testData[0];
+    docObject.path = path.join(__dirname, docObject.path);
+    
 
     it('docObject qui renvoie canvasOK @1', function (done) {
       business.doTheJob( docObject, function (err) {
