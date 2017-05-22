@@ -1,6 +1,6 @@
 [
   { "id": "1",
-    "path":"dataset/in/notice_hal.xml"},
+    "path":"dataset/in/tei_hal_sprint_doi1.xml"},
   { "id": "2",
     "path":""}
 ]
