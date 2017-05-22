@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/conditor-project/co-formatter.svg?branch=master)](https://travis-ci.org/conditor-project/co-formatter)
+
 co-formatter
 ===============
 
