@@ -75,7 +75,7 @@ business.doTheJob = function (jsonLine, cb) {
 	jsonLine.page={'value':page_nodes.trim()};
 	jsonLine.volume={'value':volume_nodes.trim()};
 
-	console.log(jsonLine);
+	//console.log(jsonLine);
 
 
 	return cb();
