@@ -1,6 +1,3 @@
-/* global module */
-/*jslint node: true */
-/*jslint indent: 2 */
 'use strict';
 
 const business = {},
