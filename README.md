@@ -5,11 +5,53 @@ co-formatter
 
 ## Présentation ##
 
-Le module **co-formatter** est un module qui permet d'extraire des fichiers xml en format TEI les informations du chapeau Conditor.
+Le module **co-formatter** est un module qui permet d'extraire des fichiers XML en format TEI les informations du chapeau Conditor.
 
 ### Fonctionnement ###
 
 `co-formatter` effectue ses traitements dans une fonction `doTheJob()` dédiée.
+
+Les champs requis dans le JSON d'entrée sont les suivants :
+
+```
+{
+  id: "unique_document_identifier",
+  path: "path_to_document"
+}
+```
+
+Les champs de sortie correspondent aux métadonnées de la notice utiles pour le dédoublonnage, formant ce qu'on appelle le Conditor. Les valeurs de ces champs sont reprises telles quelles, sans aucun post-traitement :
+
+```
+{
+  ...,
+  titre: {
+    value: "My Title"  
+  },
+  auteur: {
+    value: "Single field with full author names (ex : Jean BON)"
+  },
+  auteur_init: {
+    value: "Single field with full lastnames and initials (ex J. BON)"
+  },
+  doi: {
+    value: "DOI of document (article-level)"
+  },
+  issn: {
+    value: "ISSN of document host"
+  },
+  numero: {
+    value: "document number (in the issue for example)"
+  },
+  page: {
+    value: "document pagination"
+  },
+  volume: {
+    value: "volume number of the document container"
+  }
+}
+  
+```
 
 
 
@@ -60,7 +102,7 @@ L'exécution se fera donc en appelant cette fonction depuis une instanciation d`
 
 Plage de codes : 0~99
 
-Code | Signification | Note(s)
------- | ---------------- | ---------
-0 | Tout s'est bien passé |
-1 | J\'aime po cet ID là... |
+| Code | Signification           | Note(s) |
+| ---- | ----------------------- | ------- |
+| 0    | Tout s'est bien passé   |         |
+| 1    | J\'aime po cet ID là... |         |
