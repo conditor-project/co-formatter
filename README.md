@@ -11,6 +11,8 @@ Le module **co-formatter** est un module qui permet d'extraire des fichiers XML 
 
 `co-formatter` effectue ses traitements dans une fonction `doTheJob()` dédiée.
 
+#### Structure d'entrée
+
 Les champs requis dans le JSON d'entrée sont les suivants :
 
 ```
@@ -19,6 +21,8 @@ Les champs requis dans le JSON d'entrée sont les suivants :
   path: "path_to_document"
 }
 ```
+
+#### Structure de sortie 
 
 Les champs de sortie correspondent aux métadonnées de la notice utiles pour le dédoublonnage, formant ce qu'on appelle le Conditor. Les valeurs de ces champs sont reprises telles quelles, sans aucun post-traitement :
 
