@@ -21,9 +21,9 @@ business.doTheJob = function(jsonLine, cb) {
         volume_nodes, volume_nodes_select;
 
 
-    let title = select('//*[local-name(.)="body"]//*[local-name(.)="biblFull"]/*[local-name(.)="titleStmt"]//*[local-name(.)="title"]/text()', doc);
+    let title = select('//*[local-name(.)="body"]//*[local-name(.)="biblFull"]/*[local-name(.)="sourceDesc"]//*[local-name(.)="title"]/text()', doc);
 
-    let persname_nodes = select('//*[local-name(.)="body"]//*[local-name(.)="biblFull"]//*[local-name(.)="titleStmt"]/*[local-name(.)="author" and @role="aut"]/*[local-name(.)="persName"]', doc);
+    let persname_nodes = select('//*[local-name(.)="body"]//*[local-name(.)="biblFull"]//*[local-name(.)="sourceDesc"]//*[local-name(.)="author" and @role="aut"]/*[local-name(.)="persName"]', doc);
 
     issn_nodes_select = select('//*[local-name(.)="body"]//*[local-name(.)="biblFull"]//*[local-name(.)="idno" and @type="issn"]/text()', doc);
     if (issn_nodes_select[0] && issn_nodes_select[0].data)
