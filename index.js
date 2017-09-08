@@ -20,38 +20,39 @@ business.doTheJob = function(jsonLine, cb) {
         page_nodes, page_nodes_select,
         volume_nodes, volume_nodes_select;
 
+    const metadataXpaths = require(__dirname+"/metadata-xpaths.json");
 
-    let title = select('//*[local-name(.)="body"]//*[local-name(.)="biblFull"]/*[local-name(.)="sourceDesc"]//*[local-name(.)="title"]/text()', doc);
+    let title = select(metadataXpaths.titre, doc);
 
-    let persname_nodes = select('//*[local-name(.)="body"]//*[local-name(.)="biblFull"]//*[local-name(.)="sourceDesc"]//*[local-name(.)="author" and @role="aut"]/*[local-name(.)="persName"]', doc);
+    let persname_nodes = select(metadataXpaths.persNames, doc);
 
-    issn_nodes_select = select('//*[local-name(.)="body"]//*[local-name(.)="biblFull"]//*[local-name(.)="idno" and @type="issn"]/text()', doc);
+    issn_nodes_select = select(metadataXpaths.issn, doc);
     if (issn_nodes_select[0] && issn_nodes_select[0].data)
         issn_nodes = issn_nodes_select[0].data;
     else
         issn_nodes = '';
 
 
-    doi_nodes_select = select('//*[local-name(.)="body"]//*[local-name(.)="biblFull"]//*[local-name(.)="idno" and @type="doi"]/text()', doc);
+    doi_nodes_select = select(metadataXpaths.doi, doc);
     if (doi_nodes_select[0] && doi_nodes_select[0].data)
         doi_nodes = doi_nodes_select[0].data;
     else
         doi_nodes = '';
 
-    numero_nodes_select = select('//*[local-name(.)="body"]//*[local-name(.)="biblScope" and @unit="issue"]/text()', doc);
+    numero_nodes_select = select(metadataXpaths.numero, doc);
     if (numero_nodes_select[0] && numero_nodes_select[0].data)
         numero_nodes = numero_nodes_select[0].data;
     else
         numero_nodes = '';
 
 
-    page_nodes_select = select('//*[local-name(.)="body"]//*[local-name(.)="biblScope" and @unit="pp"]/text()', doc);
+    page_nodes_select = select(metadataXpaths.page, doc);
     if (page_nodes_select[0] && page_nodes_select[0].data)
         page_nodes = page_nodes_select[0].data;
     else
         page_nodes = '';
 
-    volume_nodes_select = select('//*[local-name(.)="body"]//*[local-name(.)="biblScope" and @unit="volume"]/text()', doc);
+    volume_nodes_select = select(metadataXpaths.volume, doc);
     if (volume_nodes_select[0] && volume_nodes_select[0].data)
         volume_nodes = volume_nodes_select[0].data;
     else
@@ -66,8 +67,8 @@ business.doTheJob = function(jsonLine, cb) {
     persname_nodes.forEach(function(persname_node) {
         if (count < 3) {
             let doc_autor = new dom().parseFromString(persname_node.toString(), 'text/xml');
-            let forename = select('//*[local-name(.)="forename"]', doc_autor);
-            let surname = select('//*[local-name(.)="surname"]', doc_autor);
+            let forename = select(metadataXpaths.forename, doc_autor);
+            let surname = select(metadataXpaths.surname, doc_autor);
             champs_unique += '' + surname[0].firstChild + ' ' + forename[0].firstChild + ' ';
             champs_unique_init += '' + surname[0].firstChild + ' ' + forename[0].firstChild.toString().trim().charAt(0) + ' ';
             count++;
