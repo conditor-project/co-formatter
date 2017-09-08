@@ -1,11 +1,11 @@
 {
-  "titre":"normalize-space(//*[local-name(.)='body']//*[local-name(.)='biblFull']/*[local-name(.)='sourceDesc']//*[local-name(.)='title']/text())",
-  "persNames":"//*[local-name(.)='body']//*[local-name(.)='biblFull']//*[local-name(.)='sourceDesc']//*[local-name(.)='author' and @role='aut']/*[local-name(.)='persName']",
-  "forename":"//*[local-name(.)='forename']",
-  "surname":"//*[local-name(.)='surname']",
-  "issn":"//*[local-name(.)='body']//*[local-name(.)='biblFull']//*[local-name(.)='idno' and @type='issn']/text()",
-  "doi":"//*[local-name(.)='body']//*[local-name(.)='biblFull']//*[local-name(.)='idno' and @type='doi']/text()",
-  "numero":"//*[local-name(.)='body']//*[local-name(.)='biblScope' and @unit='issue']/text()",
-  "page":"//*[local-name(.)='body']//*[local-name(.)='biblScope' and @unit='pp']/text()",
-  "volume":"//*[local-name(.)='body']//*[local-name(.)='biblScope' and @unit='volume']/text()"
+  "titre":"normalize-space(//TEI:body//TEI:biblFull//TEI:sourceDesc//TEI:analytic/TEI:title)",
+  "persNames":"//TEI:body//TEI:biblFull//TEI:sourceDesc//TEI:author[@role='aut']/TEI:persName",
+  "forename":"//TEI:forename",
+  "surname":"//TEI:surname",
+  "issn":"//TEI:body//TEI:biblFull//TEI:idno[@type='issn']/text()",
+  "doi":"//TEI:body//TEI:biblFull//TEI:idno[@type='doi']/text()",
+  "numero":"//TEI:body//TEI:biblScope[@unit='issue']/text()",
+  "page":"//TEI:body//TEI:biblScope[@unit='pp']/text()",
+  "volume":"//TEI:body//TEI:biblScope[@unit='volume']/text()"
 }
