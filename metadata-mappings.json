@@ -1,0 +1,17 @@
+{
+    "ART":"Article",
+    "COMM":"Conférence",
+    "POSTER":"Conférence",
+    "OUV":"Ouvrage",
+    "COUV":"Chapitre",
+    "THESE":"Thèse",
+    "REPORT":"Rapport",
+    "OTHER":"Autre",
+    "PATENT":"Autre",
+    "LECTURE":"Autre",
+    "MAP":"Autre",
+    "HDR":"Autre",
+    "UNDEFINED":"Autre",
+    "DOUV":"Autre",
+    "SON":"Autre"
+}

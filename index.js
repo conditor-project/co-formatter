@@ -3,12 +3,13 @@
 const business = {},
   dom = require('xmldom').DOMParser,
   fs = require('fs'),
-  xpath = require('xpath');
+  xpath = require('xpath'),
+  mappingTD = require('./metadata-mappings.json');
 
 business.doTheJob = function (jsonLine, cb) {
 
 
-  console.log(jsonLine.path);
+  //console.log(jsonLine.path);
 
   let xml = fs.readFileSync(jsonLine.path, 'utf8');
   let doc = new dom().parseFromString(xml, 'text/xml');
@@ -29,11 +30,13 @@ business.doTheJob = function (jsonLine, cb) {
     halauthorid_nodes_select,
     orcid_nodes,orcid_nodes_select,
     researcherid_nodes,researcherid_nodes_select,
-    viaf_nodes,viaf_nodes_select;
+    viaf_nodes,viaf_nodes_select,
+    type_document_nodes_select,
+    type_document_nodes,type_conditor;
 
   let halauthorid_nodes ='';
   
-  const metadataXpaths = require(__dirname + "/metadata-xpaths.json");
+  const metadataXpaths = require(__dirname + '/metadata-xpaths.json');
 
   const evaluatorOptions = {node: doc, namespaces: namespaces};
 
@@ -125,10 +128,10 @@ business.doTheJob = function (jsonLine, cb) {
   let authorid_count=0;
   halauthorid_nodes_select = xpath.parse(metadataXpaths.halauthorid).select(evaluatorOptions);
   halauthorid_nodes_select.forEach(function(halauthorid_node){
-    if (authorid_count<3){
+    //if (authorid_count<3){
       halauthorid_nodes += ''+halauthorid_node.firstChild+' ';
       authorid_count++;
-    }
+    //}
   });
   
   if (halauthorid_nodes_select[0] && halauthorid_nodes_select[0].data)
@@ -153,6 +156,17 @@ business.doTheJob = function (jsonLine, cb) {
     viaf_nodes = viaf_nodes_select[0].data;
   else
     viaf_nodes = '';
+
+  type_document_nodes_select = xpath.parse(metadataXpaths.typeDocument).select(evaluatorOptions);
+  if (type_document_nodes_select[0] && type_document_nodes_select[0].value)
+    type_document_nodes = type_document_nodes_select[0].value;
+  else
+    type_document_nodes = '';
+
+  if (mappingTD[type_document_nodes])
+    type_conditor=mappingTD[type_document_nodes];
+  else 
+    type_conditor='';
   
   let champs_unique = '';
 
@@ -209,6 +223,8 @@ business.doTheJob = function (jsonLine, cb) {
   jsonLine.orcid = {'value':orcid_nodes.trim()};
   jsonLine.researcherid = {'value':researcherid_nodes.trim()};
   jsonLine.viaf = {'value':viaf_nodes.trim()};
+  jsonLine.typeDocument = {'value':type_document_nodes};
+  jsonLine.typeConditor = {'value':type_conditor};
   console.log(jsonLine);
 
 

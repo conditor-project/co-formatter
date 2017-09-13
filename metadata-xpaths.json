@@ -19,5 +19,6 @@
   "halauthorid":"//TEI:body//TEI:biblFull//TEI:idno[@type='halauthorid']",
   "orcid":"//TEI:body//TEI:biblFull//TEI:idno[@type='ORCID']/text()",
   "researcherid":"//TEI:body//TEI:biblFull//TEI:idno[@type='ResearcherId']/text()",
-  "viaf":"//TEI:body//TEI:biblFull//TEI:idno[@type='VIAF']/text()"
+  "viaf":"//TEI:body//TEI:biblFull//TEI:idno[@type='VIAF']/text()",
+  "typeDocument":"//TEI:body//TEI:biblFull//TEI:classCode[@scheme='halTypology']/@n"
 }
