@@ -174,14 +174,28 @@ business.doTheJob = function (jsonLine, cb) {
 
   let count = 0;
 
+  let surname,forename;
+
   persname_nodes.forEach(function (persname_node) {
     if (count < 3) {
       let doc_autor = new dom().parseFromString(persname_node.toString(), 'text/xml');
       const evaluatorOptionsAuthor = {node: doc_autor, namespaces: namespaces};
-      let forename = xpath.parse(metadataXpaths.forename).select(evaluatorOptionsAuthor);
-      let surname = xpath.parse(metadataXpaths.surname).select(evaluatorOptionsAuthor);
-      champs_unique += '' + surname[0].firstChild + ' ' + forename[0].firstChild + ' ';
-      champs_unique_init += '' + surname[0].firstChild + ' ' + forename[0].firstChild.toString().trim().charAt(0) + ' ';
+      let forename_node = xpath.parse(metadataXpaths.forename).select(evaluatorOptionsAuthor);
+      let surname_node = xpath.parse(metadataXpaths.surname).select(evaluatorOptionsAuthor);
+      
+      if (surname_node!==undefined && surname_node[0] && surname_node[0].firstChild)
+        surname=surname_node[0].firstChild;
+      else 
+        surname='';
+
+      if (forename_node!==undefined && forename_node[0] && forename_node[0].firstChild)
+        forename=forename_node[0].firstChild;
+      else 
+        forename='';
+
+      
+      champs_unique += '' + surname + ' ' + forename + ' ';
+      champs_unique_init += '' + surname + ' ' + forename.toString().trim().charAt(0) + ' ';
       count++;
     }
   });
@@ -223,9 +237,9 @@ business.doTheJob = function (jsonLine, cb) {
   jsonLine.orcid = {'value':orcid_nodes.trim()};
   jsonLine.researcherid = {'value':researcherid_nodes.trim()};
   jsonLine.viaf = {'value':viaf_nodes.trim()};
-  jsonLine.typeDocument = {'value':type_document_nodes};
-  jsonLine.typeConditor = {'value':type_conditor};
-  console.log(jsonLine);
+  jsonLine.typeDocument = {'value':type_document_nodes.trim()};
+  jsonLine.typeConditor = {'value':type_conditor.trim()};
+  //console.log(jsonLine);
 
 
   return cb();
