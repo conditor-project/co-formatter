@@ -1,5 +1,7 @@
 {
   "titre":"normalize-space(//TEI:body//TEI:biblFull//TEI:sourceDesc//TEI:analytic/TEI:title)",
+  "titrefr":"normalize-space(//TEI:body//TEI:biblFull//TEI:sourceDesc//TEI:analytic/TEI:title[@lang='fr'])",
+  "titreen":"normalize-space(//TEI:body//TEI:biblFull//TEI:sourceDesc//TEI:analytic/TEI:title[@lang='en'])",
   "persNames":"//TEI:body//TEI:biblFull//TEI:sourceDesc//TEI:author[@role='aut']/TEI:persName",
   "forename":"//TEI:forename",
   "surname":"//TEI:surname",
@@ -7,7 +9,7 @@
   "eissn":"//TEI:body//TEI:biblFull//TEI:idno[@type='eissn']/text()",
   "isbn":"//TEI:body//TEI:biblFull//TEI:idno[@type='isbn']/text()",
   "doi":"//TEI:body//TEI:biblFull//TEI:idno[@type='doi']/text()",
-  "ut":"//TEI:body//TEI:biblFull//TEI:idno[@type='UT']/text()",
+  "ut":"//TEI:body//TEI:biblFull//TEI:idno[@type='utKey']/text()",
   "arxiv":"//TEI:body//TEI:biblFull//TEI:idno[@type='arxiv']/text()",
   "pubmed":"//TEI:body//TEI:biblFull//TEI:idno[@type='pubmed']/text()",
   "nnt":"//TEI:body//TEI:biblFull//TEI:idno[@type='nnt']/text()",
@@ -15,10 +17,12 @@
   "numero":"//TEI:body//TEI:biblScope[@unit='issue']/text()",
   "page":"//TEI:body//TEI:biblScope[@unit='pp']/text()",
   "volume":"//TEI:body//TEI:biblScope[@unit='volume']/text()",
-  "idhal":"//TEI:body//TEI:biblFull//TEI:idno[@type='idhal']/text()",
+  "idhal":"//TEI:body//TEI:biblFull//TEI:idno[@type='halId']/text()",
   "halauthorid":"//TEI:body//TEI:biblFull//TEI:idno[@type='halauthorid']",
   "orcid":"//TEI:body//TEI:biblFull//TEI:idno[@type='ORCID']/text()",
   "researcherid":"//TEI:body//TEI:biblFull//TEI:idno[@type='ResearcherId']/text()",
   "viaf":"//TEI:body//TEI:biblFull//TEI:idno[@type='VIAF']/text()",
+  "datePubli":"//TEI:body//TEI:biblFull//TEI::biblStruct//TEI::imprint//TEI::date/text()",
+  "titreSource":"//TEI:body//TEI::biblFull//TEI::biblStruct//TEI::monogr//TEI::title/text()",
   "typeDocument":"//TEI:body//TEI:biblFull//TEI:classCode[@scheme='halTypology']/@n"
 }

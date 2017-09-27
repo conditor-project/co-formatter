@@ -4,7 +4,9 @@ const business = {},
   dom = require('xmldom').DOMParser,
   fs = require('fs'),
   xpath = require('xpath'),
+  _ = require('lodash'),
   mappingTD = require('./metadata-mappings.json');
+
 
 business.doTheJob = function (jsonLine, cb) {
 
@@ -32,7 +34,9 @@ business.doTheJob = function (jsonLine, cb) {
     researcherid_nodes,researcherid_nodes_select,
     viaf_nodes,viaf_nodes_select,
     type_document_nodes_select,
-    type_document_nodes,type_conditor;
+    type_document_nodes,type_conditor,
+    date_publi_nodes,date_publi,
+    titre_source_nodes,titre_source;
 
   let halauthorid_nodes ='';
   
@@ -41,6 +45,8 @@ business.doTheJob = function (jsonLine, cb) {
   const evaluatorOptions = {node: doc, namespaces: namespaces};
 
   let title = xpath.parse(metadataXpaths.titre).evaluateString(evaluatorOptions);
+  let titlefr = xpath.parse(metadataXpaths.titrefr).evaluateString(evaluatorOptions);
+  let titleen = xpath.parse(metadataXpaths.titreen).evaluateString(evaluatorOptions);
 
   let persname_nodes = xpath.parse(metadataXpaths.persNames).select(evaluatorOptions);
 
@@ -163,8 +169,28 @@ business.doTheJob = function (jsonLine, cb) {
   else
     type_document_nodes = '';
 
+  titre_source_nodes=xpath.parse(metadataXpaths.titre_source).select(evaluatorOptions);
+  if (titre_source_nodes[0] && titre_source_nodes[0].value)
+    titre_source = titre_source_nodes[0].value;
+  else 
+    titre_source = '';
+
+  date_publi_nodes=xpath.parse(metadataXpaths.datePubli).select(evaluatorOptions);
+  if (date_publi_nodes[0] && date_publi_nodes[0].value)
+    date_publi = date_publi_nodes[0].value;
+  else 
+    date_publi = '';
+
+
+  /**
   if (mappingTD[type_document_nodes])
     type_conditor=mappingTD[type_document_nodes];
+  else 
+    type_conditor='';
+  **/
+
+  if (mappingTD[jsonLine.source] && mappingTD[jsonLine.source][type_document_nodes])
+    type_conditor=mappingTD[jsonLine.source][type_document_nodes];
   else 
     type_conditor='';
   
@@ -218,6 +244,8 @@ business.doTheJob = function (jsonLine, cb) {
    console.log(volume_nodes);
    **/
   jsonLine.titre = {'value': title.toString().trim()};
+  jsonLine.titrefr = {'value': titlefr.toString().trim()};
+  jsonLine.titreen = {'value':titleen.toString().trim()};
   jsonLine.auteur = {'value': champs_unique.trim()};
   jsonLine.auteur_init = {'value': champs_unique_init.trim()};
   jsonLine.doi = {'value': doi_nodes.trim()};
@@ -238,6 +266,8 @@ business.doTheJob = function (jsonLine, cb) {
   jsonLine.researcherid = {'value':researcherid_nodes.trim()};
   jsonLine.viaf = {'value':viaf_nodes.trim()};
   jsonLine.typeDocument = {'value':type_document_nodes.trim()};
+  jsonLine.titreSource = {'value':titre_source.trim()}; 
+  jsonLine.datePubli = {'value':date_publi.trim()};
   jsonLine.typeConditor = {'value':type_conditor.trim()};
   //console.log(jsonLine);
 
@@ -245,5 +275,6 @@ business.doTheJob = function (jsonLine, cb) {
   return cb();
 
 };
+
 
 module.exports = business;
