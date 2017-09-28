@@ -181,19 +181,18 @@ business.doTheJob = function (jsonLine, cb) {
   else 
     date_publi = '';
 
-
-  /**
-  if (mappingTD[type_document_nodes])
-    type_conditor=mappingTD[type_document_nodes];
-  else 
-    type_conditor='';
-  **/
-
-  if (mappingTD[jsonLine.source] && mappingTD[jsonLine.source][type_document_nodes])
-    type_conditor=mappingTD[jsonLine.source][type_document_nodes];
-  else 
-    type_conditor='';
   
+  _.each(mappingTD,(mapping)=>{
+    if (mapping.source.trim()===jsonLine.source.trim()) type_conditor = mapping.mapping[type_document_nodes];
+  });
+
+  if (type_conditor===undefined) type_conditor={'type':''};
+
+
+  if ((type_conditor.type.trim()==='Conférence' || type_conditor.type.trim()==='Autre') && (issn_nodes.trim()!=='' || eissn_nodes.trim()!=='')){
+    type_conditor.type+=' Article';
+  }
+
   let champs_unique = '';
 
   let champs_unique_init = '';
@@ -268,7 +267,7 @@ business.doTheJob = function (jsonLine, cb) {
   jsonLine.typeDocument = {'value':type_document_nodes.trim()};
   jsonLine.titreSource = {'value':titre_source.trim()}; 
   jsonLine.datePubli = {'value':date_publi.trim()};
-  jsonLine.typeConditor = {'value':type_conditor.trim()};
+  jsonLine.typeConditor = type_conditor.type.trim();
   //console.log(jsonLine);
 
 

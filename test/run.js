@@ -28,12 +28,14 @@ describe(pkg.name + '/index.js', function () {
 			  process.exit(1);
 		  }
 
+      console.log(docObject);
       expect(docObject.auteur.value).to.be.equal('Silva Ricardo R. Jourdan Fabien Salvanha Diego M.');
 		  expect(docObject.titre.value).to.be.equal('ProbMetab: an R package for Bayesian probabilistic annotation of LC-MS-based metabolomics');
 		  expect(docObject.issn.value).to.be.equal('1367-4803');
 		  expect(docObject.page.value).to.be.equal('1336 - 1337');
 		  expect(docObject.volume.value).to.be.equal('30');
-		  expect(docObject.numero.value).to.be.equal('9');
+      expect(docObject.numero.value).to.be.equal('9');
+      expect(docObject.source).to.be.equal('hal');
        	 done();
       });
     });
@@ -49,7 +51,8 @@ describe(pkg.name + '/index.js', function () {
           console.log(kuler(err.errMessage, 'red'));
           process.exit(1);
         }
-
+        
+        console.log(docObject);
         expect(docObject.auteur.value).to.be.not.equal('');
         expect(docObject.auteur.value).to.be.not.undefined;
         expect(docObject.titre.value).to.be.not.equal('');
