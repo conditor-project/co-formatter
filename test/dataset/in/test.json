@@ -4,5 +4,8 @@
     "source":"hal"},
   { "id": "2",
     "path":"dataset/in/notice-hal.xml",
+    "source":"hal"},
+  { "id": "3",
+    "path":"dataset/in/Coeurdassier_TEI_Conditor_HAL_ART_noVol_dbl_Affil.xml",
     "source":"hal"}
 ]

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:hal="http://hal.archives-ouvertes.fr/">
+  <teiHeader>
+  </teiHeader>
+  <text>
+    <body>
+      <listBibl>
+        <biblFull>
+           <sourceDesc>
+            <biblStruct>
+              <analytic>
+                <title origin="HAL" xml:lang="en">Limiting the accidental poisoning of wild and domesticated animals due to the chemical pesticides used to control water vole outbreaks: progress to date</title>
+                <title origin="HAL" xml:lang="fr">Évolution des effets non intentionnels de la lutte chimique contre le campagnol terrestre sur la faune sauvage et domestique</title>
+                <author origin="HAL" role="aut">
+                  <persName>
+                    <forename origin="HAL" type="first">Michaël</forename>
+                    <surname origin="HAL">Coeurdassier</surname>
+                  </persName>
+                  <idno origin="HAL" type="halauthorid">460031</idno>
+                  <email origin="HAL" type="md5">f6e6998158659519523d91197b67bc0d</email>
+                  <email origin="HAL" type="domain">univ-fcomte.fr</email>
+            <!--      <affiliation origin="HAL" ref="#struct-57629"/>  -->
+                  <affiliation origin="HAL" type="HAL">Laboratoire Chrono-environnement</affiliation>
+                </author>
+                <author origin="HAL" role="aut">
+                  <persName>
+                    <forename origin="HAL" type="first">Philippe</forename>
+                    <surname origin="HAL">Berny</surname>
+                  </persName>
+                  <idno origin="HAL" type="halauthorid">370098</idno>
+             <!--  <affiliation origin="HAL" ref="#struct-200138"/>  -->
+                  <affiliation origin="HAL" type="HAL">Laboratoire de pharmacie - toxicologie</affiliation>
+                </author>
+                <author origin="HAL" role="aut">
+                  <persName>
+                    <forename origin="HAL" type="first">Geoffroy</forename>
+                    <surname origin="HAL">Couval</surname>
+                  </persName>
+                  <idno origin="HAL" type="halauthorid">762273</idno>
+                   <!--  <affiliation origin="HAL" ref="#struct-206330"/>  -->
+                  <affiliation origin="HAL" type="HAL">Fédération Régionale de Défense contre les Organismes Nuisibles</affiliation>
+                </author>
+                <author origin="HAL" role="aut">
+                  <persName>
+                    <forename origin="HAL" type="first">Anouk</forename>
+                    <surname origin="HAL">Decors</surname>
+                  </persName>
+                  <idno origin="HAL" type="halauthorid">963831</idno>
+         <!--   <affiliation origin="HAL" ref="#struct-240988"/>  -->
+                  <affiliation origin="HAL" type="HAL">Office National de la Chasse et de la Faune Sauvage</affiliation>
+                </author>
+                <author origin="HAL" role="aut">
+                  <persName>
+                    <forename origin="HAL" type="first">Manon</forename>
+                    <surname origin="HAL">Jacquot</surname>
+                  </persName>
+                  <idno origin="HAL" type="halauthorid">778917</idno>
+                <!--  <affiliation origin="HAL" ref="#struct-57629"/>  -->
+                  <affiliation origin="HAL" type="HAL">Laboratoire Chrono-environnement</affiliation>
+                </author>
+                <author origin="HAL" role="aut">
+                  <persName>
+                    <forename origin="HAL" type="first">S</forename>
+                    <surname origin="HAL">Queffélec</surname>
+                  </persName>
+                  <idno origin="HAL" type="halauthorid">1116279</idno>
+                <!--  <affiliation origin="HAL" ref="#struct-410297"/>  -->
+                  <affiliation origin="HAL" type="HAL">Centre National d’Informations Toxicologiques Vétérinaires</affiliation>
+                </author>
+                <author origin="HAL" role="aut">
+                  <persName>
+                    <forename origin="HAL" type="first">Thomas</forename>
+                    <surname origin="HAL">Quintaine</surname>
+                  </persName>
+                  <idno origin="HAL" type="halauthorid">963833</idno>
+                 <!--  <affiliation origin="HAL" ref="#struct-240988"/>  -->
+                  <affiliation origin="HAL" type="HAL">Office National de la Chasse et de la Faune Sauvage</affiliation>
+                </author>
+                <author origin="HAL" role="aut">
+                  <persName>
+                    <forename origin="HAL" type="first">Patrick</forename>
+                    <surname origin="HAL">Giraudoux</surname>
+                  </persName>
+                  <idno origin="HAL" type="idhal" notation="string">patrick-giraudoux</idno>
+                  <idno origin="HAL" type="idhal" notation="numeric">2179</idno>
+                  <idno origin="HAL" type="halauthorid">828346</idno>
+                  <idno origin="HAL" type="IdRef">http://www.idref.fr/059300507</idno>
+                  <idno origin="HAL" type="ORCID">http://orcid.org/0000-0003-2376-0136</idno>
+                  <email origin="HAL" type="md5">e9bb977de5fe502aacfead5a35d95934</email>
+                  <email origin="HAL" type="domain">univ-fcomte.fr</email>
+         <!--   <ptr type="url" target="http://chrono-environnement.univ-fcomte.fr/spip.php?article232"/>
+                  <affiliation origin="HAL" ref="#struct-56663"/>  -->
+                  <affiliation origin="HAL" type="HAL">Institut Universitaire de France</affiliation>
+          <!--  <affiliation origin="HAL" ref="#struct-57629"/>  -->
+                  <affiliation origin="HAL" type="HAL">Laboratoire Chrono-environnement</affiliation>
+                </author>
+              </analytic>
+              <monogr>
+                <idno origin="HAL" type="issn">0429-2766</idno>
+                <title origin="HAL" level="j">Fourrages</title>
+                <imprint>
+                  <publisher origin="HAL">Association française pour la production fourragère</publisher>
+                  <biblScope origin="HAL" unit="issue">220</biblScope>
+                  <biblScope origin="HAL" unit="pp">327-335</biblScope>
+                  <date origin="HAL" type="datePub">2014</date>
+                </imprint>
+              </monogr>
+			  <idno origin="HAL" type="halId">hal-01103402</idno>
+            </biblStruct>
+          </sourceDesc>
+          <profileDesc>
+            <langUsage>
+              <language origin="HAL" ident="fr">French</language>
+            </langUsage>
+            <textClass>
+              <keywords origin="HAL" scheme="author">
+                <term origin="HAL" xml:lang="sv">AVK</term>
+              </keywords>
+              <classCode origin="HAL" scheme="halTypology" n="ART">Journal articles</classCode>
+            </textClass>
+            <abstract origin="HAL" xml:lang="en">The use of bromadiolone to combat water vole outbreaks can result in the accidental poisoning of non-target fauna (e.g., raptors, foxes, and wild boars). Available data indicate that switching from a curative approach (applied post outbreak) to a preventative approach (applied before outbreaks occur) can limit these unintended secondary effects. In May 2014, a joint ministerial order was issued that established how bromadiolone (an anticoagulant) could be employed in agricultural settings and that promoted integrated control practices. Efforts related to these new regulations include 1) the development of a decision-making tool that can help prevent the accidental poisoning of non-target species and 2) the establishment of a new standardised monitoring regime to quantify bromadiolone’s unintended secondary effects and the pesticide’s accumulation in the tissues of non-target fauna.</abstract>
+            <abstract origin="HAL" xml:lang="fr">L’utilisation de bromadiolone pour lutter contre les pullulations de campagnols terrestres est responsable d’intoxications de la faune noncible (rapaces, renards, sangliers...). Les indicateurs disponibles montrent que le passage d’une logique de lutte curative à celle d’unelutte préventive a permis de limiter les effets non intentionnels de la bromadiolone. Un arrêté interministériel encadrant l’emploi de cetanticoagulant en plein champ et favorisant les principes de la lutte raisonnée a été promulgué en mai 2014. Les enjeux liés à cetteréglementation concernent la validation d’un outil d’aide à la décision développé pour prévenir les intoxications d’espèces non-cibles etla mise en place d’une surveillance standardisée de l’imprégnation de la faune par la bromadiolone et de ses effets non intentionnels.</abstract>
+          </profileDesc>
+        </biblFull>
+      </listBibl>
+    </body>
+    <back>
+    </back>
+  </text>
+</TEI>

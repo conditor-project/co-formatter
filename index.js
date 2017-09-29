@@ -140,7 +140,7 @@ business.doTheJob = function (jsonLine, cb) {
     //}
   });
   
-  if (halauthorid_nodes_select[0] && halauthorid_nodes_select[0].data)
+  if (idhal_nodes_select[0] && idhal_nodes_select[0].data)
     idhal_nodes = idhal_nodes_select[0].data;
   else
     idhal_nodes = '';
