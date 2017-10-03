@@ -45,6 +45,8 @@ describe(pkg.name + '/index.js', function () {
       expect(docObject.viaf.value).to.be.equal('test-viaf');
       expect(docObject.typeDocument.value).to.be.equal('ART');
       expect(docObject.halauthorid.value).to.be.equal('460031 370098 762273 963831 778917 1116279 963833 828346');
+      expect(docObject.titreSource.value).to.be.equal('Fourrages');
+      expect(docObject.datePubli.value).to.be.equal('2014');
        	 done();
       });
     });

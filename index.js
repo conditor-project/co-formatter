@@ -169,15 +169,15 @@ business.doTheJob = function (jsonLine, cb) {
   else
     type_document_nodes = '';
 
-  titre_source_nodes=xpath.parse(metadataXpaths.titre_source).select(evaluatorOptions);
-  if (titre_source_nodes[0] && titre_source_nodes[0].value)
-    titre_source = titre_source_nodes[0].value;
+  titre_source_nodes=xpath.parse(metadataXpaths.titreSource).select(evaluatorOptions);
+  if (titre_source_nodes[0] && titre_source_nodes[0].data)
+    titre_source = titre_source_nodes[0].data;
   else 
     titre_source = '';
 
   date_publi_nodes=xpath.parse(metadataXpaths.datePubli).select(evaluatorOptions);
-  if (date_publi_nodes[0] && date_publi_nodes[0].value)
-    date_publi = date_publi_nodes[0].value;
+  if (date_publi_nodes[0] && date_publi_nodes[0].data)
+    date_publi = date_publi_nodes[0].data;
   else 
     date_publi = '';
 
