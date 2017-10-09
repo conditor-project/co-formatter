@@ -188,11 +188,15 @@ business.doTheJob = function (jsonLine, cb) {
 
   if (type_conditor===undefined) type_conditor={'type':''};
 
-
+  // Si le type conditor est Conférence ou Autre et qu'un issn ou eissn est présent alors on ajoute le type conditor Article.
   if ((type_conditor.type.trim()==='Conférence' || type_conditor.type.trim()==='Autre') && (issn_nodes.trim()!=='' || eissn_nodes.trim()!=='')){
     type_conditor.type+=' Article';
   }
 
+  // Si présence d'un isbn alors on remplace par Ouvrage (prodinra)
+  if ((isbn_nodes.trim()!=='')){
+    type_conditor.type = 'Ouvrage';
+  }
   let champs_unique = '';
 
   let champs_unique_init = '';

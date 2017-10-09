@@ -61,5 +61,32 @@
      "Book":{"type":"Ouvrage"},
      "Book Chapter":{"type":"Chapitre"}
     }
+},
+{
+    "source":"prodinra",
+    "mapping":{
+      "ARTICLE":{"type":"Article"},
+      "article_translation":{"type":"Article"},
+      "PROCEEDING_PAPER":{"type":"Article"},
+      "PAPER":{"type":"Conférence"},
+      "PREFACE_PROCEEDINGS":{"type":"Conférence"},
+      "PROCEEDINGS":{"type":"Conférence"},
+      "book_translation":{"type":"Autre"},
+      "BOOK":{"type":"Autre"},
+      "CHAPTER":{"type":"Autre"},
+      "chapter_translation":{"type":"Chapitre"},
+      "THESIS":{"type":"Thèse"},
+      "RESEARCH_REPORT":{"type":"Rapport"},
+      "RESEARCH_REPORT_CHAPTER":{"type":"Rapport"},
+      "REPORT":{"type":"Rapport"},
+      "ACTIVITY_REPORT":{"type":"Rapport"},
+      "HDR":{"type":"Autre"},
+      "PEDAGOGICAL_DOCUMENT":{"type":"Autre"},
+      "DISSERTATION":{"type":"Autre"},
+      "PATENT":{"type":"Autre"},
+      "MAP":{"type":"Autre"},
+      "AUDIOVISUAL_DOCUMENT":{"type":"Autre"},
+      "SOFTWARE":{"type":"Autre"}
+    }
 }
 ]
