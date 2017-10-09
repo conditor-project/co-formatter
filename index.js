@@ -183,7 +183,7 @@ business.doTheJob = function (jsonLine, cb) {
 
   
   _.each(mappingTD,(mapping)=>{
-    if (mapping.source.trim()===jsonLine.source.trim()) type_conditor = mapping.mapping[type_document_nodes];
+    if (mapping.source.trim()===jsonLine.source.toLowerCase().trim()) type_conditor = mapping.mapping[type_document_nodes];
   });
 
   if (type_conditor===undefined) type_conditor={'type':''};
