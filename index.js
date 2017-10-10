@@ -193,10 +193,6 @@ business.doTheJob = function (jsonLine, cb) {
     type_conditor.type+=' Article';
   }
 
-  // Si présence d'un isbn alors on remplace par Ouvrage (prodinra)
-  if ((isbn_nodes.trim()!=='')){
-    type_conditor.type = 'Ouvrage';
-  }
   let champs_unique = '';
 
   let champs_unique_init = '';
