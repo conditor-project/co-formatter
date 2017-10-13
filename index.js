@@ -181,16 +181,16 @@ business.doTheJob = function (jsonLine, cb) {
   else 
     date_publi = '';
 
+  type_conditor=[];
   
   _.each(mappingTD,(mapping)=>{
-    if (mapping.source.trim()===jsonLine.source.toLowerCase().trim()) type_conditor = mapping.mapping[type_document_nodes];
+    if (mapping.source.trim()===jsonLine.source.toLowerCase().trim()) type_conditor.push(mapping.mapping[type_document_nodes]);
   });
 
-  if (type_conditor===undefined) type_conditor={'type':''};
 
   // Si le type conditor est Conférence ou Autre et qu'un issn ou eissn est présent alors on ajoute le type conditor Article.
-  if ((type_conditor.type.trim()==='Conférence' || type_conditor.type.trim()==='Autre') && (issn_nodes.trim()!=='' || eissn_nodes.trim()!=='')){
-    type_conditor.type+=' Article';
+  if ((type_conditor[0]==={'type':'Conférence'} || type_conditor[0]==={'type':'Autre'}) && (issn_nodes.trim()!=='' || eissn_nodes.trim()!=='')){
+    type_conditor.value.push({'type':'Article'});
   }
 
   let champs_unique = '';
@@ -267,7 +267,7 @@ business.doTheJob = function (jsonLine, cb) {
   jsonLine.typeDocument = {'value':type_document_nodes.trim()};
   jsonLine.titreSource = {'value':titre_source.trim()}; 
   jsonLine.datePubli = {'value':date_publi.trim()};
-  jsonLine.typeConditor = type_conditor.type.trim();
+  jsonLine.typeConditor = type_conditor;
   //console.log(jsonLine);
 
 
