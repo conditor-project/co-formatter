@@ -24,5 +24,5 @@
   "viaf":"//TEI:body//TEI:biblFull//TEI:idno[@type='VIAF']/text()",
   "datePubli":"//TEI:body//TEI:biblFull//TEI:biblStruct//TEI:imprint//TEI:date/text()",
   "titreSource":"//TEI:body//TEI:biblFull//TEI:biblStruct//TEI:monogr//TEI:title/text()",
-  "typeDocument":"//TEI:body//TEI:biblFull//TEI:classCode[@scheme='halTypology']/@n"
+  "typeDocument":"//TEI:body//TEI:biblFull//TEI:classCode[@scheme='typology']/@n"
 }
