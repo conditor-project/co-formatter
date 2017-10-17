@@ -20,9 +20,9 @@
   "idhal":"//TEI:body//TEI:biblFull//TEI:idno[@type='halId']/text()",
   "halauthorid":"//TEI:body//TEI:biblFull//TEI:idno[@type='halauthorid']",
   "orcid":"//TEI:body//TEI:biblFull//TEI:idno[@type='ORCID']/text()",
-  "researcherid":"//TEI:body//TEI:biblFull//TEI:idno[@type='ResearcherId']/text()",
+  "researcherid":"//TEI:body//TEI:biblFull//TEI:idno[@type='researcherId']/text()",
   "viaf":"//TEI:body//TEI:biblFull//TEI:idno[@type='VIAF']/text()",
   "datePubli":"//TEI:body//TEI:biblFull//TEI:biblStruct//TEI:imprint//TEI:date/text()",
   "titreSource":"//TEI:body//TEI:biblFull//TEI:biblStruct//TEI:monogr//TEI:title/text()",
-  "typeDocument":"//TEI:body//TEI:biblFull//TEI:classCode[@scheme='typology']/@n"
+  "typeDocument":"//TEI:body//TEI:biblFull//TEI:classCode[@scheme='typology']/text()"
 }

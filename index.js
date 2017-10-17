@@ -164,8 +164,8 @@ business.doTheJob = function (jsonLine, cb) {
     viaf_nodes = '';
 
   type_document_nodes_select = xpath.parse(metadataXpaths.typeDocument).select(evaluatorOptions);
-  if (type_document_nodes_select[0] && type_document_nodes_select[0].value)
-    type_document_nodes = type_document_nodes_select[0].value;
+  if (type_document_nodes_select[0] && type_document_nodes_select[0].data)
+    type_document_nodes = type_document_nodes_select[0].data;
   else
     type_document_nodes = '';
 
@@ -184,13 +184,13 @@ business.doTheJob = function (jsonLine, cb) {
   type_conditor=[];
   
   _.each(mappingTD,(mapping)=>{
-    if (mapping.source.trim()===jsonLine.source.toLowerCase().trim()) type_conditor.push(mapping.mapping[type_document_nodes]);
+    if (mapping.source.trim()===jsonLine.source.toLowerCase().trim()) type_conditor.push(mapping.mapping[type_document_nodes] || {'type':'Article'});
   });
 
 
   // Si le type conditor est Conférence ou Autre et qu'un issn ou eissn est présent alors on ajoute le type conditor Article.
   if ((type_conditor[0]==={'type':'Conférence'} || type_conditor[0]==={'type':'Autre'}) && (issn_nodes.trim()!=='' || eissn_nodes.trim()!=='')){
-    type_conditor.value.push({'type':'Article'});
+    type_conditor.push({'type':'Article'});
   }
 
   let champs_unique = '';
