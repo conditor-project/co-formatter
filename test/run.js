@@ -37,13 +37,13 @@ describe(pkg.name + '/index.js', function () {
 		  expect(docObject.volume.value).to.be.equal('1');
       expect(docObject.numero.value).to.be.equal('220');
       expect(docObject.idhal.value).to.be.equal('hal-01103402');
-      expect(docObject.typeDocument.value).to.be.equal('Article');
+      expect(docObject.typeDocument.value).to.be.equal('Journal articles');
       expect(docObject.typeConditor[0]).to.be.equal('Article');
       expect(docObject.orcid.value).to.be.equal('http://orcid.org/0000-0003-2376-0136');
       expect(docObject.source).to.be.equal('hal');
       expect(docObject.doi.value).to.be.equal('test-doi');
       expect(docObject.viaf.value).to.be.equal('test-viaf');
-      expect(docObject.typeDocument.value).to.be.equal('Article');
+      expect(docObject.typeDocument.value).to.be.equal('Journal articles');
       expect(docObject.halauthorid.value).to.be.equal('460031 370098 762273 963831 778917 1116279 963833 828346');
       expect(docObject.titreSource.value).to.be.equal('Fourrages');
       expect(docObject.datePubli.value).to.be.equal('2014');
