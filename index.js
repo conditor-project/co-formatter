@@ -184,7 +184,7 @@ business.doTheJob = function (jsonLine, cb) {
   type_conditor=[];
   
   _.each(mappingTD,(mapping)=>{
-    if (mapping.source.trim()===jsonLine.source.toLowerCase().trim()) type_conditor.push(mapping.mapping[type_document_nodes] || 'Article');
+    if (mapping.source.trim()===jsonLine.source.toLowerCase().trim()) type_conditor.push(mapping.mapping[type_document_nodes].type || 'Article');
   });
 
 
