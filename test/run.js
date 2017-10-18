@@ -38,7 +38,7 @@ describe(pkg.name + '/index.js', function () {
       expect(docObject.numero.value).to.be.equal('220');
       expect(docObject.idhal.value).to.be.equal('hal-01103402');
       expect(docObject.typeDocument.value).to.be.equal('Article');
-      expect(docObject.typeConditor[0].type).to.be.equal('Article');
+      expect(docObject.typeConditor[0]).to.be.equal('Article');
       expect(docObject.orcid.value).to.be.equal('http://orcid.org/0000-0003-2376-0136');
       expect(docObject.source).to.be.equal('hal');
       expect(docObject.doi.value).to.be.equal('test-doi');
