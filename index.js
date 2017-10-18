@@ -184,13 +184,13 @@ business.doTheJob = function (jsonLine, cb) {
   type_conditor=[];
   
   _.each(mappingTD,(mapping)=>{
-    if (mapping.source.trim()===jsonLine.source.toLowerCase().trim()) type_conditor.push(mapping.mapping[type_document_nodes] || {'type':'Article'});
+    if (mapping.source.trim()===jsonLine.source.toLowerCase().trim()) type_conditor.push(mapping.mapping[type_document_nodes].type || 'Article');
   });
 
 
   // Si le type conditor est Conférence ou Autre et qu'un issn ou eissn est présent alors on ajoute le type conditor Article.
-  if ((type_conditor[0]==={'type':'Conférence'} || type_conditor[0]==={'type':'Autre'}) && (issn_nodes.trim()!=='' || eissn_nodes.trim()!=='')){
-    type_conditor.push({'type':'Article'});
+  if ((type_conditor[0]==='Conférence' || type_conditor[0]==='Autre') && (issn_nodes.trim()!=='' || eissn_nodes.trim()!=='')){
+    type_conditor.push('Article');
   }
 
   let champs_unique = '';
