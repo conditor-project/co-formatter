@@ -184,15 +184,22 @@ business.doTheJob = function (jsonLine, cb) {
   type_conditor=[];
   
   _.each(mappingTD,(mapping)=>{
-    if (mapping.source.trim()===jsonLine.source.toLowerCase().trim()) type_conditor.push(mapping.mapping[type_document_nodes].type || 'Article');
+    if (mapping.source.trim()===jsonLine.source.toLowerCase().trim()){
+        console.log(JSON.stringify(mapping));
+        console.log(JSON.stringify(mapping.mapping));
+        console.log(JSON.stringify(mapping.mapping[type_document_nodes]));
+        console.log(type_document_nodes);
+       type_conditor.push(mapping.mapping[type_document_nodes] ||  {'type':'Article'});
+    }
   });
 
 
   // Si le type conditor est Conférence ou Autre et qu'un issn ou eissn est présent alors on ajoute le type conditor Article.
   if ((type_conditor[0]==='Conférence' || type_conditor[0]==='Autre') && (issn_nodes.trim()!=='' || eissn_nodes.trim()!=='')){
-    type_conditor.push('Article');
+    type_conditor.push({'type':'Article'});
   }
 
+  console.log('typeConditor:'+type_conditor);
   let champs_unique = '';
 
   let champs_unique_init = '';
@@ -268,7 +275,6 @@ business.doTheJob = function (jsonLine, cb) {
   jsonLine.titreSource = {'value':titre_source.trim()}; 
   jsonLine.datePubli = {'value':date_publi.trim()};
   jsonLine.typeConditor = type_conditor;
-  //console.log(jsonLine);
 
 
   return cb();
