@@ -12,9 +12,17 @@ business.doTheJob = function (jsonLine, cb) {
 
 
   //console.log(jsonLine.path);
-
+  let error;
   let xml = fs.readFileSync(jsonLine.path, 'utf8');
-  let doc = new dom().parseFromString(xml, 'text/xml');
+  let doc = new dom().parseFromString(xml, 'text/xml',function(err) {
+    if (err) {
+        error = {
+            errCode: 1,
+            errMessage: 'erreur de parsing XML : ' + err
+        };
+        return cb(error);
+    }
+  });
   let namespaces = {'TEI': 'http://www.tei-c.org/ns/1.0', 'xmlns:hal': 'http://hal.archives-ouvertes.fr/'};
   let issn_nodes, issn_nodes_select,
     eissn_nodes,eissn_nodes_select,
@@ -185,10 +193,6 @@ business.doTheJob = function (jsonLine, cb) {
   
   _.each(mappingTD,(mapping)=>{
     if (mapping.source.trim()===jsonLine.source.toLowerCase().trim()){
-        console.log(JSON.stringify(mapping));
-        console.log(JSON.stringify(mapping.mapping));
-        console.log(JSON.stringify(mapping.mapping[type_document_nodes]));
-        console.log(type_document_nodes);
        type_conditor.push(mapping.mapping[type_document_nodes] ||  {'type':'Article'});
     }
   });
