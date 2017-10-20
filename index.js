@@ -203,7 +203,6 @@ business.doTheJob = function (jsonLine, cb) {
     type_conditor.push({'type':'Article'});
   }
 
-  console.log('typeConditor:'+type_conditor);
   let champs_unique = '';
 
   let champs_unique_init = '';
