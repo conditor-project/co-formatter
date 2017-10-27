@@ -5,7 +5,8 @@ const business = {},
   fs = require('fs'),
   xpath = require('xpath'),
   _ = require('lodash'),
-  mappingTD = require('./metadata-mappings.json');
+  mappingTD = require('./metadata-mappings.json'),
+  metadataXpaths = require(__dirname + '/metadata-xpaths.json');
 
 
 business.doTheJob = function (jsonLine, cb) {
@@ -27,14 +28,24 @@ business.doTheJob = function (jsonLine, cb) {
   let doc_bloc,evaluatorOptionsBloc;
   let namespaces = {'TEI': 'http://www.tei-c.org/ns/1.0', 'xmlns:hal': 'http://hal.archives-ouvertes.fr/'};
   
-  const metadataXpaths = require(__dirname + '/metadata-xpaths.json');
+  
   const evaluatorOptions = {node: doc, namespaces: namespaces};
   let extractMetadata = {};
   let select,stringBloc,stringChamps,regexp;
+  
+  function matchRegExp(metadata_regexp,value){
+    if (metadata_regexp.regexp && metadata_regexp.regexp!==''){
+      regexp = new RegExp(metadata_regexp.regexp,metadata_regexp.flag);
+      return value.replace(regexp,metadata_regexp.replace);
+    }
+  }
 
-  _.each(metadataXpaths,(metadata)=>{
+  function extract(metadata){
     if (metadata.type==='standard'){
       select = xpath.parse(metadata.path).evaluateString(evaluatorOptions);
+      if (metadata.regexp){
+       select= matchRegExp(metadata,select);
+      }
       extractMetadata[metadata.name] = select;
     }
     else if (metadata.type==='iteration'){
@@ -42,12 +53,20 @@ business.doTheJob = function (jsonLine, cb) {
       extractMetadata[metadata.name] = [];
       if (metadata.nb==='all'){
         _.each(select,(iteSelect)=>{
-          extractMetadata[metadata.name].push({'value':_.get(iteSelect,'firstChild.data','')});
+          stringChamps = _.get(iteSelect,'firstChild.data','');
+          if (metadata.regexp) stringChamps = matchRegExp(metadata,stringChamps);
+          extractMetadata[metadata.name].push({'value':stringChamps});
         });
       }
       else{
         for (let i=0;i<metadata.nb;i++){
-          if (select[i]) extractMetadata[metadata.name].push({'value':_.get(select[i],'firstChild.data','')});
+          if (select[i]){
+            stringChamps = _.get(select[i],'firstChild.data','');
+            if (metadata.regexp){
+              stringChamps = matchRegExp(metadata,stringChamps);
+            }
+            extractMetadata[metadata.name].push({'value':stringChamps});
+          }
         }
       }
     }
@@ -61,8 +80,8 @@ business.doTheJob = function (jsonLine, cb) {
           evaluatorOptionsBloc = {node: doc_bloc, namespaces: namespaces};
           _.each(metadata.bloc.champs,(metadata_bloc)=>{
             stringChamps=_.get(xpath.parse(metadata_bloc.path).select(evaluatorOptionsBloc),'[0]firstChild.data','');
-            if (metadata.regexp){
-
+            if (metadata_bloc.regexp){
+              stringChamps = matchRegExp(metadata_bloc,stringChamps);
             }
             stringBloc+= stringChamps;
             stringBloc+=metadata.bloc.separateur;
@@ -77,10 +96,8 @@ business.doTheJob = function (jsonLine, cb) {
             evaluatorOptionsBloc = {node: doc_bloc, namespaces: namespaces};
             _.each(metadata.bloc.champs,(metadata_bloc)=>{
               stringChamps=_.get(xpath.parse(metadata_bloc.path).select(evaluatorOptionsBloc),'[0]firstChild.data','');
-
               if (metadata_bloc.regexp){
-                regexp = new RegExp(metadata_bloc.regexp,metadata_bloc.flag);
-                stringChamps = stringChamps.replace(regexp,metadata_bloc.replace);
+                stringChamps = matchRegExp(metadata_bloc,stringChamps);
               }
               stringBloc+= stringChamps;
               stringBloc+=metadata.bloc.separateur;
@@ -91,7 +108,17 @@ business.doTheJob = function (jsonLine, cb) {
       }
       extractMetadata[metadata.name]=stringBloc;
     }
-  });
+  }
+  
+ 
+  try{
+    _.each(metadataXpaths,(metadata)=>{
+      extract(metadata);
+    });
+  }
+  catch (err){
+    return cb(err);
+  }
   
 
   type_conditor=[];
@@ -117,34 +144,6 @@ business.doTheJob = function (jsonLine, cb) {
     jsonLine[key]={'value':value};
   });
 
-  /**
-  jsonLine.titre = {'value': title.toString().trim()};
-  jsonLine.titrefr = {'value': titlefr.toString().trim()};
-  jsonLine.titreen = {'value':titleen.toString().trim()};
-  jsonLine.auteur = {'value': champs_unique.trim()};
-  jsonLine.auteur_init = {'value': champs_unique_init.trim()};
-  jsonLine.doi = {'value': doi_nodes.trim()};
-  jsonLine.arxiv = {'value':arxiv_nodes.trim()};
-  jsonLine.pubmed = {'value':pubmed_nodes.trim()};
-  jsonLine.nnt = {'value':nnt_nodes.trim()};
-  jsonLine.patentNumber = {'value':patent_number_nodes.trim()};
-  jsonLine.ut = {'value':ut_nodes.trim()};
-  jsonLine.issn = {'value': issn_nodes.trim()};
-  jsonLine.eissn = {'value': eissn_nodes.trim()};
-  jsonLine.isbn = {'value': isbn_nodes.trim()};
-  jsonLine.numero = {'value': numero_nodes.trim()};
-  jsonLine.page = {'value': page_nodes.trim()};
-  jsonLine.volume = {'value': volume_nodes.trim()};
-  jsonLine.idhal = {'value':idhal_nodes.trim()};
-  jsonLine.halauthorid = {'value':halauthorid_nodes.trim()};
-  jsonLine.orcid = {'value':orcid_nodes.trim()};
-  jsonLine.researcherid = {'value':researcherid_nodes.trim()};
-  jsonLine.viaf = {'value':viaf_nodes.trim()};
-  jsonLine.typeDocument = {'value':type_document_nodes.trim()};
-  jsonLine.titreSource = {'value':titre_source.trim()}; 
-  jsonLine.datePubli = {'value':date_publi.trim()};
-  
-  **/
   jsonLine.idprodinra = {'value':idprodinra_nodes};
   jsonLine.typeConditor = type_conditor;
 

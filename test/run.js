@@ -1,6 +1,6 @@
 /* global __dirname, require, process, it */
 
-"use strict";
+'use strict';
 
 const
   	fs = require('fs'),
