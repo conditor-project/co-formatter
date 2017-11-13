@@ -143,7 +143,7 @@ business.doTheJob = function (jsonLine, cb) {
   if (flagSource===false){
     error = {
       errCode: 3,
-      errMessage: 'erreur d\'identification. Pas d\id source.'
+      errMessage: 'erreur d\'identification. Pas d\'id source.'
     };
     jsonLine.errors=[];
     jsonLine.errors.push(error);
