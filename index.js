@@ -21,6 +21,8 @@ business.doTheJob = function (jsonLine, cb) {
             errCode: 1,
             errMessage: 'erreur de parsing XML : ' + err
         };
+        jsonLine.errors=[];
+        jsonLine.errors.push(error);
         return cb(error);
     }
   });
@@ -32,6 +34,7 @@ business.doTheJob = function (jsonLine, cb) {
   const evaluatorOptions = {node: doc, namespaces: namespaces};
   let extractMetadata = {};
   let select,stringBloc,stringChamps,regexp;
+  let flagSource=false;
   
   function matchRegExp(metadata_regexp,value){
     if (metadata_regexp.regexp && metadata_regexp.regexp!==''){
@@ -41,6 +44,7 @@ business.doTheJob = function (jsonLine, cb) {
   }
 
   function extract(metadata){
+
     if (metadata.type==='standard'){
       select = xpath.parse(metadata.path).evaluateString(evaluatorOptions);
       if (metadata.regexp){
@@ -117,18 +121,34 @@ business.doTheJob = function (jsonLine, cb) {
     });
   }
   catch (err){
-    return cb(err);
+    error = {
+      errCode: 2,
+      errMessage: 'erreur d\'extraction de path XML : ' + err
+    };
+    jsonLine.errors=[];
+    jsonLine.errors.push(error);
+    return cb(error);
   }
   
-
   type_conditor=[];
   
   _.each(mappingTD,(mapping)=>{
     if (mapping.source.trim()===jsonLine.source.toLowerCase().trim()){
        type_conditor.push(mapping.mapping[extractMetadata.typeDocument] ||  {'type':'Article'});
+       if (extractMetadata[mapping.nameID].trim()!=='') flagSource=true; 
     }
   });
 
+  //Vérification de la présence d'un idSource
+  if (flagSource===false){
+    error = {
+      errCode: 3,
+      errMessage: 'erreur d\'identification. Pas d\id source.'
+    };
+    jsonLine.errors=[];
+    jsonLine.errors.push(error);
+    return cb(error);
+  }
 
   // Si le type conditor est Conférence ou Autre et qu'un issn ou eissn est présent alors on ajoute le type conditor Article.
   if ((type_conditor[0]==='Conférence' || type_conditor[0]==='Autre') && (extractMetadata.issn.trim()!=='' || extractMetadata.issn!=='')){
