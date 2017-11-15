@@ -10,7 +10,7 @@
     "path":"normalize-space(//TEI:body//TEI:biblFull//TEI:sourceDesc//TEI:analytic/TEI:title[@xml:lang='en'])"},
   { "name":"auteur",
     "type":"bloc",
-    "path":"//TEI:body//TEI:biblFull//TEI:sourceDesc//TEI:author[@role='aut']/TEI:persName",
+    "path":"//TEI:body//TEI:biblFull//TEI:sourceDesc//TEI:author[@role='aut' or @role='crp']/TEI:persName",
     "separateur":"",
     "bloc":{
       "separateur":" ",
