@@ -157,17 +157,15 @@ business.doTheJob = function (jsonLine, cb) {
 
   //console.log(extractMetadata);
 
-  let idprodinra_nodes='';
 
   _.each(extractMetadata,(value,key)=>{
     if (typeof value ==='string') value = value.trim();
     jsonLine[key]={'value':value};
   });
 
-  jsonLine.idprodinra = {'value':idprodinra_nodes};
   jsonLine.typeConditor = type_conditor;
 
-
+  console.log(jsonLine.idprodinra);
   return cb();
 
 };
