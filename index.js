@@ -167,8 +167,16 @@ business.doTheJob = function (jsonLine, cb) {
 
 
   _.each(extractMetadata,(value,key)=>{
-    if (typeof value ==='string') value = value.trim();
-    jsonLine[key]={'value':value};
+    if (typeof value ==='string'){ 
+      value = value.trim();
+      jsonLine[key]={'value':value};
+    }
+    else if (Array.isArray(value)){
+      jsonLine[key]=value;
+    }
+    else {
+      jsonLine[key]={'value':value};
+    }
   });
 
   jsonLine.typeConditor = type_conditor;
