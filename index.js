@@ -77,7 +77,7 @@ business.doTheJob = function (jsonLine, cb) {
     else if (metadata.type==='bloc'){
       select = xpath.parse(metadata.path).select(evaluatorOptions);
       extractMetadata[metadata.name] = [];
-      stringBloc="";
+      stringBloc='';
       if (metadata.bloc.nb==='all'){
         _.each(select,(iteSelect)=>{
           doc_bloc = new dom().parseFromString(iteSelect.toString(), 'text/xml');
@@ -154,7 +154,9 @@ business.doTheJob = function (jsonLine, cb) {
     return cb(error);
   }
 
-  // Si le tableau de type conditor contient Conférence ou Autre et qu'un issn ou eissn est présent alors on ajoute le type conditor Article s il n'est pas déjà présent.
+  // Si le tableau de type conditor contient Conférence ou Autre 
+  // et qu'un issn ou eissn est présent
+  // alors on ajoute le type conditor Article s il n'est pas déjà présent.
   if (_.find(type_conditor,{'type':'Article'}===undefined)
     && (_.find(type_conditor,'Conférence')!==undefined 
     || _.find(type_conditor,'Autre')!==undefined) 
@@ -181,7 +183,6 @@ business.doTheJob = function (jsonLine, cb) {
 
   jsonLine.typeConditor = type_conditor;
 
-  console.log(jsonLine.idprodinra);
   return cb();
 
 };
