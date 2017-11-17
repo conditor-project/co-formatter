@@ -134,8 +134,12 @@ business.doTheJob = function (jsonLine, cb) {
   
   _.each(mappingTD,(mapping)=>{
     if (mapping.source.trim()===jsonLine.source.toLowerCase().trim()){
-       type_conditor.push(mapping.mapping[extractMetadata.typeDocument] ||  {'type':'Article'});
-       if (extractMetadata[mapping.nameID].trim()!=='') flagSource=true; 
+      //constitution du tableau Type Conditor
+      _.each(extractMetadata.typeDocument,(td)=>{
+        type_conditor.push(mapping.mapping[td.value]);
+      });
+      //flag vérifiant si l'id source est bien présent
+      if (extractMetadata[mapping.nameID].trim()!=='') flagSource=true; 
     }
   });
 
@@ -150,8 +154,12 @@ business.doTheJob = function (jsonLine, cb) {
     return cb(error);
   }
 
-  // Si le type conditor est Conférence ou Autre et qu'un issn ou eissn est présent alors on ajoute le type conditor Article.
-  if ((type_conditor[0]==='Conférence' || type_conditor[0]==='Autre') && (extractMetadata.issn.trim()!=='' || extractMetadata.issn!=='')){
+  // Si le tableau de type conditor contient Conférence ou Autre et qu'un issn ou eissn est présent alors on ajoute le type conditor Article s il n'est pas déjà présent.
+  if (_.find(type_conditor,{'type':'Article'}===undefined)
+    && (_.find(type_conditor,'Conférence')!==undefined 
+    || _.find(type_conditor,'Autre')!==undefined) 
+    && (extractMetadata.issn.trim()!=='' 
+    || extractMetadata.eissn.trim()!=='')){
     type_conditor.push({'type':'Article'});
 }
 
