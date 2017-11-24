@@ -5,8 +5,8 @@ const business = {},
   fs = require('fs'),
   xpath = require('xpath'),
   _ = require('lodash'),
-  mappingTD = require('./metadata-mappings.json'),
-  metadataXpaths = require(__dirname + '/metadata-xpaths.json');
+  mappingTD = require('co-config/metadata-mappings.json'),
+  metadataXpaths = require('co-config/metadata-xpaths.json');
 
 
 business.doTheJob = function (jsonLine, cb) {
