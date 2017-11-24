@@ -16,7 +16,7 @@
     "co-config": "git+https://genicot@git.istex.fr/conditor/co-config.git",
     "fs": "0.0.1-security",
     "lodash": "^4.17.4",
-    "mocha": "^3.3.0",
+    "mocha": "^3.5.3",
     "xmldom": "^0.1.27",
     "xpath": "0.0.24"
   }
