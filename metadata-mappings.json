@@ -26,7 +26,7 @@
      "Book Review":{"type":"Article"},
      "Abstract of Published Item":{"type":"Article"},
      "Bibliography":{"type":"Article"},
-     "Bibliographical-Item":{"type":"Article"},
+     "Biographical-Item":{"type":"Article"},
      "Correction":{"type":"Article"},
      "Correction, Addition":{"type":"Article"},
      "Data Paper":{"type":"Article"},
