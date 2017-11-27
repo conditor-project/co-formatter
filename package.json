@@ -13,7 +13,7 @@
   "license": "SEE LICENSE IN Licence.txt",
   "dependencies": {
     "chai": "^3.5.0",
-    "co-config": "git+https://genicot@git.istex.fr/conditor/co-config.git",
+    "co-config": "git+ssh://vs-istex-git.intra.inist.fr:22222/conditor/co-config.git",
     "fs": "0.0.1-security",
     "lodash": "^4.17.4",
     "mocha": "^3.5.3",
