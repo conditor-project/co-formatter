@@ -35,15 +35,15 @@ describe(pkg.name + '/index.js', function () {
 		  expect(testData[0].page.value).to.be.equal('327-335');
 		  expect(testData[0].volume.value).to.be.equal('1');
       expect(testData[0].numero.value).to.be.equal('220');
-      expect(testData[0].idhal.value).to.be.equal('hal-01103402');
+      expect(testData[0].idHal.value).to.be.equal('hal-01103402');
       expect(testData[0].typeConditor[0].type).to.be.equal('Article');
-      expect(testData[0].orcid.value).to.be.equal('http://orcid.org/0000-0003-2376-0136');
+      expect(testData[0].orcId.value).to.be.equal('http://orcId.org/0000-0003-2376-0136');
       expect(testData[0].source).to.be.equal('hal');
       expect(testData[0].doi.value).to.be.equal('test-doi');
       expect(testData[0].viaf.value).to.be.equal('test-viaf');
       expect(testData[0].typeDocument).to.be.an('array');
       expect(testData[0].typeDocument[0].value).to.be.equal('Journal articles');
-      expect(testData[0].halautorid).to.be.an('array');
+      expect(testData[0].halAutorId).to.be.an('array');
       expect(testData[0].titreSource.value).to.be.equal('Fourrages');
       expect(testData[0].datePubli.value).to.be.equal('2014');
        	 done();

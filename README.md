@@ -35,7 +35,7 @@ Les champs de sortie correspondent aux métadonnées de la notice utiles pour le
   auteur: {
     value: "Single field with full author names (ex : Jean BON)"
   },
-  auteur_init: {
+  auteurInit: {
     value: "Single field with full lastnames and initials (ex J. BON)"
   },
   doi: {

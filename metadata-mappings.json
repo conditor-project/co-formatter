@@ -1,5 +1,5 @@
 [{ "source":"hal",
-    "nameID":"idhal",
+    "nameID":"idHal",
     "mapping":{
         "ART":{"type":"Article"},
         "COMM":{"type":"Conférence"},
@@ -67,7 +67,7 @@
 },
 {
     "source":"prodinra",
-    "nameID":"idprodinra",
+    "nameID":"idProdinra",
     "mapping":{
       "ARTICLE":{"type":"Article"},
       "article_translation":{"type":"Article"},
