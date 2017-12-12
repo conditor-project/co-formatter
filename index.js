@@ -31,7 +31,15 @@ business.doTheJob = function (jsonLine, cb) {
   let namespaces = {'TEI': 'http://www.tei-c.org/ns/1.0', 'xmlns:hal': 'http://hal.archives-ouvertes.fr/'};
   
   
-  const evaluatorOptions = {node: doc, namespaces: namespaces};
+  const evaluatorOptions = {
+    node: doc,
+    namespaces: namespaces,
+    functions: {
+      'lower-case': function (context, arg) {
+        return context.contextNode.getAttribute('type').toLowerCase();
+      }
+    }
+  };
   let extractMetadata = {};
   let select,stringBloc,stringChamps,regexp;
   let flagSource=false;

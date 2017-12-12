@@ -16,15 +16,15 @@
       "separateur":" ",
       "type":"iteration",
       "nb":3,
-      "champs":[{ 
+      "champs":[{
         "name":"surname",
         "path":"//TEI:surname"},
-        { 
+        {
           "name":"forename",
           "path":"//TEI:forename"}
-        ]
-      }
-    },
+      ]
+    }
+  },
   { "name":"auteurInit",
     "type":"bloc",
     "path":"//TEI:body//TEI:biblFull//TEI:sourceDesc//TEI:author[@role='aut']/TEI:persName",
@@ -33,19 +33,19 @@
       "separateur":" ",
       "type":"iteration",
       "nb":3,
-      "champs":[{ 
+      "champs":[{
         "name":"surname",
         "path":"//TEI:surname"
       },
-      { 
-        "name":"forename",
-        "path":"//TEI:forename",
-        "regexp":"(?:\\s*\\b)([a-zA-Z])(?:[^\\s-]*)",
-        "flag":"gm",
-        "replace":"$1"
-      }
-        ]
-      }
+        {
+          "name":"forename",
+          "path":"//TEI:forename",
+          "regexp":"(?:\\s*\\b)([a-zA-Z])(?:[^\\s-]*)",
+          "flag":"gm",
+          "replace":"$1"
+        }
+      ]
+    }
   },
   { "name":"issn",
     "type":"standard",
@@ -92,16 +92,16 @@
   { "name":"halAutorId",
     "type":"iteration",
     "nb":"all",
-    "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='halauthorid']"},
+    "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='halAuthorId']"},
   { "name":"orcId",
     "type":"standard",
-    "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='ORCID']/text()"},
+    "path":"//TEI:body//TEI:biblFull//TEI:idno[lower-case(@type)='orcid']/text()"},
   { "name":"researcherId",
     "type":"standard",
     "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='researcherId']/text()"},
   { "name":"viaf",
     "type":"standard",
-    "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='VIAF']/text()"},
+    "path":"//TEI:body//TEI:biblFull//TEI:idno[lower-case(@type)='viaf']/text()"},
   { "name":"datePubli",
     "type":"standard",
     "path":"//TEI:body//TEI:biblFull//TEI:biblStruct//TEI:imprint//TEI:date/text()"},
@@ -111,6 +111,9 @@
   { "name":"titreSourceJ",
     "type":"standard",
     "path":"//TEI:body//TEI:biblFull//TEI:biblStruct//TEI:monogr//TEI:title[@level='j']/text()"},
+  { "name":"abstract",
+    "type":"standard",
+    "path":"//TEI:body//TEI:biblFull//TEI:profileDesc//TEI:abstract/text()"},
   { "name":"typeDocument",
     "type":"iteration",
     "nb":"all",

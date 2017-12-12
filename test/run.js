@@ -9,6 +9,7 @@ const
     testData = require(__dirname+'/dataset/in/test.json'),
     path = require('path'),
     chai = require('chai'),
+    kuler = require('kuler'),
     expect = chai.expect;
 
 
@@ -27,7 +28,7 @@ describe(pkg.name + '/index.js', function () {
 			  process.exit(1);
 		  }
 
-      //console.log(testData[0]);
+      // console.log(testData[0]);
       expect(testData[0].auteur.value).to.be.equal('Coeurdassier Michaël Berny Philippe Couval Geoffroy');
 		  expect(testData[0].titre.value).to.be.equal('Limiting the accidental poisoning of wild and domesticated animals due to the chemical pesticides used to control water vole outbreaks: progress to date');
       expect(testData[0].titrefr.value).to.be.equal('Évolution des effets non intentionnels de la lutte chimique contre le campagnol terrestre sur la faune sauvage et domestique');

@@ -19,5 +19,8 @@
     "mocha": "^3.5.3",
     "xmldom": "^0.1.27",
     "xpath": "0.0.24"
+  },
+  "devDependencies": {
+    "kuler": "0.0.0"
   }
 }
