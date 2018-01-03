@@ -166,8 +166,8 @@ business.doTheJob = function (jsonLine, cb) {
   // et qu'un issn ou eissn est présent
   // alors on ajoute le type conditor Article s il n'est pas déjà présent.
   if (_.find(type_conditor,{'type':'Article'}===undefined)
-    && (_.find(type_conditor,'Conférence')!==undefined 
-    || _.find(type_conditor,'Autre')!==undefined) 
+    && (_.find(type_conditor,{'type':'Conférence'})!==undefined 
+    || _.find(type_conditor,{'type':'Autre'})!==undefined) 
     && (extractMetadata.issn.trim()!=='' 
     || extractMetadata.eissn.trim()!=='')){
     type_conditor.push({'type':'Article'});
