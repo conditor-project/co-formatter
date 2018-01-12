@@ -67,7 +67,10 @@ business.doTheJob = function (jsonLine, cb) {
         _.each(select,(iteSelect)=>{
           stringChamps = _.get(iteSelect,'firstChild.data','');
           if (metadata.regexp) stringChamps = matchRegExp(metadata,stringChamps);
-          extractMetadata[metadata.name].push({'value':stringChamps});
+          if (metadata.structured &&  metadata.structured === 'no')
+            extractMetadata[metadata.name].push(stringChamps);
+          else
+            extractMetadata[metadata.name].push({'value':stringChamps});
         });
       }
       else{
@@ -77,7 +80,10 @@ business.doTheJob = function (jsonLine, cb) {
             if (metadata.regexp){
               stringChamps = matchRegExp(metadata,stringChamps);
             }
-            extractMetadata[metadata.name].push({'value':stringChamps});
+            if (metadata.structured &&  metadata.structured === 'no')
+              extractMetadata[metadata.name].push(stringChamps);
+            else
+              extractMetadata[metadata.name].push({'value':stringChamps});
           }
         }
       }

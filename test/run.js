@@ -44,6 +44,8 @@ describe(pkg.name + '/index.js', function () {
       expect(testData[0].viaf[0].value).to.be.equal('test-viaf');
       expect(testData[0].typeDocument).to.be.an('array');
       expect(testData[0].typeDocument[0].value).to.be.equal('ART');
+      expect(testData[0].typeDocumentFlat).to.be.an('array');
+      expect(testData[0].typeDocumentFlat[0]).to.be.equal('ART');
       expect(testData[0].halAutorId).to.be.an('array');
       expect(testData[0].titreSourceJ.value).to.be.equal('Fourrages');
       expect(testData[0].datePubli.value).to.be.equal('2014');
