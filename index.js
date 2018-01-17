@@ -40,6 +40,10 @@ business.doTheJob = function (jsonLine, cb) {
       }
     }
   };
+  const rawEvaluatorOptions = {
+    node: doc,
+    namespaces: namespaces,
+  };
   let extractMetadata = {};
   let select,stringBloc,stringChamps,regexp;
   let flagSource=false;
@@ -58,6 +62,10 @@ business.doTheJob = function (jsonLine, cb) {
       if (metadata.regexp){
        select= matchRegExp(metadata,select);
       }
+      extractMetadata[metadata.name] = select;
+    }
+    else if (metadata.type==='boolean'){
+      select = xpath.parse(metadata.path).evaluateBoolean(evaluatorOptions);
       extractMetadata[metadata.name] = select;
     }
     else if (metadata.type==='iteration'){
@@ -187,7 +195,7 @@ business.doTheJob = function (jsonLine, cb) {
       value = value.trim();
       jsonLine[key]={'value':value};
     }
-    else if (Array.isArray(value)){
+    else if (Array.isArray(value) || typeof(value)==='boolean'){
       jsonLine[key]=value;
     }
     else {

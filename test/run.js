@@ -41,6 +41,8 @@ describe(pkg.name + '/index.js', function () {
       expect(testData[0].orcId.value).to.be.equal('http://orcid.org/0000-0003-2376-0136');
       expect(testData[0].source).to.be.equal('hal');
       expect(testData[0].doi.value).to.be.equal('test-doi');
+      expect(testData[0].hasDoi).to.be.a("boolean");
+      expect(testData[0].hasDoi).to.be.equal(true);
       expect(testData[0].viaf[0].value).to.be.equal('test-viaf');
       expect(testData[0].typeDocument).to.be.an('array');
       expect(testData[0].typeDocument[0].value).to.be.equal('ART');
@@ -53,13 +55,13 @@ describe(pkg.name + '/index.js', function () {
       });
     });
 
-    
+
     testData[1].path = path.join(__dirname, testData[1].path);
 
     it('docObject qui renvoie canvasOK @1', function (done) {
       business.doTheJob( testData[1], function (err) {
-       
-        
+
+
         //console.log(docObject);
 
         done();
