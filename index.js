@@ -222,7 +222,6 @@ business.doTheJob = function (jsonLine, cb) {
   // On remplace le type Conditor Conférence par Chapitre
 
   if (_.find(type_conditor, {type:'Conférence'} && extractMetadata.isbn.trim()!=='')){
-    _.pull(type_conditor,{type:'Conférence'});
     type_conditor.push({type:'Chapitre'});
   }
 
