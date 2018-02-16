@@ -210,22 +210,19 @@ business.doTheJob = function (jsonLine, cb) {
   }
 
 
-  // Si le tableau de type Conditor contient Thèse et qu'un isbn est présent alors 
+  // Si le tableau de type Conditor contient Thèse et qu'un isbn est présent alors
   // On remplace le type conditor Thèse par le type Ouvrage
 
-  if (_.find(type_conditor, {type:'Thèse'} && extractMetadata.isbn.trim()!=='')){
+  if (_.find(type_conditor, {type:'Thèse'}) && extractMetadata.isbn.trim()!==''){
     _.pull(type_conditor,{type:'Thèse'});
     type_conditor.push({type:'Ouvrage'});
   }
 
   // Si le tableau de type Conditor contient Conférence et qu'un isbn est présent alors
   // On remplace le type Conditor Conférence par Chapitre
-
-  if (_.find(type_conditor, {type:'Conférence'} && extractMetadata.isbn.trim()!=='')){
+  if (_.find(type_conditor, {type:'Conférence'}) && extractMetadata.isbn.trim()!==''){
     type_conditor.push({type:'Chapitre'});
   }
-
-  //console.log(extractMetadata);
 
   _.each(extractMetadata, (value, key) => {
     if (typeof value === 'string') {

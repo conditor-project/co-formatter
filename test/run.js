@@ -16,9 +16,10 @@ const
 
 describe(pkg.name + '/index.js', function () {
   describe('#doTheJob', function () {
-    
-    testData[0].path = path.join(__dirname, testData[0].path);
-    
+
+    for (let i=0; i<testData.length; i++) {
+      testData[i].path = path.join(__dirname, testData[i].path);
+    }
 
     it('docObject qui renvoie canvasOK @1', function (done) {
       business.doTheJob( testData[0], function (err) {
@@ -48,24 +49,29 @@ describe(pkg.name + '/index.js', function () {
       expect(testData[0].typeDocument[0].value).to.be.equal('ART');
       expect(testData[0].typeDocumentFlat).to.be.an('array');
       expect(testData[0].typeDocumentFlat[0]).to.be.equal('ART');
+      expect(testData[0].typeConditor[0].type).to.be.equal('Article');
       expect(testData[0].halAutorId).to.be.an('array');
       expect(testData[0].titreSourceJ.value).to.be.equal('Fourrages');
       expect(testData[0].datePubli.value).to.be.equal('2014');
-       	 done();
-      });
-    });
-
-
-    testData[1].path = path.join(__dirname, testData[1].path);
-
-    it('docObject qui renvoie canvasOK @1', function (done) {
-      business.doTheJob( testData[1], function (err) {
-
-
-        //console.log(docObject);
-
         done();
       });
     });
+
+    it('docObject qui renvoie canvasOK @1', function (done) {
+      business.doTheJob( testData[1], function (err) {
+        //console.log(docObject);
+        done();
+      });
+    });
+
+
+    it('docObject qui renvoie canvasOK @1', function (done) {
+      business.doTheJob( testData[2], function (err) {
+        expect(testData[2].typeConditor).to.contains({type:'Chapitre'});
+        done();
+      });
+    });
+
+
   });
 });

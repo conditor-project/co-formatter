@@ -6,5 +6,10 @@
     "id": "2",
     "path":"dataset/in/xmlmalforme.xml",
     "source":"hal"
+  },
+  {
+    "id": "3",
+    "path":"dataset/in/conference-isbn.xml",
+    "source":"wos"
   }
 ]
