@@ -30,13 +30,13 @@ describe(pkg.name + '/index.js', function () {
 		  }
 
       // console.log(testData[0]);
-      expect(testData[0].auteur.value).to.be.equal('Coeurdassier Michaël Berny Philippe Couval Geoffroy');
-		  expect(testData[0].titre.value).to.be.equal('Limiting the accidental poisoning of wild and domesticated animals due to the chemical pesticides used to control water vole outbreaks: progress to date');
-      expect(testData[0].titrefr.value).to.be.equal('Évolution des effets non intentionnels de la lutte chimique contre le campagnol terrestre sur la faune sauvage et domestique');
+      expect(testData[0].author.value).to.be.equal('Coeurdassier Michaël Berny Philippe Couval Geoffroy');
+		  expect(testData[0].title.value).to.be.equal('Limiting the accidental poisoning of wild and domesticated animals due to the chemical pesticides used to control water vole outbreaks: progress to date');
+      expect(testData[0].titlefr.value).to.be.equal('Évolution des effets non intentionnels de la lutte chimique contre le campagnol terrestre sur la faune sauvage et domestique');
       expect(testData[0].issn.value).to.be.equal('0429-2766');
 		  expect(testData[0].page.value).to.be.equal('327-335');
 		  expect(testData[0].volume.value).to.be.equal('1');
-      expect(testData[0].numero.value).to.be.equal('220');
+      expect(testData[0].issue.value).to.be.equal('220');
       expect(testData[0].idHal.value).to.be.equal('hal-01103402');
       expect(testData[0].typeConditor[0].type).to.be.equal('Article');
       expect(testData[0].orcId.value).to.be.equal('http://orcid.org/0000-0003-2376-0136');
@@ -52,7 +52,7 @@ describe(pkg.name + '/index.js', function () {
       expect(testData[0].typeConditor[0].type).to.be.equal('Article');
       expect(testData[0].halAutorId).to.be.an('array');
       expect(testData[0].titreSourceJ.value).to.be.equal('Fourrages');
-      expect(testData[0].datePubli.value).to.be.equal('2014');
+      expect(testData[0].publicationDate.value).to.be.equal('2014');
         done();
       });
     });

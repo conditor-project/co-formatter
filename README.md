@@ -29,13 +29,13 @@ Les champs de sortie correspondent aux métadonnées de la notice utiles pour le
 ```
 {
   ...,
-  titre: {
+  title: {
     value: "My Title"  
   },
-  auteur: {
+  author: {
     value: "Single field with full author names (ex : Jean BON)"
   },
-  auteurInit: {
+  authorInit: {
     value: "Single field with full lastnames and initials (ex J. BON)"
   },
   doi: {
@@ -44,7 +44,7 @@ Les champs de sortie correspondent aux métadonnées de la notice utiles pour le
   issn: {
     value: "ISSN of document host"
   },
-  numero: {
+  issue: {
     value: "document number (in the issue for example)"
   },
   page: {
