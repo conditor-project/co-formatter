@@ -50,7 +50,7 @@ describe(pkg.name + '/index.js', function () {
       expect(testData[0].typeDocumentFlat).to.be.an('array');
       expect(testData[0].typeDocumentFlat[0]).to.be.equal('ART');
       expect(testData[0].typeConditor[0].type).to.be.equal('Article');
-      expect(testData[0].halAutorId).to.be.an('array');
+      expect(testData[0].halAuthorId).to.be.an('array');
       expect(testData[0].titreSourceJ.value).to.be.equal('Fourrages');
       expect(testData[0].publicationDate.value).to.be.equal('2014');
         done();
