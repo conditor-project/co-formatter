@@ -6,8 +6,8 @@ const business = {},
   xpath = require('xpath'),
   _ = require('lodash'),
   mappingTD = require('co-config/metadata-mappings.json'),
-  //metadataXpaths = require('./metadata-xpaths.json');
-  metadataXpaths = require('co-config/metadata-xpaths.json');
+  metadataXpaths = require('./metadata-xpaths.json');
+  //metadataXpaths = require('co-config/metadata-xpaths.json');
 
 business.doTheJob = function (jsonLine, cb) {
 
@@ -82,7 +82,7 @@ business.doTheJob = function (jsonLine, cb) {
       return select;
     }
     else if (metadata.type === "boolean" && metadata.path){
-      select = xpath.parse(metadata.xpath).evaluateBoolean(contextOptions);
+      select = xpath.parse(metadata.path).evaluateBoolean(contextOptions);
       if (metadata.attributeName && metadata.attributeName.trim()!==""){
         let obj = {};
         obj[metadata.attributeName]= select;
@@ -157,6 +157,11 @@ business.doTheJob = function (jsonLine, cb) {
         });
         result = string;
       }
+      if (metadata.attributeName && metadata.attributeName.trim()!==""){
+        let obj = {};
+        obj[metadata.attributeName]= result;
+        result = obj;
+      }
       return result;
     }
   }
@@ -188,7 +193,7 @@ business.doTheJob = function (jsonLine, cb) {
         type_conditor.push(mapping.mapping[td.value]);
       });
       //flag vérifiant si l'id source est bien présent
-      if (extractMetadata[mapping.nameID].trim() !== '') {
+      if (extractMetadata[mapping.nameID].value.trim() !== '') {
         flagSource = true;
       }
     }
@@ -210,7 +215,7 @@ business.doTheJob = function (jsonLine, cb) {
   // Si le tableau de type conditor contient Conférence ou Autre et qu'un issn ou
   // eissn est présent alors on ajoute le type conditor Article s il n'est pas
   // déjà présent.
-  if (!_.find(type_conditor, {type: 'Article'}) && (_.find(type_conditor, {'type': 'Conférence'}) || _.find(type_conditor, {'type': 'Autre'})) && (extractMetadata.issn.trim() !== '' || extractMetadata.eissn.trim() !== '')) {
+  if (!_.find(type_conditor, {type: 'Article'}) && (_.find(type_conditor, {'type': 'Conférence'}) || _.find(type_conditor, {'type': 'Autre'})) && ((extractMetadata.issn && extractMetadata.issn.value.trim() !== '') || (extractMetadata.eissn && extractMetadata.eissn.value.trim() !== ''))) {
     type_conditor.push({'type': 'Article'});
   }
 
@@ -218,30 +223,24 @@ business.doTheJob = function (jsonLine, cb) {
   // Si le tableau de type Conditor contient Thèse et qu'un isbn est présent alors
   // On remplace le type conditor Thèse par le type Ouvrage
 
-  if (_.find(type_conditor, {type:'Thèse'}) && extractMetadata.isbn.trim()!==''){
+  if (_.find(type_conditor, {type:'Thèse'}) 
+  && extractMetadata.isbn
+  && extractMetadata.isbn.value.trim()!==''){
     _.pull(type_conditor,{type:'Thèse'});
     type_conditor.push({type:'Ouvrage'});
   }
 
   // Si le tableau de type Conditor contient Conférence et qu'un isbn est présent alors
   // On remplace le type Conditor Conférence par Chapitre
-  if (_.find(type_conditor, {type:'Conférence'}) && extractMetadata.isbn.trim()!==''){
+  if (_.find(type_conditor, {type:'Conférence'}) 
+  && extractMetadata.isbn
+  && extractMetadata.isbn.value.trim()!==''){
     type_conditor.push({type:'Chapitre'});
   }
 
+   
   _.each(extractMetadata, (value, key) => {
-    if (typeof value === 'string') {
-      value = value.trim();
-      jsonLine[key] = {
-        'value': value
-      };
-    } else if (Array.isArray(value) || typeof(value) === 'boolean') {
       jsonLine[key] = value;
-    } else {
-      jsonLine[key] = {
-        'value': value
-      };
-    }
   });
 
   jsonLine.typeConditor = type_conditor;
