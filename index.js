@@ -6,6 +6,7 @@ const business = {},
   xpath = require('xpath'),
   _ = require('lodash'),
   mappingTD = require('co-config/metadata-mappings.json'),
+  //metadataXpaths = require('./metadata-xpaths.json');
   metadataXpaths = require('co-config/metadata-xpaths.json');
 
 business.doTheJob = function (jsonLine, cb) {
@@ -64,103 +65,107 @@ business.doTheJob = function (jsonLine, cb) {
     }
   }
 
-  function extract(metadata) {
+  function extract(metadata,contextOptions){
+    
+    let select;
 
-    if (metadata.type === 'standard') {
-      select = xpath
-        .parse(metadata.path)
-        .evaluateString(evaluatorOptions);
-      if (metadata.regexp) {
-        select = matchRegExp(metadata, select);
+    if (metadata.type === "simpleString" && metadata.path){
+      select = xpath.parse(metadata.path).evaluateString(contextOptions);
+      if (metadata.regexp){
+        select = matchRegExp(metadata,select);
       }
-      extractMetadata[metadata.name] = select;
-    } else if (metadata.type === 'boolean') {
-      select = xpath
-        .parse(metadata.path)
-        .evaluateBoolean(evaluatorOptions);
-      extractMetadata[metadata.name] = select;
-    } else if (metadata.type === 'iteration') {
-      select = xpath
-        .parse(metadata.path)
-        .select(evaluatorOptions);
-      extractMetadata[metadata.name] = [];
-      if (metadata.nb === 'all') {
-        _.each(select, (iteSelect) => {
-          stringChamps = _.get(iteSelect, 'firstChild.data', '');
-          if (metadata.regexp) {
-            stringChamps = matchRegExp(metadata, stringChamps);
-          }
-          if (metadata.structured && metadata.structured === 'no') {
-            extractMetadata[metadata.name].push(stringChamps);
-          } else {
-            extractMetadata[metadata.name].push({'value': stringChamps});
-          }
-        });
-      } else {
-        for (let i = 0; i < metadata.nb; i++) {
-          if (select[i]) {
-            stringChamps = _.get(select[i], 'firstChild.data', '');
-            if (metadata.regexp) {
-              stringChamps = matchRegExp(metadata, stringChamps);
-            }
-            if (metadata.structured && metadata.structured === 'no') {
-              extractMetadata[metadata.name].push(stringChamps);
-            } else {
-              extractMetadata[metadata.name].push({'value': stringChamps});
-            }
-          }
+      if (metadata.attributeName && metadata.attributeName.trim()!==""){
+        let obj = {};
+        obj[metadata.attributeName]= select;
+        select = obj;
+      }
+      return select;
+    }
+    else if (metadata.type === "boolean" && metadata.path){
+      select = xpath.parse(metadata.xpath).evaluateBoolean(contextOptions);
+      if (metadata.attributeName && metadata.attributeName.trim()!==""){
+        let obj = {};
+        obj[metadata.attributeName]= select;
+        select = obj;
+      }
+      return select;
+    }
+    else if (metadata.type === "array" && metadata.fields){
+
+      let limited = false;
+      let limit = 0;
+      
+      if (metadata.limit){
+        limited = true;
+        limit = metadata.limit;
+      }
+      let result = _.values(_.mapValues(metadata.fields,(field,key)=>{
+        if (!limited || limit > 0){
+          limit --;
+          return extract(field,contextOptions);
         }
+      }));
+      if (metadata.concat===true && metadata.separator){
+        let string = "";
+        _.each(result,(field)=>{
+          if (string.trim()==="") { string+=field; }
+          else { string+=metadata.separator+field; }
+        });
+        result = string;
       }
-    } else if (metadata.type === 'bloc') {
-      select = xpath
-        .parse(metadata.path)
-        .select(evaluatorOptions);
-      extractMetadata[metadata.name] = [];
-      stringBloc = '';
-      if (metadata.bloc.nb === 'all') {
-        _.each(select, (iteSelect) => {
-          doc_bloc = new Dom().parseFromString(iteSelect.toString(), 'text/xml');
-          evaluatorOptionsBloc = {
+      if (metadata.attributeName && metadata.attributeName.trim()!==""){
+        let obj = {};
+        obj[metadata.attributeName]= result;
+        result = obj;
+      }
+      return result;
+    }
+    else if (metadata.type === "struct" && metadata.fields ){
+      let obj = {};
+      _.each(metadata.fields,(field)=>{
+          obj[field.name]=extract(field,contextOptions);
+      });
+      return obj;
+    }
+    else if (metadata.type === "bloc" && metadata.path && metadata.fields){
+      
+      let result = [];
+      let limited = false;
+      let limit=0;
+      
+      if (metadata.limit){
+        limited = true;
+        limit = metadata.limit;
+      }
+      select = xpath.parse(metadata.path).select(contextOptions);
+      _.each(select,(iteSelect)=>{
+        if (!limited || limit > 0){
+          let doc_bloc = new Dom().parseFromString(iteSelect.toString(), 'text/xml');
+          let evaluatorOptionsBloc = {
             node: doc_bloc,
             namespaces: namespaces
           };
-          _.each(metadata.bloc.champs, (metadata_bloc) => {
-            stringChamps = _.get(xpath.parse(metadata_bloc.path).select(evaluatorOptionsBloc), '[0]firstChild.data', '');
-            if (metadata_bloc.regexp) {
-              stringChamps = matchRegExp(metadata_bloc, stringChamps);
-            }
-            stringBloc += stringChamps;
-            stringBloc += metadata.bloc.separateur;
-          });
-          stringBloc += metadata.separateur;
-        });
-      } else if (typeof metadata.bloc.nb === 'number') {
-        for (let j = 0; j < metadata.bloc.nb; j++) {
-          if (select[j]) {
-            doc_bloc = new Dom().parseFromString(select[j].toString(), 'text/xml');
-            evaluatorOptionsBloc = {
-              node: doc_bloc,
-              namespaces: namespaces
-            };
-            _.each(metadata.bloc.champs, (metadata_bloc) => {
-              stringChamps = _.get(xpath.parse(metadata_bloc.path).select(evaluatorOptionsBloc), '[0]firstChild.data', '');
-              if (metadata_bloc.regexp) {
-                stringChamps = matchRegExp(metadata_bloc, stringChamps);
-              }
-              stringBloc += stringChamps;
-              stringBloc += metadata.bloc.separateur;
-            });
-            stringBloc += metadata.separateur;
-          }
+          result.push(extract(metadata.fields,evaluatorOptionsBloc));
+          limit --;
         }
+      });
+      if (metadata.concat === true && metadata.separator) {
+        let string = "";
+        _.each(result,(field)=>{
+          if (string.trim()==="") { string+=field; }
+          else { string+=metadata.separator+field; }
+        });
+        result = string;
       }
-      extractMetadata[metadata.name] = stringBloc;
+      return result;
     }
   }
 
+  
   try {
+    
     _.each(metadataXpaths, (metadata) => {
-      extract(metadata);
+      extractMetadata[metadata.name]=extract(metadata,evaluatorOptions);
     });
   } catch (err) {
     error = {
@@ -173,7 +178,7 @@ business.doTheJob = function (jsonLine, cb) {
       .push(error);
     return cb(error);
   }
-
+  
   type_conditor = [];
 
   _.each(mappingTD, (mapping) => {
