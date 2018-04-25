@@ -47,10 +47,12 @@ business.doTheJob = function (jsonLine, cb) {
       }
     }
   };
+
   const rawEvaluatorOptions = {
     node: doc,
     namespaces: namespaces
   };
+
   let extractMetadata = {};
   let select,
     stringBloc,
@@ -64,6 +66,7 @@ business.doTheJob = function (jsonLine, cb) {
       return value.replace(regexp, metadata_regexp.replace);
     }
   }
+
 
   function extract(metadata,contextOptions){
     
@@ -143,7 +146,15 @@ business.doTheJob = function (jsonLine, cb) {
           let doc_bloc = new Dom().parseFromString(iteSelect.toString(), 'text/xml');
           let evaluatorOptionsBloc = {
             node: doc_bloc,
-            namespaces: namespaces
+            namespaces: namespaces,
+            functions: {
+              'lower-case': function (context, arg) {
+                return context
+                  .contextNode
+                  .getAttribute('type')
+                  .toLowerCase();
+              }
+            }
           };
           result.push(extract(metadata.fields,evaluatorOptionsBloc));
           limit --;
@@ -166,7 +177,6 @@ business.doTheJob = function (jsonLine, cb) {
     }
   }
 
-  
   try {
     
     _.each(metadataXpaths, (metadata) => {
