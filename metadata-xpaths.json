@@ -42,6 +42,7 @@
     "path":"//TEI:body//TEI:biblFull//TEI:sourceDesc//TEI:author[@role='aut']/TEI:persName",
     "separator":" ",
     "concat":true,
+    "attributeName":"value",
     "fields":{
       "type":"array",
       "concat":true,
@@ -63,6 +64,7 @@
     "separator":" ",
     "limit":3,
     "concat":true,
+    "attributeName":"value",
     "fields":{
       "separator":" ",
       "type":"array",
@@ -103,12 +105,13 @@
           "type":"simpleString",
           "path":"string(//TEI:idno[@type='halauthorid'])"
           },
-          {"type":"array",
+          {"type":"bloc",
            "name":"affiliations",
-           "fields":[
-            {"type":"simpleString",
-             "path":"normalize-space(//TEI:affiliation//@ref)" } 
-           ]
+           "path":"//TEI:affiliation",
+           "fields":
+           {"type":"simpleString",
+             "path":"normalize-space(//@ref)" 
+            } 
           }
         ]
       }]
@@ -197,9 +200,9 @@
     "fields":
     {
       "type":"simpleString",
-      "path":"//TEI:idno"
+      "path":"//TEI:idno",
+      "attributeName":"value"
       }
-    
   },
   { "name":"orcId",
     "type":"simpleString",
@@ -211,9 +214,9 @@
     "fields":
    {
       "type":"simpleString",
+      "attributeName":"value",
       "path":"//TEI:idno"
     }
-    
   },
   { "name":"viaf",
     "type":"bloc",
