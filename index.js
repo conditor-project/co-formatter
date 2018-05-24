@@ -200,10 +200,10 @@ business.doTheJob = function (jsonLine, cb) {
     if (mapping.source.trim() === jsonLine.source.toLowerCase().trim()) {
       //constitution du tableau Type Conditor
       _.each(extractMetadata.typeDocument, (td) => {
-        type_conditor.push(mapping.mapping[td.value]);
+        type_conditor.push(mapping.mapping[td]);
       });
       //flag vérifiant si l'id source est bien présent
-      if (extractMetadata[mapping.nameID].value.trim() !== '') {
+      if (extractMetadata[mapping.nameID].trim() !== '') {
         flagSource = true;
       }
     }
@@ -225,7 +225,7 @@ business.doTheJob = function (jsonLine, cb) {
   // Si le tableau de type conditor contient Conférence ou Autre et qu'un issn ou
   // eissn est présent alors on ajoute le type conditor Article s il n'est pas
   // déjà présent.
-  if (!_.find(type_conditor, {type: 'Article'}) && (_.find(type_conditor, {'type': 'Conférence'}) || _.find(type_conditor, {'type': 'Autre'})) && ((extractMetadata.issn && extractMetadata.issn.value.trim() !== '') || (extractMetadata.eissn && extractMetadata.eissn.value.trim() !== ''))) {
+  if (!_.find(type_conditor, {type: 'Article'}) && (_.find(type_conditor, {'type': 'Conférence'}) || _.find(type_conditor, {'type': 'Autre'})) && ((extractMetadata.issn && extractMetadata.issn.trim() !== '') || (extractMetadata.eissn && extractMetadata.eissn.trim() !== ''))) {
     type_conditor.push({'type': 'Article'});
   }
 
@@ -235,7 +235,7 @@ business.doTheJob = function (jsonLine, cb) {
 
   if (_.find(type_conditor, {type:'Thèse'}) 
   && extractMetadata.isbn
-  && extractMetadata.isbn.value.trim()!==''){
+  && extractMetadata.isbn.trim()!==''){
     _.pull(type_conditor,{type:'Thèse'});
     type_conditor.push({type:'Ouvrage'});
   }
@@ -244,7 +244,7 @@ business.doTheJob = function (jsonLine, cb) {
   // On remplace le type Conditor Conférence par Chapitre
   if (_.find(type_conditor, {type:'Conférence'}) 
   && extractMetadata.isbn
-  && extractMetadata.isbn.value.trim()!==''){
+  && extractMetadata.isbn.trim()!==''){
     type_conditor.push({type:'Chapitre'});
   }
 
