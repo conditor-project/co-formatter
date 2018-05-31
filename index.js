@@ -225,7 +225,7 @@ business.doTheJob = function (jsonLine, cb) {
   // Si le tableau de type conditor contient Conférence ou Autre et qu'un issn ou
   // eissn est présent alors on ajoute le type conditor Article s il n'est pas
   // déjà présent.
-  if (!_.find(type_conditor, {type: 'Article'}) && (_.find(type_conditor, {'type': 'Conférence'}) || _.find(type_conditor, {'type': 'Autre'})) && ((extractMetadata.issn && extractMetadata.issn.trim() !== '') || (extractMetadata.eissn && extractMetadata.eissn.trim() !== ''))) {
+  if (!_.find(type_conditor, {type: 'Article'}) && (_.find(type_conditor, {'type': 'Conférence'}) || _.find(type_conditor, {'type': 'Autre'})) && ((extractMetadata.issn && extractMetadata.issn.length > 0) || (extractMetadata.eissn && extractMetadata.eissn.length > 0))) {
     type_conditor.push({'type': 'Article'});
   }
 
@@ -244,7 +244,7 @@ business.doTheJob = function (jsonLine, cb) {
   // On remplace le type Conditor Conférence par Chapitre
   if (_.find(type_conditor, {type:'Conférence'}) 
   && extractMetadata.isbn
-  && extractMetadata.isbn.trim()!==''){
+  && extractMetadata.isbn.length>0){
     type_conditor.push({type:'Chapitre'});
   }
 
