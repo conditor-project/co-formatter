@@ -235,7 +235,7 @@ business.doTheJob = function (jsonLine, cb) {
 
   if (_.find(type_conditor, {type:'Thèse'}) 
   && extractMetadata.isbn
-  && extractMetadata.isbn.trim()!==''){
+  && extractMetadata.isbn.length>0){
     _.pull(type_conditor,{type:'Thèse'});
     type_conditor.push({type:'Ouvrage'});
   }
