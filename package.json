@@ -16,7 +16,7 @@
     "co-config": "git+https://github.com/conditor-project/co-config.git",
     "fs": "0.0.1-security",
     "lodash": "^4.17.5",
-    "mocha": "^3.5.3",
+    "mocha": "^5.2.0",
     "xmldom": "^0.1.27",
     "xpath": "0.0.24"
   },
