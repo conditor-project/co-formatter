@@ -1,27 +1,22 @@
 [
   { "name" :"title",
     "type" :"simpleString",
-    "attributeName":"value",
     "path":"normalize-space(//TEI:body//TEI:biblFull//TEI:sourceDesc//TEI:analytic/TEI:title)"},
   { "name":"titlefr",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"normalize-space(//TEI:body//TEI:biblFull//TEI:sourceDesc//TEI:analytic/TEI:title[@xml:lang='fr'])"},
   { "name":"titleen",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"normalize-space(//TEI:body//TEI:biblFull//TEI:sourceDesc//TEI:analytic/TEI:title[@xml:lang='en'])"},
   { "name":"meetingTitle",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"normalize-space(//TEI:body//TEI:meeting//TEI:title)"},
   { "name":"author",
     "type":"bloc",
-    "path":"//TEI:body//TEI:biblFull//TEI:sourceDesc//TEI:author[@role='aut']//TEI:persName",
+    "path":"//TEI:body//TEI:biblFull//TEI:sourceDesc//TEI:author[@role='aut' or @role='crp']//TEI:persName",
     "separator":" ",
     "limit":3,
     "concat":true,
-    "attributeName":"value",
     "fields":{
       "type":"array",
       "concat":true,
@@ -39,10 +34,9 @@
   },
   { "name":"authorFull",
     "type":"bloc",
-    "path":"//TEI:body//TEI:biblFull//TEI:sourceDesc//TEI:author[@role='aut']/TEI:persName",
+    "path":"//TEI:body//TEI:biblFull//TEI:sourceDesc//TEI:author[@role='aut' or @role='crp']/TEI:persName",
     "separator":" ",
     "concat":true,
-    "attributeName":"value",
     "fields":{
       "type":"array",
       "concat":true,
@@ -60,11 +54,10 @@
   },
   { "name":"authorInit",
     "type":"bloc",
-    "path":"//TEI:body//TEI:biblFull//TEI:sourceDesc//TEI:author[@role='aut']//TEI:persName",
+    "path":"//TEI:body//TEI:biblFull//TEI:sourceDesc//TEI:author[@role='aut' or @role='crp']//TEI:persName",
     "separator":" ",
     "limit":3,
     "concat":true,
-    "attributeName":"value",
     "fields":{
       "separator":" ",
       "type":"array",
@@ -87,44 +80,97 @@
   },
   { "name":"authorRef",
     "type":"bloc",
-    "path":"//TEI:body//TEI:biblFull//TEI:sourceDesc//TEI:author[@role='aut']",
-    "fields":{
-      "type":"array",
+    "path":"//TEI:body//TEI:biblFull//TEI:sourceDesc//TEI:author[@role='aut' or @role='crp']",
+    "fields":
+    {
+      "type":"struct",
       "fields":[{
-        "type":"struct",
-        "fields":[{
-          "name":"surname",
-          "type":"simpleString",
-          "path":"string(//TEI:persName//TEI:surname)"},
-          {
-          "name":"forename",
-          "type":"simpleString",
-          "path":"string(//TEI:persName//TEI:forename)"},
-          {
-          "name":"halAuthorId",
-          "type":"simpleString",
-          "path":"string(//TEI:idno[@type='halauthorid'])"
-          },
-          {"type":"bloc",
-           "name":"affiliations",
-           "path":"//TEI:affiliation",
-           "fields":
-           {"type":"simpleString",
-             "path":"normalize-space(//@ref)" 
-            } 
+        "name":"surname",
+        "type":"simpleString",
+        "path":"string(//TEI:persName//TEI:surname)"},
+        {
+        "name":"forename",
+        "type":"simpleString",
+        "path":"string(//TEI:persName//TEI:forename)"},
+        {
+        "name":"halAuthorId",
+        "type":"simpleString",
+        "path":"string(//TEI:idno[lower-case(@type)='halauthorid'])"
+        },
+        {
+        "name":"researcherId",
+        "type":"simpleString",
+        "path":"string(//TEI:idno[lower-case(@type)='researcherid'])"
+        },
+        {"type":"bloc",
+          "name":"affiliations",
+          "path":"//TEI:affiliation",
+          "fields":
+          {"type":"struct",
+           "fields":[
+            {"type":"simpleString",
+            "name":"ref",
+            "path":"normalize-space(//@ref)" 
+            },
+            {"type":"simpleString",
+            "name":"adresse",
+            "path":"normalize-space(//TEI:idno)" 
+            }  
+           ]
           }
-        ]
-      }]
+        },
+        {"type":"bloc",
+          "name":"idRef",
+          "path":"//TEI:idno[lower-case(@type)='idref']",
+          "fields":{
+            "type":"simpleString",
+            "path":"normalize-space(//TEI:idno)" 
+          }
+        },
+        {"type":"bloc",
+          "name":"isni",
+          "path":"//TEI:idno[lower-case(@type)='isni']",
+          "fields":{
+            "type":"simpleString",
+            "path":"normalize-space(//TEI:idno)" 
+          }
+        },
+        {"type":"bloc",
+          "name":"orcid",
+          "path":"//TEI:idno[lower-case(@type)='orcid']",
+          "fields":{
+            "type":"simpleString",
+            "path":"normalize-space(//TEI:idno)" 
+          }
+        },
+        {"type":"bloc",
+          "name":"viaf",
+          "path":"//TEI:idno[lower-case(@type)='viaf']",
+          "fields":{
+            "type":"simpleString",
+            "path":"normalize-space(//TEI:idno)" 
+          }
+        }
+      ]
     }
   },
   { "name":"issn",
-    "type":"simpleString",
-    "attributeName":"value",
-    "path":"string(//TEI:body//TEI:biblFull//TEI:idno[@type='issn'])"},
+    "type":"bloc",
+    "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='issn']",
+    "fields":
+    {
+      "type":"simpleString",
+      "path":"//TEI:idno"
+    }
+  },
   { "name":"eissn",
-    "type":"simpleString",
-    "attributeName":"value",
-    "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='eissn']/text()"},
+    "type":"bloc",
+    "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='eissn']",
+    "fields":{
+      "type":"simpleString",
+      "path":"//TEI:idno"
+    }
+  },
   { "name":"xissn",
     "type":"bloc",
     "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='issn' or @type='eissn']",
@@ -136,87 +182,90 @@
       
   },
   { "name":"isbn",
-    "type":"simpleString",
-    "attributeName":"value",
-    "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='isbn']/text()"},
+    "type":"bloc",
+    "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='isbn']",
+    "fields":
+    {
+      "type":"simpleString",
+      "path":"//TEI:idno"
+    }
+  },
   { "name":"doi",
     "type":"simpleString",
-    "attributeName":"value",
-    "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='doi']/text()"},
+    "path":"//TEI:body//TEI:biblFull/TEI:sourceDesc/TEI:biblStruct//TEI:idno[@type='doi']/text()"},
+  { "name":"bibCode",
+    "type":"simpleString",
+    "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='bibcode']/text()"},
   { "name":"hasDoi",
     "type":"boolean",
-    "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='doi']/text() != ''"},
+    "path":"//TEI:body//TEI:biblFull/TEI:sourceDesc/TEI:biblStruct//TEI:idno[@type='doi']/text() != ''"},
   { "name":"ut",
     "type":"simpleString",
-    "attributeName":"value",
-    "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='utKey']/text()"},
+    "path":"//TEI:body//TEI:biblFull/TEI:sourceDesc/TEI:biblStruct//TEI:idno[@type='utKey']/text()"},
   { "name":"ppn",
     "type":"simpleString",
-    "attributeName":"value",
-    "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='ppnSudoc']/text()"},
+    "path":"//TEI:body//TEI:biblFull/TEI:sourceDesc/TEI:biblStruct//TEI:idno[@type='ppnSudoc']/text()"},
   { "name":"arxiv",
     "type":"simpleString",
-    "attributeName":"value",
-    "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='arxiv']/text()"},
+    "path":"//TEI:body//TEI:biblFull/TEI:sourceDesc/TEI:biblStruct//TEI:idno[@type='arxiv']/text()"},
   { "name":"pmId",
     "type":"simpleString",
-    "attributeName":"value",
-    "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='pubmed']/text()"},
+    "path":"//TEI:body//TEI:biblFull/TEI:sourceDesc/TEI:biblStruct//TEI:idno[@type='pubmed']/text()"},
   { "name":"nnt",
     "type":"simpleString",
-    "attributeName":"value",
-    "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='nnt']/text()"},
+    "path":"//TEI:body//TEI:biblFull/TEI:sourceDesc/TEI:biblStruct//TEI:idno[@type='nnt']/text()"},
   { "name":"patentNumber",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='patentNumber']/text()"},
   { "name":"issue",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"//TEI:body//TEI:biblScope[@unit='issue']/text()"},
+  { "name":"specialIssue",
+    "type":"simpleString",
+    "path":"//TEI:body//TEI:biblScope[@unit='specialIssue']/text()"},
   { "name":"meetAbstrNo",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"//TEI:body//TEI:imprint//TEI:biblScope[@unit='meetAbstrNo']/text()"},
   { "name":"page",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"//TEI:body//TEI:biblScope[@unit='pp']/text()"},
   { "name":"volume",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"//TEI:body//TEI:biblScope[@unit='volume']/text()"},
   { "name":"idHal",
     "type":"simpleString",
-    "attributeName":"value",
-    "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='halId']/text()"},
+    "path":"//TEI:body//TEI:biblFull/TEI:sourceDesc/TEI:biblStruct//TEI:idno[@type='halId']/text()"},
   { "name":"idProdinra",
     "type":"simpleString",
-    "attributeName":"value",
-    "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='idprodinra']/text()"},
+    "path":"//TEI:body//TEI:biblFull/TEI:sourceDesc/TEI:biblStruct//TEI:idno[@type='idprodinra']/text()"},
   { "name":"halAuthorId",
     "type":"bloc",
     "path":"//TEI:body//TEI:biblFull//TEI:idno[lower-case(@type)='halauthorid']",
     "fields":
     {
       "type":"simpleString",
-      "path":"//TEI:idno",
-      "attributeName":"value"
+      "path":"//TEI:idno"
       }
+    
   },
   { "name":"orcId",
-    "type":"simpleString",
-    "attributeName":"value",
-    "path":"//TEI:body//TEI:biblFull//TEI:idno[lower-case(@type)='orcid']/text()"},
+    "type":"bloc",
+    "path":"//TEI:body//TEI:biblFull//TEI:idno[lower-case(@type)='orcid']",
+    "fields":
+    {
+      "type":"simpleString",
+      "path":"//TEI:idno"
+    }
+  },
   { "name":"researcherId",
     "type":"bloc",
     "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='researcherId']",
     "fields":
    {
       "type":"simpleString",
-      "attributeName":"value",
       "path":"//TEI:idno"
     }
+    
   },
   { "name":"viaf",
     "type":"bloc",
@@ -224,26 +273,21 @@
     "fields":
     {
       "type":"simpleString",
-      "attributeName":"value",
       "path":"//TEI:idno"
       }
     
   },
   { "name":"publicationDate",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"//TEI:body//TEI:biblFull//TEI:biblStruct//TEI:imprint//TEI:date/text()"},
   { "name":"titreSourceM",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"//TEI:body//TEI:biblFull//TEI:biblStruct//TEI:monogr//TEI:title[@level='m']/text()"},
   { "name":"titreSourceJ",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"//TEI:body//TEI:biblFull//TEI:biblStruct//TEI:monogr//TEI:title[@level='j']/text()"},
   { "name":"abstract",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"//TEI:body//TEI:biblFull//TEI:profileDesc//TEI:abstract/text()"},
   { "name":"typeDocument",
     "type":"bloc",
@@ -251,95 +295,68 @@
     "fields":
    {
       "type":"simpleString",
-      "attributeName":"value",
-      "path":"//TEI:classCode"
-      }
-    
-  },
-  { "name":"typeDocumentFlat",
-    "type":"bloc",
-    "path":"//TEI:body//TEI:biblFull//TEI:classCode[@scheme='typology']",
-    "fields":
-    {
-      "type":"simpleString",
       "path":"//TEI:classCode"
       }
     
   },
   { "name":"isni",
-    "type":"simpleString",
-    "attributeName":"value",
-    "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='isni']/text()"},
-  { "name":"artNo",
-    "type":"simpleString",
-    "attributeName":"value",
-    "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='artNo']/text()"},
+    "type":"bloc",
+    "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='isni']",
+    "fields":
+    {
+      "type":"simpleString",
+      "path":"//TEI:idno"
+    }
+  },
   { "name":"articleNo",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"//TEI:body//TEI:biblFull//TEI:biblStruct//TEI:imprint//TEI:biblScope[@unit='articleNo']/text()"},
   { "name":"bibCode",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='bibcode']/text()"},
   { "name":"eisbn",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='eisbn']/text()"},
   { "name":"ensam",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='ensam']/text()"},
   { "name":"ineris",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='ineris']/text()"},
   { "name":"inspire",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='inspire']/text()"},
   { "name":"ird",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='ird']/text()"},
   { "name":"irstea",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='irstea']/text()"},
   { "name":"localRef",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='localRef']/text()"},
   { "name":"oatao",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='oatao']/text()"},
   { "name":"okina",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='okina']/text()"},
   { "name":"otherNumber",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='otherNumber']/text()"},
   { "name":"pubmedCentral",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='pubmedcentral']/text()"},
   { "name":"sciencespo",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='sciencespo']/text()"},
   { "name":"reportNumber",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='reportNumber']/text()"},
   { "name":"cern",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"//TEI:body//TEI:biblFull//TEI:idno[@type='cern']/text()"},
   { "name":"part",
     "type":"simpleString",
-    "attributeName":"value",
     "path":"//TEI:body//TEI:biblFull//TEI:biblStruct//TEI:imprint//TEI:biblScope[@unit='part']/text()"}
 ]
