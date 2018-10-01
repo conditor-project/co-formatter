@@ -9,7 +9,7 @@
   "scripts": {
     "test": "mocha"
   },
-  "author": "Genicot JB",
+  "author": "Genicot JB, Niederlender C",
   "license": "SEE LICENSE IN Licence.txt",
   "dependencies": {
     "chai": "^3.5.0",

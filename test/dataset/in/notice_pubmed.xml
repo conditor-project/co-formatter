@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <text>
+    <body>
+      <listBibl>
+        <biblFull>
+          <titleStmt>
+            <title xml:lang="en">Are Differences in Disability-Free Life Expectancy by Gender, Race, and Education Widening at Older Ages?</title>
+            <!--Les auteurs sont dans la description bibliographique, chemin : TEI/text/body/listBibl/biblFull/sourceDesc/biblStruct/analytic/author ou TEI/text/body/listBibl/biblFull/sourceDesc/biblStruct/monogr/author-->
+            <funder>
+              <idno type="grantId">P30 AG017265</idno>
+              <name>NIA NIH HHS</name>
+              <country>United States</country>
+            </funder>
+            <funder>
+              <idno type="grantId">T32 AG000037</idno>
+              <name>NIA NIH HHS</name>
+              <country>United States</country>
+            </funder>
+          </titleStmt>
+          <editionStmt>
+            <edition>
+              <date type="whenDownloaded">2018-07-24</date>
+              <date type="whenCreated">2018-09-26</date>
+            </edition>
+          </editionStmt>
+          <publicationStmt>
+            <distributor>Conditor</distributor>
+          </publicationStmt>
+          <sourceDesc>
+            <biblStruct>
+              <analytic>
+                <title xml:lang="en">Are Differences in Disability-Free Life Expectancy by Gender, Race, and Education Widening at Older Ages?</title>
+                <author role="aut">
+                  <persName>
+                    <forename>Aïda</forename>
+                    <forename type="initial">A</forename>
+                    <surname>Solé-Auró</surname>
+                  </persName>
+                  <affiliation>Ined- Institut National d'Études Démographiques, 133 boulevard Davout, 75980 Paris cedex 20, France.<country>France</country></affiliation>
+                </author>
+                <author role="aut">
+                  <persName>
+                    <forename>Hiram</forename>
+                    <forename type="initial">H</forename>
+                    <surname>Beltrán-Sánchez</surname>
+                  </persName>
+                  <affiliation>Center for Demography of Health and Aging, University of Wisconsin-Madison, 1180 Observatory Dr, Madison, WI 53706-1393, USA.</affiliation>
+                </author>
+                <author role="aut">
+                  <persName>
+                    <forename>Eileen M</forename>
+                    <forename type="initial">EM</forename>
+                    <surname>Crimmins</surname>
+                  </persName>
+                  <affiliation>Ethel Percy Andrus Gerontology Center, University of Southern California, 3715 McClintock Ave, Los Angeles, CA, USA.</affiliation>
+                </author>
+              </analytic>
+              <monogr>
+                <idno type="issn">0167-5923</idno>
+                <title level="j">Population research and policy review</title>
+                <title level="j" type="abbrevIso">Popul Res Policy Rev</title>
+                <imprint>
+                  <date type="datePub">2014-06-01</date>
+                  <date type="year">2014</date>
+                  <biblScope unit="volume">34</biblScope>
+                  <biblScope unit="issue">1</biblScope>
+                  <biblScope unit="pp">1-18</biblScope>
+                </imprint>
+              </monogr>
+              <idno type="pubmed">29681672</idno>
+              <idno type="doi">10.1007/s11113-014-9337-6</idno>
+              <idno type="pmc">PMC5906056</idno>
+            </biblStruct>
+          </sourceDesc>
+          <profileDesc>
+            <langUsage>
+              <language ident="en"/>
+            </langUsage>
+            <textClass>
+              <keywords scheme="author">
+                <term type="author">Disability-free life expectancy</term>
+                <term type="author">Disabled life expectancy</term>
+                <term type="author">Socioeconomic differences</term>
+                <term type="author">United States</term>
+              </keywords>
+              <classCode scheme="typology">Journal Article</classCode>
+            </textClass>
+            <abstract xml:lang="en">To examine change from 1991 to 2001 in disability-free life expectancy in the age range 60-90 by gender, race, and education in the United States. Mortality is estimated over two 10-year follow-up periods for persons in the National Health Interview Surveys of 1986/1987 and 1996/1997. Vital status is ascertained through the National Death Index. Disability prevalence is estimated from the National Health and Nutrition Examination Surveys of 1988-1994 and 1999-2002. Disability is defined as ability to perform four activities of daily living without difficulty. Disability-free life expectancy increased only among white men. Disabled life expectancy increased for all groups-black and white men and women. Racial differences in disability-free life expectancy widened among men; gender differences were reduced among whites. Expansion of socioeconomic differentials in disability-free life at older ages occurred among white men and women and black women. The 1990s was a period where the increased years of life between ages 60 and 90 were concentrated in disabled years for most population groups.</abstract>
+          </profileDesc>
+        </biblFull>
+      </listBibl>
+    </body>
+  </text>
+</TEI>

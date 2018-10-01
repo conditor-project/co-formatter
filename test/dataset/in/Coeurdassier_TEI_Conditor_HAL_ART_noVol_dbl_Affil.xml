@@ -87,7 +87,6 @@
                   <idno origin="HAL" type="IdRef">http://www.idref.fr/059300507</idno>
                   <idno origin="HAL" type="ORCID">http://orcid.org/0000-0003-2376-0136</idno>
                   <idno origin="HAL" type="VIAF">test-viaf</idno>
-                  <idno origin="HAL" type="doi">test-doi</idno>
                   <email origin="HAL" type="md5">e9bb977de5fe502aacfead5a35d95934</email>
                   <email origin="HAL" type="domain">univ-fcomte.fr</email>
          <!--   <ptr type="url" target="http://chrono-environnement.univ-fcomte.fr/spip.php?article232"/>
@@ -108,7 +107,8 @@
                   <date origin="HAL" type="datePub">2014</date>
                 </imprint>
               </monogr>
-			  <idno origin="HAL" type="halId">hal-01103402</idno>
+              <idno origin="HAL" type="doi">test-doi</idno>
+      			  <idno origin="HAL" type="halId">hal-01103402</idno>
             </biblStruct>
           </sourceDesc>
           <profileDesc>
