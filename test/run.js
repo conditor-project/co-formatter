@@ -60,6 +60,7 @@ describe(pkg.name + '/index.js', function () {
             expect(testPart.hasDoi).to.be.equal(true);
             expect(testPart.title.indexOf('Are Differences in Disability-Free Life Expectancy')).to.be.equal(0);
             expect(testPart.publicationDate.indexOf('2014')).to.be.equal(0);
+            expect(testPart.typeConditor[0].type).to.be.equal('Article');
           }
         });
       }
