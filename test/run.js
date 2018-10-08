@@ -21,7 +21,7 @@ describe(pkg.name + '/index.js', function () {
       for (const testPart of testData) {
         business.doTheJob(testPart, function (err) {
           if (testPart.id === '2') {
-            expect(err.errCode).to.be.not.equal(0);;
+            expect(err.errCode).to.be.not.equal(0);
           } else if (err) {
             console.log(kuler(err.errCode, 'red'));
             console.log(kuler(err.errMessage, 'red'));
@@ -33,7 +33,7 @@ describe(pkg.name + '/index.js', function () {
             expect(testPart.author.length).to.be.gt(2);  
           }
           
-          if (testPart.id === "1") {
+          if (testPart.id === '1') {
             expect(testPart.author).to.be.equal('Coeurdassier Michaël Berny Philippe Couval Geoffroy');
             expect(testPart.title).to.be.equal('Limiting the accidental poisoning of wild and domesticated animals due to the chemical pesticides used to control water vole outbreaks: progress to date');
             expect(testPart.titlefr).to.be.equal('Évolution des effets non intentionnels de la lutte chimique contre le campagnol terrestre sur la faune sauvage et domestique');
