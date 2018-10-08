@@ -78,7 +78,7 @@ describe(pkg.name + '/index.js', function () {
     it('docObject qui renvoie canvasOK @1', function (done) {
       business.doTheJob(testData[2], function (err) {
         if (err) return done(err);
-        expect(testData[2].typeConditor).to.contains({ type: 'Chapitre' });
+        expect(testData[2].typeConditor).to.be.an('array').that.deep.includes({ type: 'Chapitre' });
         done();
       });
     });
