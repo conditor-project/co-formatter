@@ -30,7 +30,7 @@ business.doTheJob = function (jsonLine, cb) {
       return cb(error);
     }
   });
-  let typeConditor;
+  let typeConditor = 'Autre';
 
   const evaluatorOptions = {
     node: doc,
@@ -64,14 +64,11 @@ business.doTheJob = function (jsonLine, cb) {
     return cb(error);
   }
 
-  typeConditor = [];
-
   _.each(mappingTD, (mapping) => {
     if (mapping.source.trim() === jsonLine.source.toLowerCase().trim()) {
-      // constitution du tableau Type Conditor
-      _.each(extractMetadata.typeDocument, (td) => {
-        typeConditor.push(mapping.mapping[td]);
-      });
+      // récupération du type Conditor (auparavant un tableau, maintenant mono-valué)
+      const td = extractMetadata.typeDocument;
+      if (td && Array.isArray(td) && td.length>0) typeConditor = mapping.mapping[td[0]];
       // flag vérifiant si l'id source est bien présent
       if (extractMetadata[mapping.nameID].trim() !== '') {
         flagSource = true;
@@ -93,22 +90,21 @@ business.doTheJob = function (jsonLine, cb) {
   // Si le tableau de type conditor contient Conférence ou Autre et qu'un issn ou
   // eissn est présent alors on ajoute le type conditor Article s il n'est pas
   // déjà présent.
-  if (!_.find(typeConditor, { type: 'Article' }) && (_.find(typeConditor, { 'type': 'Conférence' }) || _.find(typeConditor, { 'type': 'Autre' })) && ((extractMetadata.issn && extractMetadata.issn.length > 0) || (extractMetadata.eissn && extractMetadata.eissn.length > 0))) {
-    typeConditor.push({ 'type': 'Article' });
+  if ((typeConditor === 'Conférence' || typeConditor === 'Conférence') && ((extractMetadata.issn && extractMetadata.issn.length > 0) || (extractMetadata.eissn && extractMetadata.eissn.length > 0))) {
+    typeConditor = 'Article' ;
   }
 
   // Si le tableau de type Conditor contient Thèse et qu'un isbn est présent alors
   // On remplace le type conditor Thèse par le type Ouvrage
 
-  if (_.find(typeConditor, { type: 'Thèse' }) && extractMetadata.isbn && extractMetadata.isbn.length > 0) {
-    _.pull(typeConditor, { type: 'Thèse' });
-    typeConditor.push({ type: 'Ouvrage' });
+  if (typeConditor === 'Thèse'  && extractMetadata.isbn && extractMetadata.isbn.length > 0) {
+    typeConditor = 'Ouvrage' ;
   }
 
   // Si le tableau de type Conditor contient Conférence et qu'un isbn est présent alors
   // On remplace le type Conditor Conférence par Chapitre
-  if (_.find(typeConditor, { type: 'Conférence' }) && extractMetadata.isbn && extractMetadata.isbn.length > 0) {
-    typeConditor.push({ type: 'Chapitre' });
+  if (typeConditor === 'Conférence'  && extractMetadata.isbn && extractMetadata.isbn.length > 0) {
+    typeConditor = 'Chapitre' ;
   }
 
   _.each(extractMetadata, (value, key) => {

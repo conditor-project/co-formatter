@@ -42,7 +42,7 @@ describe(pkg.name + '/index.js', function () {
             expect(testPart.volume).to.be.equal('1');
             expect(testPart.issue).to.be.equal('220');
             expect(testPart.idHal).to.be.equal('hal-01103402');
-            expect(testPart.typeConditor[0].type).to.be.equal('Article');
+            expect(testPart.typeConditor).to.be.equal('Article');
             expect(testPart.orcId[0]).to.be.equal('http://orcid.org/0000-0003-2376-0136');
             expect(testPart.source).to.be.equal('hal');
             expect(testPart.doi).to.be.equal('test-doi');
@@ -51,7 +51,7 @@ describe(pkg.name + '/index.js', function () {
             expect(testPart.viaf[0]).to.be.equal('test-viaf');
             expect(testPart.typeDocument).to.be.an('array');
             expect(testPart.typeDocument[0]).to.be.equal('ART');
-            expect(testPart.typeConditor[0].type).to.be.equal('Article');
+            expect(testPart.typeConditor).to.be.equal('Article');
             expect(testPart.halAuthorId).to.be.an('array');
             expect(testPart.titreSourceJ).to.be.equal('Fourrages');
             expect(testPart.publicationDate).to.be.equal('2014');    
@@ -60,7 +60,7 @@ describe(pkg.name + '/index.js', function () {
             expect(testPart.hasDoi).to.be.equal(true);
             expect(testPart.title.indexOf('Are Differences in Disability-Free Life Expectancy')).to.be.equal(0);
             expect(testPart.publicationDate.indexOf('2014')).to.be.equal(0);
-            expect(testPart.typeConditor[0].type).to.be.equal('Article');
+            expect(testPart.typeConditor).to.be.equal('Article');
           }
         });
       }
@@ -78,7 +78,8 @@ describe(pkg.name + '/index.js', function () {
     it('docObject qui renvoie canvasOK @1', function (done) {
       business.doTheJob(testData[2], function (err) {
         if (err) return done(err);
-        expect(testData[2].typeConditor).to.be.an('array').that.deep.includes({ type: 'Chapitre' });
+        expect(testData[2].typeConditor).to.be.a('string');
+        expect(testData[2].typeConditor).to.be.equal('Chapitre');
         done();
       });
     });
