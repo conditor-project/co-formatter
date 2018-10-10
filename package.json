@@ -13,7 +13,7 @@
   "license": "SEE LICENSE IN Licence.txt",
   "dependencies": {
     "chai": "^4.2.0",
-    "co-config": "git+https://github.com/conditor-project/co-config.git#v1.1.0",
+    "co-config": "git+https://github.com/conditor-project/co-config.git",
     "fs": "0.0.1-security",
     "lodash": "^4.17.11",
     "mocha": "^5.2.0",
