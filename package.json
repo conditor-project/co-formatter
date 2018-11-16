@@ -7,20 +7,21 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "nyc mocha"
   },
   "author": "Genicot JB, Niederlender C",
   "license": "SEE LICENSE IN Licence.txt",
   "dependencies": {
-    "chai": "^4.2.0",
-    "co-config": "git+https://github.com/conditor-project/co-config.git",
+    "co-config": "git+https://github.com/conditor-project/co-config.git#v1.3.1",
     "fs": "0.0.1-security",
     "lodash": "^4.17.11",
-    "mocha": "^5.2.0",
     "xmldom": "^0.1.27",
     "xpath": "0.0.27"
   },
   "devDependencies": {
-    "kuler": "0.0.0"
+    "chai": "^4.2.0",
+    "kuler": "^1.0.1",
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0"
   }
 }
