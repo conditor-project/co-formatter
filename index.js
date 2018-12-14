@@ -67,7 +67,7 @@ business.doTheJob = function (jsonLine, cb) {
   _.each(mappingTD, (mapping) => {
     if (mapping.source.trim() === jsonLine.source.toLowerCase().trim()) {
       // récupération du type Conditor (auparavant un tableau, maintenant mono-valué)
-      const td = extractMetadata.typeDocument;
+      const td = extractMetadata.documentType;
       if (td && Array.isArray(td) && td.length>0) typeConditor = mapping.mapping[td[0]];
       // flag vérifiant si l'id source est bien présent
       if (extractMetadata[mapping.nameID].trim() !== '') {
@@ -219,6 +219,14 @@ business.extract = function (metadata, contextOptions) {
       obj[metadata.attributeName] = result;
       result = obj;
     }
+    return result;
+  } else if (metadata.type === 'object' && metadata.name && metadata.fields) {
+    const result = {};
+    _.each(metadata.fields, (field) => {
+      if (field.name && field.name !== '') {
+        result[field.name] = this.extract(field,contextOptions);
+      }
+    });
     return result;
   }
 };

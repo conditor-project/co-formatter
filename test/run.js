@@ -27,18 +27,20 @@ describe(pkg.name + '/index.js', function () {
             console.log(kuler(err.errMessage, 'red'));
             process.exit(1);
           } else {
-            expect(testPart.title).to.be.a('string');
-            expect(testPart.title.length).to.be.gt(2);
-            expect(testPart.author).to.be.a('string');
-            expect(testPart.author.length).to.be.gt(2);  
+            expect(testPart.title.default).to.be.a('string');
+            expect(testPart.title.default.length).to.be.gt(2);
+            expect(testPart.authorNames).to.be.a('string');
+            expect(testPart.authorNames.length).to.be.gt(2);  
           }
           
           if (testPart.id === '1') {
-            expect(testPart.author).to.be.equal('Coeurdassier Michaël Berny Philippe Couval Geoffroy');
-            expect(testPart.title).to.be.equal('Limiting the accidental poisoning of wild and domesticated animals due to the chemical pesticides used to control water vole outbreaks: progress to date');
-            expect(testPart.titlefr).to.be.equal('Évolution des effets non intentionnels de la lutte chimique contre le campagnol terrestre sur la faune sauvage et domestique');
+            expect(testPart.first3AuthorNames).to.be.equal('Coeurdassier Michaël Berny Philippe Couval Geoffroy');
+            expect(testPart.first3AuthorNamesWithInitials).to.be.equal('Coeurdassier M Berny P Couval G');
+            expect(testPart.authorNames).to.be.equal('Coeurdassier Michaël Berny Philippe Couval Geoffroy Decors Anouk Jacquot Manon Queffélec S Quintaine Thomas Giraudoux Patrick');
+            expect(testPart.title.default).to.be.equal('Limiting the accidental poisoning of wild and domesticated animals due to the chemical pesticides used to control water vole outbreaks: progress to date');
+            expect(testPart.title.fr).to.be.equal('Évolution des effets non intentionnels de la lutte chimique contre le campagnol terrestre sur la faune sauvage et domestique');
             expect(testPart.issn[0]).to.be.equal('0429-2766');
-            expect(testPart.page).to.be.equal('327-335');
+            expect(testPart.pageRange).to.be.equal('327-335');
             expect(testPart.volume).to.be.equal('1');
             expect(testPart.issue).to.be.equal('220');
             expect(testPart.idHal).to.be.equal('hal-01103402');
@@ -49,16 +51,16 @@ describe(pkg.name + '/index.js', function () {
             expect(testPart.hasDoi).to.be.a('boolean');
             expect(testPart.hasDoi).to.be.equal(true);
             expect(testPart.viaf[0]).to.be.equal('test-viaf');
-            expect(testPart.typeDocument).to.be.an('array');
-            expect(testPart.typeDocument[0]).to.be.equal('ART');
+            expect(testPart.documentType).to.be.an('array');
+            expect(testPart.documentType[0]).to.be.equal('ART');
             expect(testPart.typeConditor).to.be.equal('Article');
             expect(testPart.halAuthorId).to.be.an('array');
-            expect(testPart.titreSourceJ).to.be.equal('Fourrages');
+            expect(testPart.title.journal).to.be.equal('Fourrages');
             expect(testPart.publicationDate).to.be.equal('2014');    
           } else if (testPart.id === '4') {
             expect(testPart.pmId).to.be.equal('29681672');
             expect(testPart.hasDoi).to.be.equal(true);
-            expect(testPart.title.indexOf('Are Differences in Disability-Free Life Expectancy')).to.be.equal(0);
+            expect(testPart.title.default.indexOf('Are Differences in Disability-Free Life Expectancy')).to.be.equal(0);
             expect(testPart.publicationDate.indexOf('2014')).to.be.equal(0);
             expect(testPart.typeConditor).to.be.equal('Article');
           }
