@@ -35,7 +35,7 @@ Les champs de sortie correspondent aux métadonnées de la notice utiles pour le
   author: {
     value: "Single field with full author names (ex : Jean BON)"
   },
-  authorInit: {
+  first3AuthorNamesWithInitials: {
     value: "Single field with full lastnames and initials (ex J. BON)"
   },
   doi: {
@@ -47,7 +47,7 @@ Les champs de sortie correspondent aux métadonnées de la notice utiles pour le
   issue: {
     value: "document number (in the issue for example)"
   },
-  page: {
+  pageRange: {
     value: "document pagination"
   },
   volume: {
