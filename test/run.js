@@ -25,6 +25,7 @@ describe(pkg.name + '/index.js', function () {
           } else if (err) {
             console.log(kuler(err.errCode, 'red'));
             console.log(kuler(err.errMessage, 'red'));
+            console.log(kuler('doc object testé d\id '+testPart.id, 'red'));
             process.exit(1);
           } else {
             expect(testPart.title.default).to.be.a('string');
@@ -43,7 +44,9 @@ describe(pkg.name + '/index.js', function () {
             expect(testPart.pageRange).to.be.equal('327-335');
             expect(testPart.volume).to.be.equal('1');
             expect(testPart.issue).to.be.equal('220');
-            expect(testPart.idHal).to.be.equal('hal-01103402');
+            expect(testPart.halId).to.be.equal('hal-01103402');
+            expect(testPart.idHal).to.be.equal('2179');
+            expect(testPart.halAuthorId).to.contains('828346');
             expect(testPart.typeConditor).to.be.equal('Article');
             expect(testPart.orcId[0]).to.be.equal('http://orcid.org/0000-0003-2376-0136');
             expect(testPart.source).to.be.equal('hal');
