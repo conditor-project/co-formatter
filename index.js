@@ -4,8 +4,9 @@ const Dom = require('xmldom').DOMParser;
 const fs = require('fs');
 const xpath = require('xpath');
 const _ = require('lodash');
-const mappingTD = require('co-config/metadata-mappings.json');
 const metadataXpaths = require('co-config/metadata-xpaths.json');
+const mappingTD = require('co-config/metadata-mappings.json');
+const sourceIdsMap = _.transform(mappingTD, (sourceIds, {source, nameID}) => sourceIds[source] = nameID, {});
 
 const namespaces = {
   'TEI': 'http://www.tei-c.org/ns/1.0',
@@ -112,6 +113,10 @@ business.doTheJob = function (jsonLine, cb) {
   });
 
   jsonLine.typeConditor = typeConditor;
+
+  const nameID = sourceIdsMap[jsonLine.source];
+  jsonLine.sourceId = jsonLine[nameID];
+  jsonLine.sourceUid = jsonLine.source + "#" + jsonLine[nameID];
 
   return cb();
 };
