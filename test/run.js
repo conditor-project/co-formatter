@@ -61,7 +61,7 @@ describe(pkg.name + '/index.js', function () {
             expect(testPart.title.journal).to.be.equal('Fourrages');
             expect(testPart.publicationDate).to.be.equal('2014');   
             expect(testPart.sourceId).to.be.equal('hal-01103402');
-            expect(testPart.sourceUid).to.be.equal('hal#hal-01103402');
+            expect(testPart.sourceUid).to.be.equal('hal$hal-01103402');
           } else if (testPart.id === '4') {
             expect(testPart.pmId).to.be.equal('29681672');
             expect(testPart.hasDoi).to.be.equal(true);
@@ -69,7 +69,7 @@ describe(pkg.name + '/index.js', function () {
             expect(testPart.publicationDate.indexOf('2014')).to.be.equal(0);
             expect(testPart.typeConditor).to.be.equal('Article');
             expect(testPart.sourceId).to.be.equal('29681672');
-            expect(testPart.sourceUid).to.be.equal('pubmed#29681672');
+            expect(testPart.sourceUid).to.be.equal('pubmed$29681672');
           }
         });
       }

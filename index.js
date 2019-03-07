@@ -116,7 +116,7 @@ business.doTheJob = function (jsonLine, cb) {
 
   const nameID = sourceIdsMap[jsonLine.source];
   jsonLine.sourceId = jsonLine[nameID];
-  jsonLine.sourceUid = jsonLine.source + "#" + jsonLine[nameID];
+  jsonLine.sourceUid = jsonLine.source + "$" + jsonLine[nameID];
 
   return cb();
 };
