@@ -8,32 +8,28 @@ const path = require('path');
 const business = require(path.resolve('./index.js'));
 const testData = require(path.resolve('./test/dataset/in/test.json'));
 const chai = require('chai');
-const kuler = require('kuler');
 const expect = chai.expect;
 
 describe(pkg.name + '/index.js', function () {
   describe('#doTheJob', function () {
-    for (let i = 0; i < testData.length; i++) {
-      testData[i].path = path.join(__dirname, testData[i].path);
-    }
-
-    it('docObject qui renvoie canvasOK @1', function (done) {
-      for (const testPart of testData) {
+    testData.map(testPart => {
+      testPart.path = path.join(__dirname, testPart.path);
+      return testPart;
+    }).map(testPart => {
+      it(`should extract data for ${path.basename(testPart.path)}`, function (done) {
         business.doTheJob(testPart, function (err) {
-          if (testPart.id === '2') {
-            expect(err.errCode).to.be.not.equal(0);
-          } else if (err) {
-            console.log(kuler(err.errCode, 'red'));
-            console.log(kuler(err.errMessage, 'red'));
-            console.log(kuler('doc object testé d\id '+testPart.id, 'red'));
-            process.exit(1);
-          } else {
-            expect(testPart.title.default).to.be.a('string');
-            expect(testPart.title.default.length).to.be.gt(2);
-            expect(testPart.authorNames).to.be.a('string');
-            expect(testPart.authorNames.length).to.be.gt(2);  
+          if (err) {
+            if (testPart.id !== '2') done(err);
+            expect(err).to.be.an('object');
+            expect(err.errMessage).to.equal('erreur d\'identification. Pas d\'id source.');
+            return done();
           }
-          
+
+          expect(testPart.title.default).to.be.a('string');
+          expect(testPart.title.default.length).to.be.gt(2);
+          expect(testPart.authorNames).to.be.a('string');
+          expect(testPart.authorNames.length).to.be.gt(2);
+
           if (testPart.id === '1') {
             expect(testPart.first3AuthorNames).to.be.equal('Coeurdassier Michaël Berny Philippe Couval Geoffroy');
             expect(testPart.first3AuthorNamesWithInitials).to.be.equal('Coeurdassier M Berny P Couval G');
@@ -59,10 +55,17 @@ describe(pkg.name + '/index.js', function () {
             expect(testPart.typeConditor).to.be.equal('Article');
             expect(testPart.halAuthorId).to.be.an('array');
             expect(testPart.title.journal).to.be.equal('Fourrages');
-            expect(testPart.publicationDate).to.be.equal('2014');   
+            expect(testPart.publicationDate).to.be.equal('2014');
             expect(testPart.sourceId).to.be.equal('hal-01103402');
             expect(testPart.sourceUid).to.be.equal('hal$hal-01103402');
-          } else if (testPart.id === '4') {
+          }
+
+          if (testPart.id === '3') {
+            expect(testData[2].typeConditor).to.be.a('string');
+            expect(testData[2].typeConditor).to.be.equal('Chapitre');
+          }
+
+          if (testPart.id === '4') {
             expect(testPart.pmId).to.be.equal('29681672');
             expect(testPart.hasDoi).to.be.equal(true);
             expect(testPart.title.default.indexOf('Are Differences in Disability-Free Life Expectancy')).to.be.equal(0);
@@ -71,24 +74,16 @@ describe(pkg.name + '/index.js', function () {
             expect(testPart.sourceId).to.be.equal('29681672');
             expect(testPart.sourceUid).to.be.equal('pubmed$29681672');
           }
-        });
-      }
-      done();
-    });
 
+          // if (testPart.id === '5') console.dir(testPart.authors, { depth: 8 });
+          done();
+        });
+      });
+    });
     it('docObject qui doit passer en erreur', function (done) {
       business.doTheJob(testData[1], function (err) {
         expect(err).to.be.an('object');
         expect(err.errMessage).to.equal('erreur d\'identification. Pas d\'id source.');
-        done();
-      });
-    });
-
-    it('docObject qui renvoie canvasOK @1', function (done) {
-      business.doTheJob(testData[2], function (err) {
-        if (err) return done(err);
-        expect(testData[2].typeConditor).to.be.a('string');
-        expect(testData[2].typeConditor).to.be.equal('Chapitre');
         done();
       });
     });

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.tei-c.org/ns/1.0 ../modele/HAL_source_resultat_schemas/HALschema_xsd/document.xsd">
+  <text>
+    <body>
+      <listBibl>
+        <biblFull>
+          <titleStmt>
+            <title xml:lang="en">Recent progress towards transition metal-catalyzed synthesis of γ-lactams</title>
+            <!--Les auteurs sont dans la description bibliographique, chemin : TEI/text/body/listBibl/biblFull/sourceDesc/biblStruct/analytic/author ou TEI/text/body/listBibl/biblFull/sourceDesc/biblStruct/monogr/author-->
+          </titleStmt>
+          <editionStmt>
+            <edition>
+              <date type="whenDownloaded" />
+              <date type="whenCreated" />
+            </edition>
+          </editionStmt>
+          <publicationStmt>
+            <distributor>Conditor</distributor>
+          </publicationStmt>
+          <notesStmt>
+            <note type="audience" n="2">audience : national</note>
+            <note type="popular" n="0">popular level : no</note>
+            <note type="peer" n="1">peer reviewing : yes</note>
+          </notesStmt>
+          <sourceDesc>
+            <biblStruct>
+              <analytic>
+                <title xml:lang="en">Recent progress towards transition metal-catalyzed synthesis of γ-lactams</title>
+                <author role="aut">
+                  <persName>
+                    <forename>Long-Wu</forename>
+                    <surname>Ye</surname>
+                  </persName>
+                  <affiliation n="struct-249655">
+                    Department of Chemistry and Fujian Provincial Key Laboratory of Chemical Biology, College of Chemistry and Chemical Engineering, Xiamen University, Xiamen 361005, CN
+                    <orgName type="laboratory">
+                      <name>Department of Chemistry and Fujian Provincial Key Laboratory of Chemical Biology</name>
+                      <address>
+                        <addrLine>College of Chemistry and Chemical Engineering, Xiamen University, Xiamen 361005</addrLine>
+                        <country key="CN" />
+                      </address>
+                      <idno type="halStructureId">struct-249655</idno>
+                    </orgName>
+                    <orgName type="institution">
+                      <name>no affiliation</name>
+                      <idno type="halStructureId">struct-302097</idno>
+                    </orgName>
+                  </affiliation>
+                  <idno type="halAuthorId">1004442</idno>
+                </author>
+                <author role="aut">
+                  <persName>
+                    <forename>Chao</forename>
+                    <surname>Shu</surname>
+                  </persName>
+                  <affiliation n="struct-249655">
+                    Department of Chemistry and Fujian Provincial Key Laboratory of Chemical Biology, College of Chemistry and Chemical Engineering, Xiamen University, Xiamen 361005, CN
+                    <orgName type="laboratory">
+                      <name>Department of Chemistry and Fujian Provincial Key Laboratory of Chemical Biology</name>
+                      <address>
+                        <addrLine>College of Chemistry and Chemical Engineering, Xiamen University, Xiamen 361005</addrLine>
+                        <country key="CN" />
+                      </address>
+                      <idno type="halStructureId">struct-249655</idno>
+                    </orgName>
+                    <orgName type="institution">
+                      <name>no affiliation</name>
+                      <idno type="halStructureId">struct-302097</idno>
+                    </orgName>
+                  </affiliation>
+                  <idno type="halAuthorId">1004441</idno>
+                </author>
+                <author role="aut">
+                  <persName>
+                    <forename>Fabien</forename>
+                    <surname>Gagosz</surname>
+                  </persName>
+                  <email type="md5">b144c29538ec7b7ce10714a6022f17d7</email>
+                  <email type="domain">dcso.polytechnique.fr</email>
+                  <affiliation n="struct-1169">
+                    Polytechnique - X, UMR7652, Centre National de la Recherche Scientifique, CNRS, Laboratoire de synthèse organique, DCSO, bat. des laboratoires Route de Saclay 91128 PALAISEAU CEDEX, France
+                    <orgName type="laboratory">
+                      <name>Laboratoire de synthèse organique</name>
+                      <name type="acronym">DCSO</name>
+                      <name type="code">UMR7652</name>
+                      <address>
+                        <addrLine>bat. des laboratoires Route de Saclay 91128 PALAISEAU CEDEX</addrLine>
+                        <country key="FR" />
+                      </address>
+                      <idno type="halStructureId">struct-1169</idno>
+                      <idno type="rnsr">199719348Y</idno>
+                    </orgName>
+                    <orgName type="institution">
+                      <name>Centre National de la Recherche Scientifique</name>
+                      <name type="acronym">CNRS</name>
+                      <idno type="halStructureId">struct-441569</idno>
+                      <idno type="idRef">02636817X</idno>
+                      <idno type="isni">0000000122597504</idno>
+                    </orgName>
+                    <orgName type="institution">
+                      <name>École polytechnique</name>
+                      <name type="acronym">X</name>
+                      <idno type="halStructureId">struct-300340</idno>
+                      <idno type="idRef">027309320</idno>
+                    </orgName>
+                  </affiliation>
+                  <idno type="halAuthorId">114430</idno>
+                </author>
+                <idno type="doi">10.1039/C3OB42181C</idno>
+              </analytic>
+              <monogr>
+                <idno type="issn">1477-0520</idno>
+                <idno type="eissn">1477-0539</idno>
+                <title />
+                <title />
+                <imprint>
+                  <publisher>Royal Society of Chemistry</publisher>
+                  <biblScope unit="issue">12</biblScope>
+                  <biblScope unit="pp">1833-1845</biblScope>
+                  <date type="datePub">2014</date>
+                </imprint>
+              </monogr>
+              <idno type="halId">hal-00176937</idno>
+              <idno type="doi">10.1039/C3OB42181C</idno>
+            </biblStruct>
+          </sourceDesc>
+          <profileDesc>
+            <langUsage>
+              <language ident="en">English</language>
+            </langUsage>
+            <textClass>
+              <classCode scheme="halDomain" n="chim.orga">Chemical Sciences/Organic chemistry</classCode>
+              <classCode scheme="typology" n="ART">Journal articles</classCode>
+            </textClass>
+            <abstract xml:lang="en">The occurrence of the γ-lactam unit in the framework of various biologically active compounds has greatly contributed to the design and development of new synthetic transformations to access this important structural motif. Among the numerous methods developed so far, those based on transition metal catalysis are of high value as they generally allow efficient and selective access to functionalized γ-lactams under rather mild reaction conditions. An overview of the recent advances in this field is presented herein. Metal-catalyzed processes are reviewed by highlighting their specificity and applicability, and the mechanistic rationale is presented where possible.</abstract>
+          </profileDesc>
+        </biblFull>
+      </listBibl>
+    </body>
+  </text>
+</TEI>
+
