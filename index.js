@@ -6,7 +6,7 @@ const xpath = require('xpath');
 const _ = require('lodash');
 const metadataXpaths = require('co-config/metadata-xpaths.json');
 const mappingTD = require('co-config/metadata-mappings.json');
-const sourceIdsMap = _.transform(mappingTD, (sourceIds, {source, nameID}) => sourceIds[source] = nameID, {});
+const sourceIdsMap = _.transform(mappingTD, (sourceIds, { source, nameID }) => sourceIds[source] = nameID, {});
 
 const namespaces = {
   'TEI': 'http://www.tei-c.org/ns/1.0',
@@ -69,7 +69,7 @@ business.doTheJob = function (jsonLine, cb) {
     if (mapping.source.trim() === jsonLine.source.toLowerCase().trim()) {
       // récupération du type Conditor (auparavant un tableau, maintenant mono-valué)
       const td = extractMetadata.documentType;
-      if (td && Array.isArray(td) && td.length>0) typeConditor = mapping.mapping[td[0]];
+      if (td && Array.isArray(td) && td.length > 0) typeConditor = mapping.mapping[td[0]];
       // flag vérifiant si l'id source est bien présent
       if (extractMetadata[mapping.nameID].trim() !== '') {
         flagSource = true;
@@ -92,20 +92,20 @@ business.doTheJob = function (jsonLine, cb) {
   // eissn est présent alors on ajoute le type conditor Article s il n'est pas
   // déjà présent.
   if ((typeConditor === 'Conférence' || typeConditor === 'Conférence') && ((extractMetadata.issn && extractMetadata.issn.length > 0) || (extractMetadata.eissn && extractMetadata.eissn.length > 0))) {
-    typeConditor = 'Article' ;
+    typeConditor = 'Article';
   }
 
   // Si le tableau de type Conditor contient Thèse et qu'un isbn est présent alors
   // On remplace le type conditor Thèse par le type Ouvrage
 
-  if (typeConditor === 'Thèse'  && extractMetadata.isbn && extractMetadata.isbn.length > 0) {
-    typeConditor = 'Ouvrage' ;
+  if (typeConditor === 'Thèse' && extractMetadata.isbn && extractMetadata.isbn.length > 0) {
+    typeConditor = 'Ouvrage';
   }
 
   // Si le tableau de type Conditor contient Conférence et qu'un isbn est présent alors
   // On remplace le type Conditor Conférence par Chapitre
-  if (typeConditor === 'Conférence'  && extractMetadata.isbn && extractMetadata.isbn.length > 0) {
-    typeConditor = 'Chapitre' ;
+  if (typeConditor === 'Conférence' && extractMetadata.isbn && extractMetadata.isbn.length > 0) {
+    typeConditor = 'Chapitre';
   }
 
   _.each(extractMetadata, (value, key) => {
@@ -116,7 +116,7 @@ business.doTheJob = function (jsonLine, cb) {
 
   const nameID = sourceIdsMap[jsonLine.source];
   jsonLine.sourceId = jsonLine[nameID];
-  jsonLine.sourceUid = jsonLine.source + "$" + jsonLine[nameID];
+  jsonLine.sourceUid = jsonLine.source + '$' + jsonLine[nameID];
 
   return cb();
 };
@@ -229,7 +229,7 @@ business.extract = function (metadata, contextOptions) {
     const result = {};
     _.each(metadata.fields, (field) => {
       if (field.name && field.name !== '') {
-        result[field.name] = this.extract(field,contextOptions);
+        result[field.name] = this.extract(field, contextOptions);
       }
     });
     return result;
