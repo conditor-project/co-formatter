@@ -22,5 +22,15 @@
     "id": "5",
     "path":"dataset/in/hal-with-rnsr.xml",
     "source":"hal"
+  },
+  {
+    "id": "6",
+    "path":"dataset/in/hal-2.xml",
+    "source":"hal"
+  },
+  {
+    "id": "7",
+    "path":"dataset/in/notice_pubmed_2.xml",
+    "source":"pubmed"
   }
 ]

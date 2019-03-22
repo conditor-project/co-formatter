@@ -10,10 +10,25 @@ const sourceIdsMap = _.transform(mappingTD, (sourceIds, { source, nameID }) => s
 
 const namespaces = {
   'TEI': 'http://www.tei-c.org/ns/1.0',
-  'xmlns:hal': 'http://hal.archives-ouvertes.fr/'
+  'xmlns:hal': 'http://hal.archives-ouvertes.fr/',
+  'str': 'http://exslt.org/strings'
 };
 
 const business = {};
+
+const evalfunctions = {
+  'lower-case': function (context, arg) {
+    return context
+      .contextNode
+      .getAttribute('type')
+      .toLowerCase();
+  },
+  'first-of-split': function(context, text,separator) {
+    const elems = _.split(text,separator);
+    const compacted = _.compact(elems);
+    return (Array.isArray(compacted) && compacted.length > 0) ? compacted[0] : "";
+  }
+};
 
 business.doTheJob = function (jsonLine, cb) {
   let error;
@@ -36,14 +51,7 @@ business.doTheJob = function (jsonLine, cb) {
   const evaluatorOptions = {
     node: doc,
     namespaces: namespaces,
-    functions: {
-      'lower-case': function (context, arg) {
-        return context
-          .contextNode
-          .getAttribute('type')
-          .toLowerCase();
-      }
-    }
+    functions: evalfunctions
   };
 
   let extractMetadata = {};
@@ -199,14 +207,7 @@ business.extract = function (metadata, contextOptions) {
         let evaluatorOptionsBloc = {
           node: docBloc,
           namespaces: namespaces,
-          functions: {
-            'lower-case': function (context, arg) {
-              return context
-                .contextNode
-                .getAttribute('type')
-                .toLowerCase();
-            }
-          }
+          functions: evalfunctions
         };
         result.push(this.extract(metadata.fields, evaluatorOptionsBloc));
         limit--;
