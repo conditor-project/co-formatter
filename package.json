@@ -1,6 +1,6 @@
 {
   "name": "co-formatter",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "description": "module d'extraction et de reformatage de notice",
   "main": "index.js",
   "directories": {
