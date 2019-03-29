@@ -20,7 +20,6 @@ describe(pkg.name + '/index.js', function () {
     }).map(testPart => {
       it(`should extract data for ${path.basename(testPart.path)}`, function (done) {
         business.doTheJob(testPart, function (err) {
-
           if (err) {
             if (testPart.id !== '2') done(err);
             expect(err).to.be.an('object');
@@ -61,12 +60,12 @@ describe(pkg.name + '/index.js', function () {
             expect(testPart.publicationDate).to.be.equal('2014');
             expect(testPart.sourceId).to.be.equal('hal-01103402');
             expect(testPart.sourceUid).to.be.equal('hal$hal-01103402');
-          } 
-          else if (testPart.id === '3') {
-            expect(testData[2].typeConditor).to.be.a('string');
-            expect(testData[2].typeConditor).to.be.equal('Chapitre');
-          } 
-          else if (testPart.id === '4') {
+          }
+          if (testPart.id === '3') {
+            expect(testPart.typeConditor).to.be.a('string');
+            expect(testPart.typeConditor).to.be.equal('Chapitre');
+          }
+          if (testPart.id === '4') {
             expect(testPart.pmId).to.be.equal('29681672');
             expect(testPart.hasDoi).to.be.equal(true);
             expect(testPart.title.default.indexOf('Are Differences in Disability-Free Life Expectancy')).to.be.equal(0);
@@ -74,15 +73,13 @@ describe(pkg.name + '/index.js', function () {
             expect(testPart.typeConditor).to.be.equal('Article');
             expect(testPart.sourceId).to.be.equal('29681672');
             expect(testPart.sourceUid).to.be.equal('pubmed$29681672');
-          } 
-          else if (testPart.id === '5') {
+          }
+          if (testPart.id === '5') {
             expect(testPart.authors[0].affiliations).to.be.an('Array');
             expect(testPart.sourceUid).to.be.equal('hal$hal-00176937');
             expect(testPart.authors[0].affiliations[0].address).to.contains('Department of Chemistry and Fujian Provincial Key Laboratory of Chemical Biology');
-            expect(testPart.authors[0].affiliations[0].ref).to.equal('struct-249655')
-            
-          } 
-          else if (testPart.id === '6') {
+          }
+          if (testPart.id === '6') {
             expect(testPart.authors[0].affiliations).to.be.an('Array');
             expect(testPart.authors[0].affiliations[0].address).to.be.an('String');
             expect(testPart.authors[0].affiliations[0].address).to.contains('Gjøvik University College');
@@ -90,6 +87,7 @@ describe(pkg.name + '/index.js', function () {
             expect(testPart.authors[0].affiliations[1].address).to.equal('wonderfull world')
           } 
           else if (testPart.id === '7') {
+
             expect(testPart.pmId).to.be.equal('23554029');
             expect(testPart.sourceId).to.be.equal('23554029');
             expect(testPart.sourceUid).to.be.equal('pubmed$23554029');
@@ -103,6 +101,7 @@ describe(pkg.name + '/index.js', function () {
         });
       });
     });
+
     it('docObject qui doit passer en erreur', function (done) {
       business.doTheJob(testData[1], function (err) {
         expect(err).to.be.an('object');
