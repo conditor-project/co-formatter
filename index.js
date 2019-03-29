@@ -149,6 +149,7 @@ business.extract = function (metadata, contextOptions) {
       obj[metadata.attributeName] = select;
       select = obj;
     }
+    if (select == '' && metadata.allowEmpty == false) return undefined;
     return select;
   } else if (metadata.type === 'boolean' && metadata.path) {
     select = xpath.parse(metadata.path).evaluateBoolean(contextOptions);
@@ -209,7 +210,8 @@ business.extract = function (metadata, contextOptions) {
           namespaces: namespaces,
           functions: evalfunctions
         };
-        result.push(this.extract(metadata.fields, evaluatorOptionsBloc));
+        const extractChild = this.extract(metadata.fields, evaluatorOptionsBloc);
+        if (extractChild) result.push(extractChild);
         limit--;
       }
     });

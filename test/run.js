@@ -8,6 +8,8 @@ const path = require('path');
 const business = require(path.resolve('./index.js'));
 const testData = require(path.resolve('./test/dataset/in/test.json'));
 const chai = require('chai');
+const util = require('util');
+const _ = require('lodash');
 const expect = chai.expect;
 
 describe(pkg.name + '/index.js', function () {
@@ -86,12 +88,16 @@ describe(pkg.name + '/index.js', function () {
             expect(testPart.authors[0].affiliations[0].address).to.contains('Gjøvik University College');
             expect(testPart.authors[0].affiliations[1].ref).to.equal('earth')
             expect(testPart.authors[0].affiliations[1].address).to.equal('wonderfull world')
-
           } 
           else if (testPart.id === '7') {
             expect(testPart.pmId).to.be.equal('23554029');
             expect(testPart.sourceId).to.be.equal('23554029');
             expect(testPart.sourceUid).to.be.equal('pubmed$23554029');
+          } else if (testPart.id === '8') {
+            console.log(util.inspect(testPart, false,8,true));
+            expect(testPart.sourceUid).to.be.equal('hal$hal-00952427');
+            const isniArray = (_.isArray(testPart.isni)) ? testPart.isni : new Array(testPart.isni);
+            expect(_.join(isniArray)).to.be.equal("isni-mudry,albisni");
           }
           done();
         });
