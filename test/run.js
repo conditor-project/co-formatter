@@ -94,8 +94,22 @@ describe(pkg.name + '/index.js', function () {
           } else if (testPart.id === '8') {
             console.log(util.inspect(testPart, false,8,true));
             expect(testPart.sourceUid).to.be.equal('hal$hal-00952427');
-            const isniArray = (_.isArray(testPart.isni)) ? testPart.isni : new Array(testPart.isni);
-            expect(_.join(isniArray)).to.be.equal("isni-mudry,albisni");
+            expect(testPart.authors.length).to.equal(2);
+            expect(testPart.authors[0].isni[0]).to.equal('isni-mudry');
+            expect(testPart.authors[0].idRef[0]).to.equal('idRef-mudry');
+            expect(testPart.authors[0].idRef[0]).to.equal('idRef-mudry');
+            expect(testPart.authors[0].affiliations[0].isni[0]).to.equal('0000000122597504');
+            expect(testPart.authors[0].affiliations[0].isni[1]).to.equal('0000 0001 2188 3779');
+            expect(testPart.authors[0].affiliations[0].idRef[0]).to.equal('166212377');
+            expect(testPart.authors[0].affiliations[0].idRef[3]).to.equal('026403188');
+            expect(testPart.authors[0].affiliations[0].address).to.equal('Université Bourgogne Franche-Comté [COMUE] UBFC, UMR6249, Centre National de la Recherche Scientifique CNRS, Université de Franche-Comté UFC, Laboratoire Chrono-environnement - UFC (UMR 6249) LCE, UFR Sciences et Techniques - 16, route de Gray - 25030 Besançon Cedex, FR');
+            expect(testPart.authors[0].affiliations[0].ref).to.equal('struct-57629');
+            expect(testPart.authors[0].affiliations[0].rnsr[0]).to.equal('200812285Y');
+            expect(testPart.authors[1].isni[0]).to.equal('albisni');
+            expect(testPart.authors[1].idRef[0]).to.equal('albidéref');
+            expect(testPart.authors[0].affiliations[0].isni[0]).to.equal('0000000122597504');
+            expect(testPart.isni).to.be.an('Array');
+            expect(testPart.isni[1]).to.be.equal('albisni');
           }
           done();
         });
