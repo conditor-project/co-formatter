@@ -66,6 +66,7 @@
                                                 <idno type="halStructureId">struct-441569</idno>
                                                 <idno type="idRef">02636817X</idno>
                                                 <idno type="isni">0000000122597504</idno>
+                                                <idno type="rnsr">CNRS12285Y</idno>
                                             </org>
                                             <org type="institution">
                                                 <orgName>Université de Franche-Comté</orgName>
@@ -98,6 +99,14 @@
                                                     <country key="FR"/>
                                                 </address>
                                             </desc>
+                                            <org type="institution">
+                                                <orgName>Centre National de la Recherche Scientifique</orgName>
+                                                <orgName type="acronym">CNRS</orgName>
+                                                <idno type="halStructureId">struct-441569</idno>
+                                                <idno type="idRef">02636817X</idno>
+                                                <idno type="isni">0000000122597504</idno>
+                                                <idno type="rnsr">CNRS12285Y</idno>
+                                            </org>
                                             <idno type="idRef">987654</idno>
                                             <idno type="rnsr">654321</idno>
                                         </org>

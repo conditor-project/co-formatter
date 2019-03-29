@@ -27,6 +27,19 @@ const evalfunctions = {
     const elems = _.split(text,separator);
     const compacted = _.compact(elems);
     return (Array.isArray(compacted) && compacted.length > 0) ? compacted[0] : "";
+  },
+  'deduplicate-by-text': function(context, values) {
+    const uniqueValues = [];
+    const dedupNodes = [];
+    for (let i=0; i<values.nodes.length; i++) {
+      const node = values.nodes[i];
+      if (!uniqueValues.includes(node.textContent)) {
+        uniqueValues.push(node.textContent);
+        dedupNodes.push(node);
+      }
+    }
+    if (uniqueValues.length > 0) values.nodes = dedupNodes;
+    return values;
   }
 };
 

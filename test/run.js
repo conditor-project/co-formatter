@@ -31,7 +31,6 @@ describe(pkg.name + '/index.js', function () {
           expect(testPart.title.default.length).to.be.gt(2);
           expect(testPart.authorNames).to.be.a('string');
           expect(testPart.authorNames.length).to.be.gt(2);
-
           if (testPart.id === '1') {
             expect(testPart.first3AuthorNames).to.be.equal('Coeurdassier Michaël Berny Philippe Couval Geoffroy');
             expect(testPart.first3AuthorNamesWithInitials).to.be.equal('Coeurdassier M Berny P Couval G');
@@ -92,7 +91,6 @@ describe(pkg.name + '/index.js', function () {
             expect(testPart.sourceId).to.be.equal('23554029');
             expect(testPart.sourceUid).to.be.equal('pubmed$23554029');
           } else if (testPart.id === '8') {
-            console.log(util.inspect(testPart, false,8,true));
             expect(testPart.sourceUid).to.be.equal('hal$hal-00952427');
             expect(testPart.authors.length).to.equal(2);
             expect(testPart.authors[0].isni[0]).to.equal('isni-mudry');
@@ -110,6 +108,9 @@ describe(pkg.name + '/index.js', function () {
             expect(testPart.authors[0].affiliations[0].isni[0]).to.equal('0000000122597504');
             expect(testPart.isni).to.be.an('Array');
             expect(testPart.isni[1]).to.be.equal('albisni');
+            expect(testPart.rnsr.length).to.be.equal(3);
+            expect(testPart.rnsr[2]).to.be.equal('654321');
+
           }
           done();
         });
