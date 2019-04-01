@@ -14,9 +14,7 @@ const namespaces = {
   'str': 'http://exslt.org/strings'
 };
 
-const business = {};
-
-const evalfunctions = {
+const evalFunctions = {
   'lower-case': function (context, arg) {
     return context
       .contextNode
@@ -43,6 +41,10 @@ const evalfunctions = {
   }
 };
 
+const business = {};
+business.namespaces = namespaces;
+business.evalFunctions = evalFunctions;
+
 business.doTheJob = function (jsonLine, cb) {
   let error;
   let xml = fs.readFileSync(jsonLine.path, 'utf8');
@@ -64,7 +66,7 @@ business.doTheJob = function (jsonLine, cb) {
   const evaluatorOptions = {
     node: doc,
     namespaces: namespaces,
-    functions: evalfunctions
+    functions: evalFunctions
   };
 
   let extractMetadata = {};
@@ -221,7 +223,7 @@ business.extract = function (metadata, contextOptions) {
         let evaluatorOptionsBloc = {
           node: docBloc,
           namespaces: namespaces,
-          functions: evalfunctions
+          functions: evalFunctions
         };
         const extractChild = this.extract(metadata.fields, evaluatorOptionsBloc);
         if (extractChild) result.push(extractChild);
@@ -251,5 +253,6 @@ business.extract = function (metadata, contextOptions) {
     return result;
   }
 };
+
 
 module.exports = business;
