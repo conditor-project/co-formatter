@@ -1,1 +1,204 @@
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:hal="http://hal.archives-ouvertes.fr/"><text><body><listBibl><biblFull><titleStmt><title xml:lang="en">ProbMetab: an R package for Bayesian probabilistic annotation of LC-MS-based metabolomics</title><author role="aut"><persName><forename type="first">Ricardo R.</forename><surname>Silva</surname></persName><idno type="halauthorid">1288466</idno><affiliation ref="#struct-449110"></affiliation></author><author role="aut"><persName><forename type="first">Fabien</forename><surname>Jourdan</surname></persName><email type="md5">09d003a1ba8a6296b99bd740ce0b9533</email><email type="domain">toulouse.inra.fr</email><idno type="halauthorid">371385</idno><affiliation ref="#struct-37949"></affiliation><affiliation ref="#struct-692"></affiliation></author><author role="aut"><persName><forename type="first">Diego M.</forename><surname>Salvanha</surname></persName><idno type="halauthorid">1288467</idno><affiliation ref="#struct-449110"></affiliation><affiliation ref="#struct-330043"></affiliation></author><author role="aut"><persName><forename type="first">Fabien</forename><surname>Letisse</surname></persName><email type="md5">cb6b093052270a103b783c5eeea49cea</email><email type="domain">insa-toulouse.fr</email><idno type="halauthorid">1287770</idno><affiliation ref="#struct-692"></affiliation><affiliation ref="#struct-37949"></affiliation></author><author role="aut"><persName><forename type="first">Emilien</forename><surname>Jamin</surname></persName><email type="md5">e9a3cfb34c1c891f69191e6fc28950f0</email><email type="domain">toulouse.inra.fr</email><idno type="halauthorid">1151030</idno><affiliation ref="#struct-37949"></affiliation><affiliation ref="#struct-692"></affiliation></author><author role="aut"><persName><forename type="first">Simone</forename><surname>Guidetti-Gonzalez</surname></persName><idno type="halauthorid">1288468</idno><affiliation ref="#struct-449111"></affiliation></author><author role="aut"><persName><forename type="first">Carlos A.</forename><surname>Labate</surname></persName><idno type="halauthorid">1288469</idno><affiliation ref="#struct-448162"></affiliation><affiliation ref="#struct-449112"></affiliation></author><author role="aut"><persName><forename type="first">Ricardo Z. N.</forename><surname>Vencio</surname></persName><idno type="halauthorid">1288470</idno><affiliation ref="#struct-449110"></affiliation></author></titleStmt><publicationStmt><distributor>CCSD</distributor><idno type="halId">hal-01268715</idno><idno type="halUri">https://hal.archives-ouvertes.fr/hal-01268715</idno><idno type="halBibtex">silva:hal-01268715</idno><idno type="halRefHtml">&lt;i&gt;Bioinformatics&lt;/i&gt;, Oxford University Press (OUP), 2014, 30 (9), pp.1336 - 1337. &lt;a target="_blank" href="http://dx.doi.org/10.1093/bioinformatics/btu019"&gt;&amp;lt;10.1093/bioinformatics/btu019&amp;gt;&lt;/a&gt;</idno><idno type="halRef">Bioinformatics, Oxford University Press (OUP), 2014, 30 (9), pp.1336 - 1337. &amp;lt;10.1093/bioinformatics/btu019&amp;gt;</idno></publicationStmt><sourceDesc><biblStruct><analytic><title xml:lang="en">ProbMetab: an R package for Bayesian probabilistic annotation of LC-MS-based metabolomics</title><author role="aut"><persName><forename type="first">Ricardo R.</forename><surname>Silva</surname></persName><idno type="halauthorid">1288466</idno><affiliation ref="#struct-449110"></affiliation></author><author role="aut"><persName><forename type="first">Fabien</forename><surname>Jourdan</surname></persName><email type="md5">09d003a1ba8a6296b99bd740ce0b9533</email><email type="domain">toulouse.inra.fr</email><idno type="halauthorid">371385</idno><affiliation ref="#struct-37949"></affiliation><affiliation ref="#struct-692"></affiliation></author><author role="aut"><persName><forename type="first">Diego M.</forename><surname>Salvanha</surname></persName><idno type="halauthorid">1288467</idno><affiliation ref="#struct-449110"></affiliation><affiliation ref="#struct-330043"></affiliation></author><author role="aut"><persName><forename type="first">Fabien</forename><surname>Letisse</surname></persName><email type="md5">cb6b093052270a103b783c5eeea49cea</email><email type="domain">insa-toulouse.fr</email><idno type="halauthorid">1287770</idno><affiliation ref="#struct-692"></affiliation><affiliation ref="#struct-37949"></affiliation></author><author role="aut"><persName><forename type="first">Emilien</forename><surname>Jamin</surname></persName><email type="md5">e9a3cfb34c1c891f69191e6fc28950f0</email><email type="domain">toulouse.inra.fr</email><idno type="halauthorid">1151030</idno><affiliation ref="#struct-37949"></affiliation><affiliation ref="#struct-692"></affiliation></author><author role="aut"><persName><forename type="first">Simone</forename><surname>Guidetti-Gonzalez</surname></persName><idno type="halauthorid">1288468</idno><affiliation ref="#struct-449111"></affiliation></author><author role="aut"><persName><forename type="first">Carlos A.</forename><surname>Labate</surname></persName><idno type="halauthorid">1288469</idno><affiliation ref="#struct-448162"></affiliation><affiliation ref="#struct-449112"></affiliation></author><author role="aut"><persName><forename type="first">Ricardo Z. N.</forename><surname>Vencio</surname></persName><idno type="halauthorid">1288470</idno><affiliation ref="#struct-449110"></affiliation></author></analytic><monogr><idno type="halJournalId" status="VALID">3436</idno><idno type="issn">1367-4803</idno><idno type="eissn">1460-2059</idno><title level="j">Bioinformatics</title><imprint><publisher>Oxford University Press (OUP)</publisher><biblScope unit="volume">30</biblScope><biblScope unit="issue">9</biblScope><biblScope unit="pp">1336 - 1337</biblScope><date type="datePub">2014</date></imprint></monogr><idno type="doi">10.1093/bioinformatics/btu01</idno><idno type="prodinra">270161</idno><idno type="pubmed">24443383</idno></biblStruct></sourceDesc><profileDesc><langUsage><language ident="en">English</language></langUsage><textClass><classCode scheme="halDomain" n="sdv">Life Sciences [q-bio]</classCode><classCode scheme="halTypology" n="ART">Journal articles</classCode></textClass></profileDesc></biblFull></listBibl></body></text></TEI>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" 
+  xmlns:hal="http://hal.archives-ouvertes.fr/">
+  <text>
+    <body>
+      <listBibl>
+        <biblFull>
+          <titleStmt>
+            <title xml:lang="en">ProbMetab: an R package for Bayesian probabilistic annotation of LC-MS-based metabolomics</title>
+            <author role="aut">
+              <persName>
+                <forename type="first">Ricardo R.</forename>
+                <surname>Silva</surname>
+              </persName>
+              <idno type="halauthorid">1288466</idno>
+              <affiliation ref="#struct-449110"></affiliation>
+            </author>
+            <author role="aut">
+              <persName>
+                <forename type="first">Fabien</forename>
+                <surname>Jourdan</surname>
+              </persName>
+              <email type="md5">09d003a1ba8a6296b99bd740ce0b9533</email>
+              <email type="domain">toulouse.inra.fr</email>
+              <idno type="halauthorid">371385</idno>
+              <affiliation ref="#struct-37949"></affiliation>
+              <affiliation ref="#struct-692"></affiliation>
+            </author>
+            <author role="aut">
+              <persName>
+                <forename type="first">Diego M.</forename>
+                <surname>Salvanha</surname>
+              </persName>
+              <idno type="halauthorid">1288467</idno>
+              <affiliation ref="#struct-449110"></affiliation>
+              <affiliation ref="#struct-330043"></affiliation>
+            </author>
+            <author role="aut">
+              <persName>
+                <forename type="first">Fabien</forename>
+                <surname>Letisse</surname>
+              </persName>
+              <email type="md5">cb6b093052270a103b783c5eeea49cea</email>
+              <email type="domain">insa-toulouse.fr</email>
+              <idno type="halauthorid">1287770</idno>
+              <affiliation ref="#struct-692"></affiliation>
+              <affiliation ref="#struct-37949"></affiliation>
+            </author>
+            <author role="aut">
+              <persName>
+                <forename type="first">Emilien</forename>
+                <surname>Jamin</surname>
+              </persName>
+              <email type="md5">e9a3cfb34c1c891f69191e6fc28950f0</email>
+              <email type="domain">toulouse.inra.fr</email>
+              <idno type="halauthorid">1151030</idno>
+              <affiliation ref="#struct-37949"></affiliation>
+              <affiliation ref="#struct-692"></affiliation>
+            </author>
+            <author role="aut">
+              <persName>
+                <forename type="first">Simone</forename>
+                <surname>Guidetti-Gonzalez</surname>
+              </persName>
+              <idno type="halauthorid">1288468</idno>
+              <affiliation ref="#struct-449111"></affiliation>
+            </author>
+            <author role="aut">
+              <persName>
+                <forename type="first">Carlos A.</forename>
+                <surname>Labate</surname>
+              </persName>
+              <idno type="halauthorid">1288469</idno>
+              <affiliation ref="#struct-448162"></affiliation>
+              <affiliation ref="#struct-449112"></affiliation>
+            </author>
+            <author role="aut">
+              <persName>
+                <forename type="first">Ricardo Z. N.</forename>
+                <surname>Vencio</surname>
+              </persName>
+              <idno type="halauthorid">1288470</idno>
+              <affiliation ref="#struct-449110"></affiliation>
+            </author>
+          </titleStmt>
+          <publicationStmt>
+            <distributor>CCSD</distributor>
+            <idno type="halId">hal-01268715</idno>
+            <idno type="halUri">https://hal.archives-ouvertes.fr/hal-01268715</idno>
+            <idno type="halBibtex">silva:hal-01268715</idno>
+            <idno type="halRefHtml">&lt;i&gt;Bioinformatics&lt;/i&gt;, Oxford University Press (OUP), 2014, 30 (9), pp.1336 - 1337. &lt;a target="_blank" href="http://dx.doi.org/10.1093/bioinformatics/btu019"&gt;&amp;lt;10.1093/bioinformatics/btu019&amp;gt;&lt;/a&gt;</idno>
+            <idno type="halRef">Bioinformatics, Oxford University Press (OUP), 2014, 30 (9), pp.1336 - 1337. &amp;lt;10.1093/bioinformatics/btu019&amp;gt;</idno>
+          </publicationStmt>
+          <sourceDesc>
+            <biblStruct>
+              <analytic>
+                <title xml:lang="en">ProbMetab: an R package for Bayesian probabilistic annotation of LC-MS-based metabolomics</title>
+                <author role="aut">
+                  <persName>
+                    <forename type="first">Ricardo R.</forename>
+                    <surname>Silva</surname>
+                  </persName>
+                  <idno type="halauthorid">1288466</idno>
+                  <affiliation ref="#struct-449110"></affiliation>
+                </author>
+                <author role="aut">
+                  <persName>
+                    <forename type="first">Fabien</forename>
+                    <surname>Jourdan</surname>
+                  </persName>
+                  <email type="md5">09d003a1ba8a6296b99bd740ce0b9533</email>
+                  <email type="domain">toulouse.inra.fr</email>
+                  <idno type="halauthorid">371385</idno>
+                  <affiliation ref="#struct-37949"></affiliation>
+                  <affiliation ref="#struct-692"></affiliation>
+                </author>
+                <author role="aut">
+                  <persName>
+                    <forename type="first">Diego M.</forename>
+                    <surname>Salvanha</surname>
+                  </persName>
+                  <idno type="halauthorid">1288467</idno>
+                  <affiliation ref="#struct-449110"></affiliation>
+                  <affiliation ref="#struct-330043"></affiliation>
+                </author>
+                <author role="aut">
+                  <persName>
+                    <forename type="first">Fabien</forename>
+                    <surname>Letisse</surname>
+                  </persName>
+                  <email type="md5">cb6b093052270a103b783c5eeea49cea</email>
+                  <email type="domain">insa-toulouse.fr</email>
+                  <idno type="halauthorid">1287770</idno>
+                  <affiliation ref="#struct-692"></affiliation>
+                  <affiliation ref="#struct-37949"></affiliation>
+                </author>
+                <author role="aut">
+                  <persName>
+                    <forename type="first">Emilien</forename>
+                    <surname>Jamin</surname>
+                  </persName>
+                  <email type="md5">e9a3cfb34c1c891f69191e6fc28950f0</email>
+                  <email type="domain">toulouse.inra.fr</email>
+                  <idno type="halauthorid">1151030</idno>
+                  <affiliation ref="#struct-37949"></affiliation>
+                  <affiliation ref="#struct-692"></affiliation>
+                </author>
+                <author role="aut">
+                  <persName>
+                    <forename type="first">Simone</forename>
+                    <surname>Guidetti-Gonzalez</surname>
+                  </persName>
+                  <idno type="halauthorid">1288468</idno>
+                  <affiliation ref="#struct-449111"></affiliation>
+                </author>
+                <author role="aut">
+                  <persName>
+                    <forename type="first">Carlos A.</forename>
+                    <surname>Labate</surname>
+                  </persName>
+                  <idno type="halauthorid">1288469</idno>
+                  <affiliation ref="#struct-448162"></affiliation>
+                  <affiliation ref="#struct-449112"></affiliation>
+                </author>
+                <author role="aut">
+                  <persName>
+                    <forename type="first">Ricardo Z. N.</forename>
+                    <surname>Vencio</surname>
+                  </persName>
+                  <idno type="halauthorid">1288470</idno>
+                  <affiliation ref="#struct-449110"></affiliation>
+                </author>
+              </analytic>
+              <monogr>
+                <idno type="halJournalId" status="VALID">3436</idno>
+                <idno type="issn">1367-4803</idno>
+                <idno type="eissn">1460-2059</idno>
+                <title level="j">Bioinformatics</title>
+                <imprint>
+                  <publisher>Oxford University Press (OUP)</publisher>
+                  <biblScope unit="volume">30</biblScope>
+                  <biblScope unit="issue">9</biblScope>
+                  <biblScope unit="pp">1336 - 1337</biblScope>
+                  <date type="datePub">2014</date>
+                </imprint>
+              </monogr>
+              <idno type="doi">10.1093/bioinformatics/btu01</idno>
+              <idno type="prodinra">270161</idno>
+              <idno type="pubmed">24443383</idno>
+            </biblStruct>
+          </sourceDesc>
+          <profileDesc>
+            <langUsage>
+              <language ident="en">English</language>
+            </langUsage>
+            <textClass>
+              <classCode scheme="halDomain" n="sdv">Life Sciences [q-bio]</classCode>
+              <classCode scheme="halTypology" n="ART">Journal articles</classCode>
+            </textClass>
+          </profileDesc>
+        </biblFull>
+      </listBibl>
+    </body>
+  </text>
+</TEI>

@@ -6,7 +6,9 @@ const xpath = require('xpath');
 const _ = require('lodash');
 const metadataXpaths = require('co-config/metadata-xpaths.json');
 const mappingTD = require('co-config/metadata-mappings.json');
-const sourceIdsMap = _.transform(mappingTD, (sourceIds, { source, nameID }) => sourceIds[source] = nameID, {});
+const sourceIdsMap = _.transform(mappingTD, (sourceIds, { source, nameID }) => {
+  sourceIds[source] = nameID;
+}, {});
 
 const namespaces = {
   'TEI': 'http://www.tei-c.org/ns/1.0',
@@ -21,15 +23,15 @@ const evalFunctions = {
       .getAttribute('type')
       .toLowerCase();
   },
-  'first-of-split': function(context, text,separator) {
-    const elems = _.split(text,separator);
+  'first-of-split': function (context, text, separator) {
+    const elems = _.split(text, separator);
     const compacted = _.compact(elems);
-    return (Array.isArray(compacted) && compacted.length > 0) ? compacted[0] : "";
+    return (Array.isArray(compacted) && compacted.length > 0) ? compacted[0] : '';
   },
-  'deduplicate-by-text': function(context, values) {
+  'deduplicate-by-text': function (context, values) {
     const uniqueValues = [];
     const dedupNodes = [];
-    for (let i=0; i<values.nodes.length; i++) {
+    for (let i = 0; i < values.nodes.length; i++) {
       const node = values.nodes[i];
       if (!uniqueValues.includes(node.textContent)) {
         uniqueValues.push(node.textContent);
@@ -164,7 +166,7 @@ business.extract = function (metadata, contextOptions) {
       obj[metadata.attributeName] = select;
       select = obj;
     }
-    if (select == '' && metadata.allowEmpty == false) return undefined;
+    if (select === '' && metadata.allowEmpty === false) return undefined;
     return select;
   } else if (metadata.type === 'boolean' && metadata.path) {
     select = xpath.parse(metadata.path).evaluateBoolean(contextOptions);
@@ -253,6 +255,5 @@ business.extract = function (metadata, contextOptions) {
     return result;
   }
 };
-
 
 module.exports = business;

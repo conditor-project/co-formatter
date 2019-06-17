@@ -1,1 +1,410 @@
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:hal="http://hal.archives-ouvertes.fr/"><teiHeader><fileDesc><titleStmt><title>HAL TEI export of hal-01268715</title></titleStmt><publicationStmt><distributor>CCSD</distributor><availability status="restricted"><licence target="http://creativecommons.org/licenses/by/4.0/">Distributed under a Creative Commons Attribution 4.0 International License</licence></availability><date when="2017-04-10T18:46:54+02:00"></date></publicationStmt><sourceDesc><p part="N">HAL API platform</p></sourceDesc></fileDesc></teiHeader><text><body><listBibl><biblFull><titleStmt><title xml:lang="en">ProbMetab: an R package for Bayesian probabilistic annotation of LC-MS-based metabolomics</title><author role="aut"><persName><forename type="first">Ricardo R.</forename><surname>Silva</surname></persName><idno type="halauthorid">1288466</idno><affiliation ref="#struct-449110"></affiliation></author><author role="aut"><persName><forename type="first">Fabien</forename><surname>Jourdan</surname></persName><email type="md5">09d003a1ba8a6296b99bd740ce0b9533</email><email type="domain">toulouse.inra.fr</email><idno type="halauthorid">371385</idno><affiliation ref="#struct-37949"></affiliation><affiliation ref="#struct-692"></affiliation></author><author role="aut"><persName><forename type="first">Diego M.</forename><surname>Salvanha</surname></persName><idno type="halauthorid">1288467</idno><affiliation ref="#struct-449110"></affiliation><affiliation ref="#struct-330043"></affiliation></author><author role="aut"><persName><forename type="first">Fabien</forename><surname>Letisse</surname></persName><email type="md5">cb6b093052270a103b783c5eeea49cea</email><email type="domain">insa-toulouse.fr</email><idno type="halauthorid">1287770</idno><affiliation ref="#struct-692"></affiliation><affiliation ref="#struct-37949"></affiliation></author><author role="aut"><persName><forename type="first">Emilien</forename><surname>Jamin</surname></persName><email type="md5">e9a3cfb34c1c891f69191e6fc28950f0</email><email type="domain">toulouse.inra.fr</email><idno type="halauthorid">1151030</idno><affiliation ref="#struct-37949"></affiliation><affiliation ref="#struct-692"></affiliation></author><author role="aut"><persName><forename type="first">Simone</forename><surname>Guidetti-Gonzalez</surname></persName><idno type="halauthorid">1288468</idno><affiliation ref="#struct-449111"></affiliation></author><author role="aut"><persName><forename type="first">Carlos A.</forename><surname>Labate</surname></persName><idno type="halauthorid">1288469</idno><affiliation ref="#struct-448162"></affiliation><affiliation ref="#struct-449112"></affiliation></author><author role="aut"><persName><forename type="first">Ricardo Z. N.</forename><surname>Vencio</surname></persName><idno type="halauthorid">1288470</idno><affiliation ref="#struct-449110"></affiliation></author><editor role="depositor"><persName><forename>Archive Ouverte</forename><surname>ProdInra</surname></persName><email type="md5">859d2cba2c64f5bbc2add42f2b9992d1</email><email type="domain">inra.fr</email></editor><funder>Microsoft Research; FAPESP [09/53161-6]</funder></titleStmt><editionStmt><edition n="v1" type="current"><date type="whenSubmitted">2016-02-04 23:33:16</date><date type="whenModified">2017-01-10 15:14:19</date><date type="whenReleased">2016-02-04 23:33:16</date><date type="whenProduced">2014</date></edition><respStmt><resp>contributor</resp><name key="132775"><persName><forename>Archive Ouverte</forename><surname>ProdInra</surname></persName><email type="md5">859d2cba2c64f5bbc2add42f2b9992d1</email><email type="domain">inra.fr</email></name></respStmt></editionStmt><publicationStmt><distributor>CCSD</distributor><idno type="halId">hal-01268715</idno><idno type="halUri">https://hal.archives-ouvertes.fr/hal-01268715</idno><idno type="halBibtex">silva:hal-01268715</idno><idno type="halRefHtml">&lt;i&gt;Bioinformatics&lt;/i&gt;, Oxford University Press (OUP), 2014, 30 (9), pp.1336 - 1337. &lt;a target="_blank" href="http://dx.doi.org/10.1093/bioinformatics/btu019"&gt;&amp;lt;10.1093/bioinformatics/btu019&amp;gt;&lt;/a&gt;</idno><idno type="halRef">Bioinformatics, Oxford University Press (OUP), 2014, 30 (9), pp.1336 - 1337. &amp;lt;10.1093/bioinformatics/btu019&amp;gt;</idno></publicationStmt><seriesStmt><idno type="stamp" n="CNRS">CNRS - Centre national de la recherche scientifique</idno><idno type="stamp" n="UNIV-BOURGOGNE">Université de Bourgogne</idno><idno type="stamp" n="INRA">INRA - Institut national de la recherche agronomique</idno><idno type="stamp" n="INSA-TOULOUSE">Institut National des Sciences Appliquées de Toulouse</idno></seriesStmt><notesStmt><note type="audience" n="1">Not set</note><note type="popular" n="0">No</note><note type="peer" n="1">Yes</note></notesStmt><sourceDesc><biblStruct><analytic><title xml:lang="en">ProbMetab: an R package for Bayesian probabilistic annotation of LC-MS-based metabolomics</title><author role="aut"><persName><forename type="first">Ricardo R.</forename><surname>Silva</surname></persName><idno type="halauthorid">1288466</idno><affiliation ref="#struct-449110"></affiliation></author><author role="aut"><persName><forename type="first">Fabien</forename><surname>Jourdan</surname></persName><email type="md5">09d003a1ba8a6296b99bd740ce0b9533</email><email type="domain">toulouse.inra.fr</email><idno type="halauthorid">371385</idno><affiliation ref="#struct-37949"></affiliation><affiliation ref="#struct-692"></affiliation></author><author role="aut"><persName><forename type="first">Diego M.</forename><surname>Salvanha</surname></persName><idno type="halauthorid">1288467</idno><affiliation ref="#struct-449110"></affiliation><affiliation ref="#struct-330043"></affiliation></author><author role="aut"><persName><forename type="first">Fabien</forename><surname>Letisse</surname></persName><email type="md5">cb6b093052270a103b783c5eeea49cea</email><email type="domain">insa-toulouse.fr</email><idno type="halauthorid">1287770</idno><affiliation ref="#struct-692"></affiliation><affiliation ref="#struct-37949"></affiliation></author><author role="aut"><persName><forename type="first">Emilien</forename><surname>Jamin</surname></persName><email type="md5">e9a3cfb34c1c891f69191e6fc28950f0</email><email type="domain">toulouse.inra.fr</email><idno type="halauthorid">1151030</idno><affiliation ref="#struct-37949"></affiliation><affiliation ref="#struct-692"></affiliation></author><author role="aut"><persName><forename type="first">Simone</forename><surname>Guidetti-Gonzalez</surname></persName><idno type="halauthorid">1288468</idno><affiliation ref="#struct-449111"></affiliation></author><author role="aut"><persName><forename type="first">Carlos A.</forename><surname>Labate</surname></persName><idno type="halauthorid">1288469</idno><affiliation ref="#struct-448162"></affiliation><affiliation ref="#struct-449112"></affiliation></author><author role="aut"><persName><forename type="first">Ricardo Z. N.</forename><surname>Vencio</surname></persName><idno type="halauthorid">1288470</idno><affiliation ref="#struct-449110"></affiliation></author></analytic><monogr><idno type="halJournalId" status="VALID">3436</idno><idno type="issn">1367-4803</idno><idno type="eissn">1460-2059</idno><title level="j">Bioinformatics</title><imprint><publisher>Oxford University Press (OUP)</publisher><biblScope unit="volume">30</biblScope><biblScope unit="issue">9</biblScope><biblScope unit="pp">1336 - 1337</biblScope><date type="datePub">2014</date></imprint></monogr><idno type="doi">10.1093/bioinformatics/btu019</idno><idno type="prodinra">270161</idno><idno type="pubmed">24443383</idno></biblStruct></sourceDesc><profileDesc><langUsage><language ident="en">English</language></langUsage><textClass><classCode scheme="halDomain" n="sdv">Life Sciences [q-bio]</classCode><classCode scheme="halTypology" n="ART">Journal articles</classCode></textClass><abstract xml:lang="en">We present ProbMetab, an R package that promotes substantial improvement in automatic probabilistic liquid chromatography-mass spectrometry-based metabolome annotation. The inference engine core is based on a Bayesian model implemented to (i) allow diverse source of experimental data and metadata to be systematically incorporated into the model with alternative ways to calculate the likelihood function and (ii) allow sensitive selection of biologically meaningful biochemical reaction databases as Dirichletcategorical prior distribution. Additionally, to ensure result interpretation by system biologists, we display the annotation in a network where observed mass peaks are connected if their candidate metabolites are substrate/ product of known biochemical reactions. This graph can be overlaid with other graph-based analysis, such as partial correlation networks, in a visualization scheme exported to Cytoscape, with web and stand-alone versions.</abstract></profileDesc></biblFull></listBibl></body><back><listOrg type="structures"><org type="laboratory" xml:id="struct-449110" status="INCOMING"><orgName>FFCLRP-USP, Department of Computing and Mathematics, LabPIB</orgName><desc><address><country key="BR"/></address></desc><listRelation><relation active="#struct-366534" type="direct"/></listRelation></org><org type="laboratory" xml:id="struct-37949" status="OLD"><orgName>Toxicologie Alimentaire</orgName><orgName type="acronym">UTA</orgName><desc><address><country key="FR"/></address></desc><listRelation><relation name="UR1234" active="#struct-92114" type="direct"/><relation active="#struct-300270" type="direct"/><relation active="#struct-303675" type="direct"/></listRelation></org><org type="laboratory" xml:id="struct-692" status="VALID"><orgName>Biotechnologie et bioprocédés</orgName><orgName type="acronym">BB</orgName><desc><address><addrLine>135, avenue de Rangueil 31077 TOULOUSE CEDEX 4</addrLine><country key="FR"/></address><ref type="url">http://www.insa-tlse.fr/gba/Recherche/RECHERCHE_nav.htm</ref></desc><listRelation><relation name="UR0792" active="#struct-92114" type="direct"/><relation active="#struct-116255" type="direct"/><relation name="UMR5504" active="#struct-441569" type="direct"/></listRelation></org><org type="institution" xml:id="struct-330043" status="INCOMING"><orgName>Institute for Systems Biology</orgName><desc><address><country key="FR"/></address></desc></org><org type="laboratory" xml:id="struct-449111" status="INCOMING"><orgName>ESALQ-USP, Department of Genetics</orgName><desc><address><country key="BR"/></address></desc><listRelation><relation active="#struct-366534" type="direct"/></listRelation></org><org type="institution" xml:id="struct-448162" status="INCOMING"><orgName>Laboratório Nacional de Ciência e Tecnologia do Bioetanol</orgName><orgName type="acronym">CTBE</orgName><desc><address><country key="BR"/></address></desc></org><org type="laboratory" xml:id="struct-449112" status="INCOMING"><orgName>ESALQ USP, Department of Genetics</orgName><desc><address><country key="BR"/></address></desc><listRelation><relation active="#struct-366534" type="direct"/></listRelation></org><org type="institution" xml:id="struct-366534" status="VALID"><orgName>University of São Paulo</orgName><orgName type="acronym">USP</orgName><date type="start">1934-01-25</date><desc><address><country key="BR"/></address></desc></org><org type="institution" xml:id="struct-92114" status="VALID"><orgName>Institut National de la Recherche Agronomique</orgName><orgName type="acronym">INRA</orgName><desc><address><country key="FR"/></address><ref type="url">http://www.inra.fr</ref></desc></org><org type="institution" xml:id="struct-300270" status="VALID"><orgName>Université de Bourgogne</orgName><orgName type="acronym">UB</orgName><desc><address><addrLine>Maison de l'université - Esplanade Érasme - BP 27877 - 21078 Dijon cedex</addrLine><country key="FR"/></address><ref type="url">http://www.u-bourgogne.fr/</ref></desc></org><org type="institution" xml:id="struct-303675" status="INCOMING"><orgName>Agrosup</orgName><desc><address><country key="FR"/></address></desc></org><org type="institution" xml:id="struct-116255" status="VALID"><idno type="IdRef">026388766</idno><idno type="ISNI">0000 0001 2286 8343</idno><orgName>Institut National des Sciences Appliquées - Toulouse</orgName><orgName type="acronym">INSA Toulouse</orgName><desc><address><addrLine>135, avenue de Rangueil - 31077 Toulouse cedex 4</addrLine><country key="FR"/></address><ref type="url">http://www.insa-toulouse.fr</ref></desc></org><org type="institution" xml:id="struct-441569" status="VALID"><idno type="IdRef">02636817X</idno><idno type="ISNI">0000000122597504</idno><orgName>Centre National de la Recherche Scientifique</orgName><orgName type="acronym">CNRS</orgName><date type="start">1939-10-19</date><desc><address><country key="FR"/></address><ref type="url">http://www.cnrs.fr/</ref></desc></org></listOrg></back></text></TEI>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" 
+  xmlns:hal="http://hal.archives-ouvertes.fr/">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>HAL TEI export of hal-01268715</title>
+      </titleStmt>
+      <publicationStmt>
+        <distributor>CCSD</distributor>
+        <availability status="restricted">
+          <licence target="http://creativecommons.org/licenses/by/4.0/">Distributed under a Creative Commons Attribution 4.0 International License</licence>
+        </availability>
+        <date when="2017-04-10T18:46:54+02:00"></date>
+      </publicationStmt>
+      <sourceDesc>
+        <p part="N">HAL API platform</p>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <listBibl>
+        <biblFull>
+          <titleStmt>
+            <title xml:lang="en">ProbMetab: an R package for Bayesian probabilistic annotation of LC-MS-based metabolomics</title>
+            <author role="aut">
+              <persName>
+                <forename type="first">Ricardo R.</forename>
+                <surname>Silva</surname>
+              </persName>
+              <idno type="halauthorid">1288466</idno>
+              <affiliation ref="#struct-449110"></affiliation>
+            </author>
+            <author role="aut">
+              <persName>
+                <forename type="first">Fabien</forename>
+                <surname>Jourdan</surname>
+              </persName>
+              <email type="md5">09d003a1ba8a6296b99bd740ce0b9533</email>
+              <email type="domain">toulouse.inra.fr</email>
+              <idno type="halauthorid">371385</idno>
+              <affiliation ref="#struct-37949"></affiliation>
+              <affiliation ref="#struct-692"></affiliation>
+            </author>
+            <author role="aut">
+              <persName>
+                <forename type="first">Diego M.</forename>
+                <surname>Salvanha</surname>
+              </persName>
+              <idno type="halauthorid">1288467</idno>
+              <affiliation ref="#struct-449110"></affiliation>
+              <affiliation ref="#struct-330043"></affiliation>
+            </author>
+            <author role="aut">
+              <persName>
+                <forename type="first">Fabien</forename>
+                <surname>Letisse</surname>
+              </persName>
+              <email type="md5">cb6b093052270a103b783c5eeea49cea</email>
+              <email type="domain">insa-toulouse.fr</email>
+              <idno type="halauthorid">1287770</idno>
+              <affiliation ref="#struct-692"></affiliation>
+              <affiliation ref="#struct-37949"></affiliation>
+            </author>
+            <author role="aut">
+              <persName>
+                <forename type="first">Emilien</forename>
+                <surname>Jamin</surname>
+              </persName>
+              <email type="md5">e9a3cfb34c1c891f69191e6fc28950f0</email>
+              <email type="domain">toulouse.inra.fr</email>
+              <idno type="halauthorid">1151030</idno>
+              <affiliation ref="#struct-37949"></affiliation>
+              <affiliation ref="#struct-692"></affiliation>
+            </author>
+            <author role="aut">
+              <persName>
+                <forename type="first">Simone</forename>
+                <surname>Guidetti-Gonzalez</surname>
+              </persName>
+              <idno type="halauthorid">1288468</idno>
+              <affiliation ref="#struct-449111"></affiliation>
+            </author>
+            <author role="aut">
+              <persName>
+                <forename type="first">Carlos A.</forename>
+                <surname>Labate</surname>
+              </persName>
+              <idno type="halauthorid">1288469</idno>
+              <affiliation ref="#struct-448162"></affiliation>
+              <affiliation ref="#struct-449112"></affiliation>
+            </author>
+            <author role="aut">
+              <persName>
+                <forename type="first">Ricardo Z. N.</forename>
+                <surname>Vencio</surname>
+              </persName>
+              <idno type="halauthorid">1288470</idno>
+              <affiliation ref="#struct-449110"></affiliation>
+            </author>
+            <editor role="depositor">
+              <persName>
+                <forename>Archive Ouverte</forename>
+                <surname>ProdInra</surname>
+              </persName>
+              <email type="md5">859d2cba2c64f5bbc2add42f2b9992d1</email>
+              <email type="domain">inra.fr</email>
+            </editor>
+            <funder>Microsoft Research; FAPESP [09/53161-6]</funder>
+          </titleStmt>
+          <editionStmt>
+            <edition n="v1" type="current">
+              <date type="whenSubmitted">2016-02-04 23:33:16</date>
+              <date type="whenModified">2017-01-10 15:14:19</date>
+              <date type="whenReleased">2016-02-04 23:33:16</date>
+              <date type="whenProduced">2014</date>
+            </edition>
+            <respStmt>
+              <resp>contributor</resp>
+              <name key="132775">
+                <persName>
+                  <forename>Archive Ouverte</forename>
+                  <surname>ProdInra</surname>
+                </persName>
+                <email type="md5">859d2cba2c64f5bbc2add42f2b9992d1</email>
+                <email type="domain">inra.fr</email>
+              </name>
+            </respStmt>
+          </editionStmt>
+          <publicationStmt>
+            <distributor>CCSD</distributor>
+            <idno type="halId">hal-01268715</idno>
+            <idno type="halUri">https://hal.archives-ouvertes.fr/hal-01268715</idno>
+            <idno type="halBibtex">silva:hal-01268715</idno>
+            <idno type="halRefHtml">&lt;i&gt;Bioinformatics&lt;/i&gt;, Oxford University Press (OUP), 2014, 30 (9), pp.1336 - 1337. &lt;a target="_blank" href="http://dx.doi.org/10.1093/bioinformatics/btu019"&gt;&amp;lt;10.1093/bioinformatics/btu019&amp;gt;&lt;/a&gt;</idno>
+            <idno type="halRef">Bioinformatics, Oxford University Press (OUP), 2014, 30 (9), pp.1336 - 1337. &amp;lt;10.1093/bioinformatics/btu019&amp;gt;</idno>
+          </publicationStmt>
+          <seriesStmt>
+            <idno type="stamp" n="CNRS">CNRS - Centre national de la recherche scientifique</idno>
+            <idno type="stamp" n="UNIV-BOURGOGNE">Université de Bourgogne</idno>
+            <idno type="stamp" n="INRA">INRA - Institut national de la recherche agronomique</idno>
+            <idno type="stamp" n="INSA-TOULOUSE">Institut National des Sciences Appliquées de Toulouse</idno>
+          </seriesStmt>
+          <notesStmt>
+            <note type="audience" n="1">Not set</note>
+            <note type="popular" n="0">No</note>
+            <note type="peer" n="1">Yes</note>
+          </notesStmt>
+          <sourceDesc>
+            <biblStruct>
+              <analytic>
+                <title xml:lang="en">ProbMetab: an R package for Bayesian probabilistic annotation of LC-MS-based metabolomics</title>
+                <author role="aut">
+                  <persName>
+                    <forename type="first">Ricardo R.</forename>
+                    <surname>Silva</surname>
+                  </persName>
+                  <idno type="halauthorid">1288466</idno>
+                  <affiliation ref="#struct-449110"></affiliation>
+                </author>
+                <author role="aut">
+                  <persName>
+                    <forename type="first">Fabien</forename>
+                    <surname>Jourdan</surname>
+                  </persName>
+                  <email type="md5">09d003a1ba8a6296b99bd740ce0b9533</email>
+                  <email type="domain">toulouse.inra.fr</email>
+                  <idno type="halauthorid">371385</idno>
+                  <affiliation ref="#struct-37949"></affiliation>
+                  <affiliation ref="#struct-692"></affiliation>
+                </author>
+                <author role="aut">
+                  <persName>
+                    <forename type="first">Diego M.</forename>
+                    <surname>Salvanha</surname>
+                  </persName>
+                  <idno type="halauthorid">1288467</idno>
+                  <affiliation ref="#struct-449110"></affiliation>
+                  <affiliation ref="#struct-330043"></affiliation>
+                </author>
+                <author role="aut">
+                  <persName>
+                    <forename type="first">Fabien</forename>
+                    <surname>Letisse</surname>
+                  </persName>
+                  <email type="md5">cb6b093052270a103b783c5eeea49cea</email>
+                  <email type="domain">insa-toulouse.fr</email>
+                  <idno type="halauthorid">1287770</idno>
+                  <affiliation ref="#struct-692"></affiliation>
+                  <affiliation ref="#struct-37949"></affiliation>
+                </author>
+                <author role="aut">
+                  <persName>
+                    <forename type="first">Emilien</forename>
+                    <surname>Jamin</surname>
+                  </persName>
+                  <email type="md5">e9a3cfb34c1c891f69191e6fc28950f0</email>
+                  <email type="domain">toulouse.inra.fr</email>
+                  <idno type="halauthorid">1151030</idno>
+                  <affiliation ref="#struct-37949"></affiliation>
+                  <affiliation ref="#struct-692"></affiliation>
+                </author>
+                <author role="aut">
+                  <persName>
+                    <forename type="first">Simone</forename>
+                    <surname>Guidetti-Gonzalez</surname>
+                  </persName>
+                  <idno type="halauthorid">1288468</idno>
+                  <affiliation ref="#struct-449111"></affiliation>
+                </author>
+                <author role="aut">
+                  <persName>
+                    <forename type="first">Carlos A.</forename>
+                    <surname>Labate</surname>
+                  </persName>
+                  <idno type="halauthorid">1288469</idno>
+                  <affiliation ref="#struct-448162"></affiliation>
+                  <affiliation ref="#struct-449112"></affiliation>
+                </author>
+                <author role="aut">
+                  <persName>
+                    <forename type="first">Ricardo Z. N.</forename>
+                    <surname>Vencio</surname>
+                  </persName>
+                  <idno type="halauthorid">1288470</idno>
+                  <affiliation ref="#struct-449110"></affiliation>
+                </author>
+              </analytic>
+              <monogr>
+                <idno type="halJournalId" status="VALID">3436</idno>
+                <idno type="issn">1367-4803</idno>
+                <idno type="eissn">1460-2059</idno>
+                <title level="j">Bioinformatics</title>
+                <imprint>
+                  <publisher>Oxford University Press (OUP)</publisher>
+                  <biblScope unit="volume">30</biblScope>
+                  <biblScope unit="issue">9</biblScope>
+                  <biblScope unit="pp">1336 - 1337</biblScope>
+                  <date type="datePub">2014</date>
+                </imprint>
+              </monogr>
+              <idno type="doi">10.1093/bioinformatics/btu019</idno>
+              <idno type="prodinra">270161</idno>
+              <idno type="pubmed">24443383</idno>
+            </biblStruct>
+          </sourceDesc>
+          <profileDesc>
+            <langUsage>
+              <language ident="en">English</language>
+            </langUsage>
+            <textClass>
+              <classCode scheme="halDomain" n="sdv">Life Sciences [q-bio]</classCode>
+              <classCode scheme="halTypology" n="ART">Journal articles</classCode>
+            </textClass>
+            <abstract xml:lang="en">We present ProbMetab, an R package that promotes substantial improvement in automatic probabilistic liquid chromatography-mass spectrometry-based metabolome annotation. The inference engine core is based on a Bayesian model implemented to (i) allow diverse source of experimental data and metadata to be systematically incorporated into the model with alternative ways to calculate the likelihood function and (ii) allow sensitive selection of biologically meaningful biochemical reaction databases as Dirichletcategorical prior distribution. Additionally, to ensure result interpretation by system biologists, we display the annotation in a network where observed mass peaks are connected if their candidate metabolites are substrate/ product of known biochemical reactions. This graph can be overlaid with other graph-based analysis, such as partial correlation networks, in a visualization scheme exported to Cytoscape, with web and stand-alone versions.</abstract>
+          </profileDesc>
+        </biblFull>
+      </listBibl>
+    </body>
+    <back>
+      <listOrg type="structures">
+        <org type="laboratory" xml:id="struct-449110" status="INCOMING">
+          <orgName>FFCLRP-USP, Department of Computing and Mathematics, LabPIB</orgName>
+          <desc>
+            <address>
+              <country key="BR"/>
+            </address>
+          </desc>
+          <listRelation>
+            <relation active="#struct-366534" type="direct"/>
+          </listRelation>
+        </org>
+        <org type="laboratory" xml:id="struct-37949" status="OLD">
+          <orgName>Toxicologie Alimentaire</orgName>
+          <orgName type="acronym">UTA</orgName>
+          <desc>
+            <address>
+              <country key="FR"/>
+            </address>
+          </desc>
+          <listRelation>
+            <relation name="UR1234" active="#struct-92114" type="direct"/>
+            <relation active="#struct-300270" type="direct"/>
+            <relation active="#struct-303675" type="direct"/>
+          </listRelation>
+        </org>
+        <org type="laboratory" xml:id="struct-692" status="VALID">
+          <orgName>Biotechnologie et bioprocédés</orgName>
+          <orgName type="acronym">BB</orgName>
+          <desc>
+            <address>
+              <addrLine>135, avenue de Rangueil 31077 TOULOUSE CEDEX 4</addrLine>
+              <country key="FR"/>
+            </address>
+            <ref type="url">http://www.insa-tlse.fr/gba/Recherche/RECHERCHE_nav.htm</ref>
+          </desc>
+          <listRelation>
+            <relation name="UR0792" active="#struct-92114" type="direct"/>
+            <relation active="#struct-116255" type="direct"/>
+            <relation name="UMR5504" active="#struct-441569" type="direct"/>
+          </listRelation>
+        </org>
+        <org type="institution" xml:id="struct-330043" status="INCOMING">
+          <orgName>Institute for Systems Biology</orgName>
+          <desc>
+            <address>
+              <country key="FR"/>
+            </address>
+          </desc>
+        </org>
+        <org type="laboratory" xml:id="struct-449111" status="INCOMING">
+          <orgName>ESALQ-USP, Department of Genetics</orgName>
+          <desc>
+            <address>
+              <country key="BR"/>
+            </address>
+          </desc>
+          <listRelation>
+            <relation active="#struct-366534" type="direct"/>
+          </listRelation>
+        </org>
+        <org type="institution" xml:id="struct-448162" status="INCOMING">
+          <orgName>Laboratório Nacional de Ciência e Tecnologia do Bioetanol</orgName>
+          <orgName type="acronym">CTBE</orgName>
+          <desc>
+            <address>
+              <country key="BR"/>
+            </address>
+          </desc>
+        </org>
+        <org type="laboratory" xml:id="struct-449112" status="INCOMING">
+          <orgName>ESALQ USP, Department of Genetics</orgName>
+          <desc>
+            <address>
+              <country key="BR"/>
+            </address>
+          </desc>
+          <listRelation>
+            <relation active="#struct-366534" type="direct"/>
+          </listRelation>
+        </org>
+        <org type="institution" xml:id="struct-366534" status="VALID">
+          <orgName>University of São Paulo</orgName>
+          <orgName type="acronym">USP</orgName>
+          <date type="start">1934-01-25</date>
+          <desc>
+            <address>
+              <country key="BR"/>
+            </address>
+          </desc>
+        </org>
+        <org type="institution" xml:id="struct-92114" status="VALID">
+          <orgName>Institut National de la Recherche Agronomique</orgName>
+          <orgName type="acronym">INRA</orgName>
+          <desc>
+            <address>
+              <country key="FR"/>
+            </address>
+            <ref type="url">http://www.inra.fr</ref>
+          </desc>
+        </org>
+        <org type="institution" xml:id="struct-300270" status="VALID">
+          <orgName>Université de Bourgogne</orgName>
+          <orgName type="acronym">UB</orgName>
+          <desc>
+            <address>
+              <addrLine>Maison de l'université - Esplanade Érasme - BP 27877 - 21078 Dijon cedex</addrLine>
+              <country key="FR"/>
+            </address>
+            <ref type="url">http://www.u-bourgogne.fr/</ref>
+          </desc>
+        </org>
+        <org type="institution" xml:id="struct-303675" status="INCOMING">
+          <orgName>Agrosup</orgName>
+          <desc>
+            <address>
+              <country key="FR"/>
+            </address>
+          </desc>
+        </org>
+        <org type="institution" xml:id="struct-116255" status="VALID">
+          <idno type="IdRef">026388766</idno>
+          <idno type="ISNI">0000 0001 2286 8343</idno>
+          <orgName>Institut National des Sciences Appliquées - Toulouse</orgName>
+          <orgName type="acronym">INSA Toulouse</orgName>
+          <desc>
+            <address>
+              <addrLine>135, avenue de Rangueil - 31077 Toulouse cedex 4</addrLine>
+              <country key="FR"/>
+            </address>
+            <ref type="url">http://www.insa-toulouse.fr</ref>
+          </desc>
+        </org>
+        <org type="institution" xml:id="struct-441569" status="VALID">
+          <idno type="IdRef">02636817X</idno>
+          <idno type="ISNI">0000000122597504</idno>
+          <orgName>Centre National de la Recherche Scientifique</orgName>
+          <orgName type="acronym">CNRS</orgName>
+          <date type="start">1939-10-19</date>
+          <desc>
+            <address>
+              <country key="FR"/>
+            </address>
+            <ref type="url">http://www.cnrs.fr/</ref>
+          </desc>
+        </org>
+      </listOrg>
+    </back>
+  </text>
+</TEI>
