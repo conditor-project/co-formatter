@@ -94,7 +94,7 @@ business.doTheJob = function (jsonLine, cb) {
     if (mapping.source.trim() === jsonLine.source.toLowerCase().trim()) {
       // récupération du type Conditor (auparavant un tableau, maintenant mono-valué)
       const td = extractMetadata.documentType;
-      if (td && Array.isArray(td) && td.length > 0) typeConditor = mapping.mapping[td[0]];
+      if (td && Array.isArray(td) && td.length > 0 && mapping.mapping[td[0]]) typeConditor = mapping.mapping[td[0]];
       // flag vérifiant si l'id source est bien présent
       if (extractMetadata[mapping.nameID].trim() !== '') {
         flagSource = true;

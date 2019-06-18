@@ -108,6 +108,7 @@ describe(pkg.name + '/index.js', function () {
             expect(testPart.rnsr[2]).to.be.equal('654321');
             expect(testPart.publicationDate).to.be.equal('2014-02-19');
             expect(testPart.electronicPublicationDate).to.be.equal('2014-01-17');
+            expect(testPart.typeConditor).to.be.equal('Autre');
           }
           done();
         });
