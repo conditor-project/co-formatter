@@ -90,6 +90,11 @@ describe(pkg.name + '/index.js', function () {
             expect(testPart.pmId).to.be.equal('23554029');
             expect(testPart.sourceId).to.be.equal('23554029');
             expect(testPart.sourceUid).to.be.equal('pubmed$23554029');
+            expect(testPart.xPublicationDate).to.be.an('array');
+            expect(testPart.xPublicationDate.length).to.be.equal(2);
+            expect(testPart.xissn).to.be.an('array');
+            expect(testPart.xissn.length).to.be.equal(2);
+            
           } else if (testPart.id === '8') {
             expect(testPart.sourceUid).to.be.equal('hal$hal-00952427');
             expect(testPart.authors.length).to.equal(2);
