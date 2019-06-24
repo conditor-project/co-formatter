@@ -8,8 +8,6 @@ const path = require('path');
 const business = require(path.resolve('./index.js'));
 const testData = require(path.resolve('./test/dataset/in/test.json'));
 const chai = require('chai');
-const util = require('util');
-const _ = require('lodash');
 const expect = chai.expect;
 
 describe(pkg.name + '/index.js', function () {
@@ -82,11 +80,9 @@ describe(pkg.name + '/index.js', function () {
             expect(testPart.authors[0].affiliations).to.be.an('Array');
             expect(testPart.authors[0].affiliations[0].address).to.be.an('String');
             expect(testPart.authors[0].affiliations[0].address).to.contains('Gjøvik University College');
-            expect(testPart.authors[0].affiliations[1].ref).to.equal('earth')
-            expect(testPart.authors[0].affiliations[1].address).to.equal('wonderfull world')
-          } 
-          else if (testPart.id === '7') {
-
+            expect(testPart.authors[0].affiliations[1].ref).to.equal('earth');
+            expect(testPart.authors[0].affiliations[1].address).to.equal('wonderfull world');
+          } else if (testPart.id === '7') {
             expect(testPart.pmId).to.be.equal('23554029');
             expect(testPart.sourceId).to.be.equal('23554029');
             expect(testPart.sourceUid).to.be.equal('pubmed$23554029');
@@ -115,7 +111,9 @@ describe(pkg.name + '/index.js', function () {
             expect(testPart.isni[1]).to.be.equal('albisni');
             expect(testPart.rnsr.length).to.be.equal(3);
             expect(testPart.rnsr[2]).to.be.equal('654321');
-
+            expect(testPart.publicationDate).to.be.equal('2014-02-19');
+            expect(testPart.electronicPublicationDate).to.be.equal('2014-01-17');
+            expect(testPart.typeConditor).to.be.equal('Autre');
           }
           done();
         });
