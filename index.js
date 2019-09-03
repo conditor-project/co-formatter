@@ -23,6 +23,30 @@ const evalFunctions = {
       .getAttribute('type')
       .toLowerCase();
   },
+  'process-title':  function (context, values) {
+    if (!values.nodes || values.nodes.length==0) return '';
+    let result, mainTitleNode = '';
+    //looking for main title
+    for(let n=0; n<values.nodes.length; n++) {
+      const nodeTitle = values.nodes[n];
+      if (! nodeTitle.hasAttribute('type') || nodeTitle.getAttribute('type')!='sub') {
+        mainTitleNode = nodeTitle;
+        result = nodeTitle.textContent;
+        break;
+      }
+    }
+    //looking for subtitle with same language of main title
+    for(let n=0; n<values.nodes.length; n++) {
+      const nodeTitle = values.nodes[n];
+      if (nodeTitle.hasAttribute('type') && nodeTitle.getAttribute('type')=='sub') {
+        if (mainTitleNode.getAttribute('xml:lang') === nodeTitle.getAttribute('xml:lang')) {
+          result += " : "  + nodeTitle.textContent;
+          break;
+        }
+      }
+    }
+    return result;
+  },
   'first-of-split': function (context, text, separator) {
     const elems = _.split(text, separator);
     const compacted = _.compact(elems);

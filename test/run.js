@@ -114,6 +114,8 @@ describe(pkg.name + '/index.js', function () {
             expect(testPart.publicationDate).to.be.equal('2014-02-19');
             expect(testPart.electronicPublicationDate).to.be.equal('2014-01-17');
             expect(testPart.typeConditor).to.be.equal('Autre');
+          } else if (testPart.id === '9') {
+            expect(testPart.title.default).to.be.equal('Les freins à la collaboration entre le médecin généraliste et le service de protection maternelle et infantile : Etude qualitative réalisée dans le Haut-Rhin')
           }
           done();
         });
