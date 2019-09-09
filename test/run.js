@@ -90,6 +90,7 @@ describe(pkg.name + '/index.js', function () {
             expect(testPart.xPublicationDate.length).to.be.equal(2);
             expect(testPart.xissn).to.be.an('array');
             expect(testPart.xissn.length).to.be.equal(2);
+            expect(testPart.title.default).to.not.contains('My custom subtitle');
             
           } else if (testPart.id === '8') {
             expect(testPart.sourceUid).to.be.equal('hal$hal-00952427');

@@ -35,13 +35,16 @@ const evalFunctions = {
         break;
       }
     }
-    //looking for subtitle with same language of main title
-    for(let n=0; n<values.nodes.length; n++) {
-      const nodeTitle = values.nodes[n];
-      if (nodeTitle.hasAttribute('type') && nodeTitle.getAttribute('type')=='sub') {
-        if (mainTitleNode.getAttribute('xml:lang') === nodeTitle.getAttribute('xml:lang')) {
-          result += " : "  + nodeTitle.textContent;
-          break;
+    const sourceName = context.contextNode.documentElement.getAttribute('source');
+    //looking for subtitle with same language of main title (only for sudoc)
+    if (sourceName === 'sudoc') {
+      for(let n=0; n<values.nodes.length; n++) {
+        const nodeTitle = values.nodes[n];
+        if (nodeTitle.hasAttribute('type') && nodeTitle.getAttribute('type')=='sub') {
+          if (mainTitleNode.getAttribute('xml:lang') === nodeTitle.getAttribute('xml:lang')) {
+            result += " : "  + nodeTitle.textContent;
+            break;
+          }
         }
       }
     }
@@ -87,6 +90,7 @@ business.doTheJob = function (jsonLine, cb) {
       return cb(error);
     }
   });
+  doc.documentElement.setAttribute('source',jsonLine.source);
   let typeConditor = 'Autre';
 
   const evaluatorOptions = {

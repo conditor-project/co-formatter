@@ -24,6 +24,7 @@
             <biblStruct>
               <analytic>
                 <title xml:lang="en">Clinical study to assess the efficacy and safety of a citrus polyphenolic extract of red orange, grapefruit, and orange (Sinetrol-XPur) on weight management and metabolic parameters in healthy overweight individuals.</title>
+                <title xml:lang="en" type="sub">My custom subtitle.</title>
                 <author role="aut">
                   <persName>
                     <forename>Constantin</forename>
