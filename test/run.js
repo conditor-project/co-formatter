@@ -10,6 +10,9 @@ const testData = require(path.resolve('./test/dataset/in/test.json'));
 const chai = require('chai');
 const expect = chai.expect;
 
+const configPkg = require('co-config/package.json');
+console.log("Using co-config, version "+configPkg.version);
+
 describe(pkg.name + '/index.js', function () {
   describe('#doTheJob', function () {
     testData.map(testPart => {
