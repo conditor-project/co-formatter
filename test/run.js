@@ -22,7 +22,6 @@ describe(pkg.name + '/index.js', function () {
       it(`should extract data for ${path.basename(testPart.path)}`, function (done) {
         business.doTheJob(testPart, function (err) {
           if (err) {
-            if (testPart.id !== '2') done(err);
             expect(err).to.be.an('object');
             expect(err.errMessage).to.equal('erreur d\'identification. Pas d\'id source.');
             return done();
