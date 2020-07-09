@@ -22,9 +22,16 @@ describe(pkg.name + '/index.js', function () {
       it(`should extract data for ${path.basename(testPart.path)}`, function (done) {
         business.doTheJob(testPart, function (err) {
           if (err) {
-            expect(err).to.be.an('object');
-            expect(err.errMessage).to.equal('erreur d\'identification. Pas d\'id source.');
-            return done();
+            if (testPart.id === '2' || testPart.id === '3') {
+              expect(err).to.be.an('object');
+              expect(err.errMessage).to.equal('erreur d\'identification. Pas d\'id source.');
+              return done();
+            }
+            else if (testPart.id === '5' || testPart.id === '8') {
+              expect(err).to.be.an('object');
+              expect(err.errMessage).to.equal('erreur d\'identification. Pas de type conditor.');
+              return done();
+            }
           }
 
           expect(testPart.title.default).to.be.a('string');
