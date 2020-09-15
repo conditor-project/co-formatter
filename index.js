@@ -91,7 +91,7 @@ business.doTheJob = function (jsonLine, cb) {
     }
   });
   doc.documentElement.setAttribute('source',jsonLine.source);
-  let typeConditor = 'Autre';
+  let typeConditor = undefined;
 
   const evaluatorOptions = {
     node: doc,
@@ -159,6 +159,17 @@ business.doTheJob = function (jsonLine, cb) {
   // On remplace le type Conditor Conférence par Chapitre
   if (typeConditor === 'Conférence' && extractMetadata.isbn && extractMetadata.isbn.length > 0) {
     typeConditor = 'Chapitre';
+  }
+
+  // // Vérification de la présence d'un type conditor
+  if (typeConditor === undefined) {
+    error = {
+      errCode: 4,
+      errMessage: 'erreur d\'identification. Pas de type conditor.'
+    };
+    jsonLine.errors = [];
+    jsonLine.errors.push(error);
+    return cb(error);
   }
 
   _.each(extractMetadata, (value, key) => {
