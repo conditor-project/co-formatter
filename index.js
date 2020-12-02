@@ -37,13 +37,12 @@ const evalFunctions = {
     }
     const sourceName = context.contextNode.documentElement.getAttribute('source');
     //looking for subtitle with same language of main title (only for sudoc)
-    if (sourceName === 'sudoc') {
+    if (sourceName === 'sudoc-theses' || sourceName === 'sudoc-ouvrages' ) {
       for(let n=0; n<values.nodes.length; n++) {
         const nodeTitle = values.nodes[n];
         if (nodeTitle.hasAttribute('type') && nodeTitle.getAttribute('type')=='sub') {
           if (mainTitleNode.getAttribute('xml:lang') === nodeTitle.getAttribute('xml:lang')) {
             result += " : "  + nodeTitle.textContent;
-            break;
           }
         }
       }
