@@ -14,7 +14,7 @@
   "dependencies": {
     "co-config": "git+https://github.com/conditor-project/co-config.git",
     "lodash": "^4.17.15",
-    "xmldom": "^0.1.27",
+    "xmldom": "^0.5.0",
     "xpath": "0.0.24"
   },
   "devDependencies": {
