@@ -13,7 +13,7 @@
   "license": "SEE LICENSE IN Licence.txt",
   "dependencies": {
     "co-config": "git+https://github.com/conditor-project/co-config.git",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "xmldom": "^0.1.27",
     "xpath": "0.0.24"
   },
