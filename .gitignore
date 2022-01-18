@@ -79,3 +79,5 @@ typings/
 .vscode
 
 .idea
+
+test/dataset/out/
