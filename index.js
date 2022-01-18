@@ -75,7 +75,27 @@ business.evalFunctions = evalFunctions;
 
 business.doTheJob = function (jsonLine, cb) {
   let error;
-  let xml = fs.readFileSync(jsonLine.path, 'utf8');
+  if (!jsonLine.metadata) {
+    error = {
+      errCode: 5,
+      errMessage: 'erreur de structuration du docObject d\'entrée : devrait contenir un champ "metadata"'
+    };
+    jsonLine.push(error);
+    return cb(error);
+  }
+  const teiObj = _.find(jsonLine.metadata,(md) => {
+    return (md.mime === "application/tei+xml" && md.original === false);
+  });
+  if (!teiObj || !teiObj.path) {
+    error = {
+      errCode: 5,
+      errMessage: 'erreur de structuration du docObject d\'entrée : '
+        + 'le tableau "metadata" devrait contenir un objet TEI non taggé original'
+    };
+    jsonLine.push(error);
+    return cb(error);
+  }
+  let xml = fs.readFileSync(teiObj.path, 'utf8');
   let doc = new Dom().parseFromString(xml, 'text/xml', function (err) {
     if (err) {
       error = {
@@ -90,7 +110,7 @@ business.doTheJob = function (jsonLine, cb) {
     }
   });
   doc.documentElement.setAttribute('source',jsonLine.source);
-  let typeConditor = undefined;
+  let typeConditor;
 
   const evaluatorOptions = {
     node: doc,

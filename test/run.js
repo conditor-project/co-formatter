@@ -16,10 +16,10 @@ console.log("Using co-config, version "+configPkg.version);
 describe(pkg.name + '/index.js', function () {
   describe('#doTheJob', function () {
     testData.map(testPart => {
-      testPart.path = path.join(__dirname, testPart.path);
+      testPart.metadata[0].path = path.join(__dirname, testPart.metadata[0].path);
       return testPart;
     }).map(testPart => {
-      it(`should extract data for ${path.basename(testPart.path)}`, function (done) {
+      it(`should extract data for ${path.basename(testPart.metadata[0].path)}`, function (done) {
         business.doTheJob(testPart, function (err) {
           if (err) {
             if (testPart.id === '2' || testPart.id === '3') {

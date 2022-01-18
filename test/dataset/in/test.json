@@ -1,46 +1,100 @@
 [
   { "id": "1",
-    "path":"dataset/in/Coeurdassier_TEI_Conditor_HAL_ART_noVol_dbl_Affil.xml",
-    "source":"hal"
+    "source":"hal",
+    "metadata": [
+      {
+        "path": "dataset/in/Coeurdassier_TEI_Conditor_HAL_ART_noVol_dbl_Affil.xml",
+        "mime": "application/tei+xml",
+        "original": false
+      }
+    ]
   },
   {
     "id": "2",
-    "path":"dataset/in/xmlmalforme.xml",
+    "metadata":[
+      {
+        "path":"dataset/in/xmlmalforme.xml",
+        "mime": "application/tei+xml",
+        "original": false
+      }
+    ],
     "source":"hal"
   },
   {
     "id": "3",
-    "path":"dataset/in/conference-isbn.xml",
+    "metadata":[
+      {
+        "path":"dataset/in/conference-isbn.xml",
+        "mime": "application/tei+xml",
+        "original": false
+      }
+    ],
     "source":"wos"
   },
   {
     "id": "4",
-    "path":"dataset/in/notice_pubmed.xml",
+    "metadata":[
+      {
+        "path":"dataset/in/notice_pubmed.xml",
+        "mime": "application/tei+xml",
+        "original": false
+      }
+    ],
     "source":"pubmed"
   },
   {
     "id": "5",
-    "path":"dataset/in/hal-with-rnsr.xml",
+    "metadata":[
+      {
+        "path":"dataset/in/hal-with-rnsr.xml",
+        "mime": "application/tei+xml",
+        "original": false
+      }
+    ],
     "source":"hal"
   },
   {
     "id": "6",
-    "path":"dataset/in/hal-2.xml",
+    "metadata":[
+      {
+        "path":"dataset/in/hal-2.xml",
+        "mime": "application/tei+xml",
+        "original": false
+      }
+    ],
     "source":"hal"
   },
   {
     "id": "7",
-    "path":"dataset/in/notice_pubmed_2.xml",
+    "metadata":[
+      {
+        "path":"dataset/in/notice_pubmed_2.xml",
+        "mime": "application/tei+xml",
+        "original": false
+      }
+    ],
     "source":"pubmed"
   },
   {
     "id": "8",
-    "path":"dataset/in/hal-3.xml",
+    "metadata":[
+      {
+        "path":"dataset/in/hal-3.xml",
+        "mime": "application/tei+xml",
+        "original": false
+      }
+    ],
     "source":"hal"
   },
   {
     "id": "9",
-    "path": "dataset/in/notice-sudoc-176728937.xml",
+    "metadata":[
+      {
+        "path": "dataset/in/notice-sudoc-176728937.xml",
+        "mime": "application/tei+xml",
+        "original": false
+      }
+    ],
     "source": "sudoc-theses"
   }
 ]
