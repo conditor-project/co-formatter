@@ -18,41 +18,49 @@ Les champs requis dans le JSON d'entrée sont les suivants :
 ```
 {
   id: "unique_document_identifier",
-  path: "path_to_document"
+  "metadata":[
+      {
+        "path":"path_to_document",
+        "mime": "application/tei+xml",
+        "original": false
+      }
+    ],
 }
 ```
 
+Le type mime du fichier de métadonnées **doit être** `application/tei+xml`, et le booléen `original` doit valoir `false`.
+
 #### Structure de sortie 
 
-Les champs de sortie correspondent aux métadonnées de la notice utiles pour le dédoublonnage, formant ce qu'on appelle le Conditor. Les valeurs de ces champs sont reprises telles quelles, sans aucun post-traitement :
+Les champs de sortie correspondent aux métadonnées de la notice utiles pour le dédoublonnage, formant ce qu'on appelle le "chapeau" Conditor. Les valeurs de ces champs sont reprises telles quelles, sans aucun post-traitement, mais leur emplacement dans le JSON de sortie reflète une structure bien définie, correspondant aux besoins métier de Corhal et d'ISTEX :
 
 ```
 {
   ...,
   title: {
-    value: "My Title"  
+    default: "My Title"  
+    fr: "mon titre"  
+    en: "My Title"  
   },
-  author: {
-    value: "Single field with full author names (ex : Jean BON)"
-  },
+  authors: [{
+    forename:"John",
+    surname: "Good"
+  }],
   first3AuthorNamesWithInitials: {
-    value: "Single field with full lastnames and initials (ex J. BON)"
+    value: "J Good"
   },
   doi: {
     value: "DOI of document (article-level)"
   },
-  issn: {
-    value: "ISSN of document host"
+  host: {
+    issn: "ISSN of document host",
+    issue: "document number (in the issue for example)"
+    volume: "volume number of the document container"
   },
-  issue: {
-    value: "document number (in the issue for example)"
-  },
-  pageRange: {
-    value: "document pagination"
-  },
-  volume: {
-    value: "volume number of the document container"
+  _business: {
+    pageRange: "single string pagination info"
   }
+  ...
 }
   
 ```
@@ -64,7 +72,7 @@ Les champs de sortie correspondent aux métadonnées de la notice utiles pour le
 ### Installation ###
 
 Dépendances système :
-  * NodeJS 4.0.0+
+  * NodeJS 12.0.0+
 
 Commande d'Installation :
 ```bash
@@ -77,11 +85,19 @@ Commande d'exécution des tests unitaires :
 npm test
 ```
 
+### Utilisation pour mise au point du fichier de configuration
+
+La commande suivante traite automatiquement l'ensemble des fichiers contenus dans `test/dataset/in`, et écrit les fichiers résultats dans le répertoire `test/dataset/out`
+
+```bash
+npm run preview
+```
+
 ### Exécution ###
 
 Comme pour tous les modules, la présente partie métier n'est pas destinée à être exécutée directement, puisqu'elle consiste uniquement à mettre à disposition une fonction `doTheJob`.
 
-L'exécution se fera donc en appelant cette fonction depuis une instanciation d`li-canvas` ou indirectement depuis les tests unitaires.
+L'exécution se fera donc en appelant cette fonction depuis une instanciation de `li-canvas` ou indirectement depuis les tests unitaires.
 
 ## Annexes ##
 
@@ -98,15 +114,8 @@ L'exécution se fera donc en appelant cette fonction depuis une instanciation d`
     ├── dataset                     // rép de données de tests
     │   └── in
     |       └── test.json          // contient 2 docObjects pris en entrée des TU
+    ├── preview.js                  
     ├── run.js                      // point d'entrée des TU
     └──
 ```
 
-### Codes d'erreur ###
-
-Plage de codes : 0~99
-
-| Code | Signification           | Note(s) |
-| ---- | ----------------------- | ------- |
-| 0    | Tout s'est bien passé   |         |
-| 1    | J\'aime po cet ID là... |         |
