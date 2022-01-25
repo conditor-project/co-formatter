@@ -13,7 +13,7 @@
   "author": "Genicot JB, Niederlender C",
   "license": "SEE LICENSE IN Licence.txt",
   "dependencies": {
-    "co-config": "git+https://github.com/conditor-project/co-config.git",
+    "co-config": "git+https://github.com/conditor-project/co-config.git#corhal",
     "lodash": "^4.17.21",
     "xmldom": "^0.1.27",
     "xpath": "0.0.24"
