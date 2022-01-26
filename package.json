@@ -10,7 +10,7 @@
     "test": "mocha test/run.js",
     "preview": "node test/preview.js"
   },
-  "author": "Genicot JB, Niederlender C",
+  "author": "ISTEX team",
   "license": "CECILL-2.1",
   "dependencies": {
     "@xmldom/xmldom": "^0.8.0",
