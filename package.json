@@ -11,7 +11,7 @@
     "preview": "node test/preview.js"
   },
   "author": "Genicot JB, Niederlender C",
-  "license": "SEE LICENSE IN Licence.txt",
+  "license": "CECILL-2.1",
   "dependencies": {
     "@xmldom/xmldom": "^0.8.0",
     "co-config": "git+https://github.com/conditor-project/co-config.git#corhal",
