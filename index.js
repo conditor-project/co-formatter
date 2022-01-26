@@ -1,5 +1,3 @@
-'use strict';
-
 const Dom = require('xmldom').DOMParser;
 const fs = require('fs');
 const xpath = require('xpath');
@@ -11,9 +9,9 @@ const sourceIdsMap = _.transform(mappingTD, (sourceIds, { source, nameID }) => {
 }, {});
 
 const namespaces = {
-  'TEI': 'http://www.tei-c.org/ns/1.0',
+  TEI: 'http://www.tei-c.org/ns/1.0',
   'xmlns:hal': 'http://hal.archives-ouvertes.fr/',
-  'str': 'http://exslt.org/strings'
+  str: 'http://exslt.org/strings',
 };
 
 const evalFunctions = {
@@ -23,26 +21,26 @@ const evalFunctions = {
       .getAttribute('type')
       .toLowerCase();
   },
-  'process-title':  function (context, values) {
-    if (!values.nodes || values.nodes.length==0) return '';
-    let result, mainTitleNode = '';
-    //looking for main title
-    for(let n=0; n<values.nodes.length; n++) {
+  'process-title': function (context, values) {
+    if (!values.nodes || values.nodes.length === 0) return '';
+    let result; let mainTitleNode = '';
+    // looking for main title
+    for (let n = 0; n < values.nodes.length; n++) {
       const nodeTitle = values.nodes[n];
-      if (! nodeTitle.hasAttribute('type') || nodeTitle.getAttribute('type')!='sub') {
+      if (!nodeTitle.hasAttribute('type') || nodeTitle.getAttribute('type') !== 'sub') {
         mainTitleNode = nodeTitle;
         result = nodeTitle.textContent;
         break;
       }
     }
     const sourceName = context.contextNode.documentElement.getAttribute('source');
-    //looking for subtitle with same language of main title (only for sudoc)
-    if (sourceName === 'sudoc-theses' || sourceName === 'sudoc-ouvrages' ) {
-      for(let n=0; n<values.nodes.length; n++) {
+    // looking for subtitle with same language of main title (only for sudoc)
+    if (sourceName === 'sudoc-theses' || sourceName === 'sudoc-ouvrages') {
+      for (let n = 0; n < values.nodes.length; n++) {
         const nodeTitle = values.nodes[n];
-        if (nodeTitle.hasAttribute('type') && nodeTitle.getAttribute('type')=='sub') {
+        if (nodeTitle.hasAttribute('type') && nodeTitle.getAttribute('type') === 'sub') {
           if (mainTitleNode.getAttribute('xml:lang') === nodeTitle.getAttribute('xml:lang')) {
-            result += " : "  + nodeTitle.textContent;
+            result += ' : ' + nodeTitle.textContent;
           }
         }
       }
@@ -66,7 +64,7 @@ const evalFunctions = {
     }
     if (uniqueValues.length > 0) values.nodes = dedupNodes;
     return values;
-  }
+  },
 };
 
 const business = {};
@@ -78,29 +76,29 @@ business.doTheJob = function (jsonLine, cb) {
   if (!jsonLine.metadata) {
     error = {
       errCode: 5,
-      errMessage: 'erreur de structuration du docObject d\'entrée : devrait contenir un champ "metadata"'
+      errMessage: 'erreur de structuration du docObject d\'entrée : devrait contenir un champ "metadata"',
     };
     jsonLine.push(error);
     return cb(error);
   }
-  const teiObj = _.find(jsonLine.metadata,(md) => {
-    return (md.mime === "application/tei+xml" && md.original === false);
+  const teiObj = _.find(jsonLine.metadata, (md) => {
+    return (md.mime === 'application/tei+xml' && md.original === false);
   });
   if (!teiObj || !teiObj.path) {
     error = {
       errCode: 5,
-      errMessage: 'erreur de structuration du docObject d\'entrée : '
-        + 'le tableau "metadata" devrait contenir un objet TEI non taggé original'
+      errMessage: 'erreur de structuration du docObject d\'entrée : ' +
+        'le tableau "metadata" devrait contenir un objet TEI non taggé original',
     };
     jsonLine.push(error);
     return cb(error);
   }
-  let xml = fs.readFileSync(teiObj.path, 'utf8');
-  let doc = new Dom().parseFromString(xml, 'text/xml', function (err) {
+  const xml = fs.readFileSync(teiObj.path, 'utf8');
+  const doc = new Dom().parseFromString(xml, 'text/xml', function (err) {
     if (err) {
       error = {
         errCode: 1,
-        errMessage: 'erreur de parsing XML : ' + err
+        errMessage: 'erreur de parsing XML : ' + err,
       };
       jsonLine.errors = [];
       jsonLine
@@ -109,16 +107,16 @@ business.doTheJob = function (jsonLine, cb) {
       return cb(error);
     }
   });
-  doc.documentElement.setAttribute('source',jsonLine.source);
+  doc.documentElement.setAttribute('source', jsonLine.source);
   let typeConditor;
 
   const evaluatorOptions = {
     node: doc,
     namespaces: namespaces,
-    functions: evalFunctions
+    functions: evalFunctions,
   };
 
-  let extractMetadata = {};
+  const extractMetadata = {};
   let flagSource = false;
 
   try {
@@ -128,7 +126,7 @@ business.doTheJob = function (jsonLine, cb) {
   } catch (err) {
     error = {
       errCode: 2,
-      errMessage: 'erreur d\'extraction de path XML : ' + err
+      errMessage: 'erreur d\'extraction de path XML : ' + err,
     };
     jsonLine.errors = [];
     jsonLine
@@ -153,7 +151,7 @@ business.doTheJob = function (jsonLine, cb) {
   if (flagSource === false) {
     error = {
       errCode: 3,
-      errMessage: 'erreur d\'identification. Pas d\'id source.'
+      errMessage: 'erreur d\'identification. Pas d\'id source.',
     };
     jsonLine.errors = [];
     jsonLine.errors.push(error);
@@ -184,7 +182,7 @@ business.doTheJob = function (jsonLine, cb) {
   if (typeConditor === undefined) {
     error = {
       errCode: 4,
-      errMessage: 'erreur d\'identification. Pas de type conditor.'
+      errMessage: 'erreur d\'identification. Pas de type conditor.',
     };
     jsonLine.errors = [];
     jsonLine.errors.push(error);
@@ -220,7 +218,7 @@ business.extract = function (metadata, contextOptions) {
       select = this.matchRegExp(metadata, select);
     }
     if (metadata.attributeName && metadata.attributeName.trim() !== '') {
-      let obj = {};
+      const obj = {};
       obj[metadata.attributeName] = select;
       select = obj;
     }
@@ -229,7 +227,7 @@ business.extract = function (metadata, contextOptions) {
   } else if (metadata.type === 'boolean' && metadata.path) {
     select = xpath.parse(metadata.path).evaluateBoolean(contextOptions);
     if (metadata.attributeName && metadata.attributeName.trim() !== '') {
-      let obj = {};
+      const obj = {};
       obj[metadata.attributeName] = select;
       select = obj;
     }
@@ -256,13 +254,13 @@ business.extract = function (metadata, contextOptions) {
       result = string;
     }
     if (metadata.attributeName && metadata.attributeName.trim() !== '') {
-      let obj = {};
+      const obj = {};
       obj[metadata.attributeName] = result;
       result = obj;
     }
     return result;
   } else if (metadata.type === 'struct' && metadata.fields) {
-    let obj = {};
+    const obj = {};
     _.each(metadata.fields, (field) => {
       obj[field.name] = this.extract(field, contextOptions);
     });
@@ -279,11 +277,11 @@ business.extract = function (metadata, contextOptions) {
     select = xpath.parse(metadata.path).select(contextOptions);
     _.each(select, (iteSelect) => {
       if (!limited || limit > 0) {
-        let docBloc = new Dom().parseFromString(iteSelect.toString(), 'text/xml');
-        let evaluatorOptionsBloc = {
+        const docBloc = new Dom().parseFromString(iteSelect.toString(), 'text/xml');
+        const evaluatorOptionsBloc = {
           node: docBloc,
           namespaces: namespaces,
-          functions: evalFunctions
+          functions: evalFunctions,
         };
         const extractChild = this.extract(metadata.fields, evaluatorOptionsBloc);
         if (extractChild) result.push(extractChild);
@@ -298,7 +296,7 @@ business.extract = function (metadata, contextOptions) {
       result = string;
     }
     if (metadata.attributeName && metadata.attributeName.trim() !== '') {
-      let obj = {};
+      const obj = {};
       obj[metadata.attributeName] = result;
       result = obj;
     }
