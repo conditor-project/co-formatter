@@ -4,8 +4,7 @@ const pkg = require('../package.json');
 const path = require('path');
 const business = require(path.resolve('./index.js'));
 const testData = require(path.resolve('./test/dataset/in/test.json'));
-const chai = require('chai');
-const expect = chai.expect;
+const { expect } = require('chai');
 
 const configPkg = require('co-config/package.json');
 console.log(`Using co-config, version ${configPkg.version}`);
@@ -20,12 +19,12 @@ describe(`${pkg.name}/index.js`, () => {
         business.doTheJob(testPart, err => {
           if (err) {
             if (testPart.id === '2' || testPart.id === '3') {
-              expect(err).to.be.an('object');
-              expect(err.errMessage).to.equal('No source id found');
+              expect(err).to.be.an.instanceOf(Error);
+              expect(err.message).to.equal('No source id found');
               return done();
             } else if (testPart.id === '5' || testPart.id === '8') {
-              expect(err).to.be.an('object');
-              expect(err.errMessage).to.equal('No Conditor type found');
+              expect(err).to.be.an.instanceOf(Error);
+              expect(err.message).to.equal('No Conditor type found');
               return done();
             }
           }
@@ -129,8 +128,8 @@ describe(`${pkg.name}/index.js`, () => {
 
     it('docObject qui doit passer en erreur', done => {
       business.doTheJob(testData[1], err => {
-        expect(err).to.be.an('object');
-        expect(err.errMessage).to.equal('No source id found');
+        expect(err).to.be.an.instanceOf(Error);
+        expect(err.message).to.equal('No source id found');
         done();
       });
     });

@@ -78,44 +78,20 @@ const business = {
   evalFunctions,
 };
 
-business.doTheJob = (docObject, cb) => {
-  let error;
-
+business.doTheJob = (docObject, callback) => {
   if (!docObject.metadata) {
-    error = {
-      errCode: 5,
-      errMessage: 'No metadata key found in docObject',
-    };
-    docObject.push(error);
-
-    return cb(error);
+    return callback(handleError(docObject, 'NoMetadataError', new Error('No metadata key found in docObject')));
   }
 
   const teiObj = _.find(docObject.metadata, { mime: 'application/tei+xml', original: false });
-
   if (!teiObj || !teiObj.path) {
-    error = {
-      errCode: 5,
-      errMessage: 'No TEI found in the docObject.metadata',
-    };
-    docObject.push(error);
-
-    return cb(error);
+    return callback(handleError(docObject, 'NoTeiError', new Error('No TEI found in the docObject.metadata')));
   }
 
   const xml = fs.readFileSync(teiObj.path, 'utf8');
   const doc = new Dom().parseFromString(xml, 'text/xml', err => {
     if (err) {
-      error = {
-        errCode: 1,
-        errMessage: `XML parsing error: ${err}`,
-      };
-      docObject.errors = [];
-      docObject
-        .errors
-        .push(error);
-
-      return cb(error);
+      return callback(handleError(docObject, 'XmlParsingError', err));
     }
   });
 
@@ -136,16 +112,7 @@ business.doTheJob = (docObject, cb) => {
       extractMetadata[metadata.name] = business.extract(metadata, evaluatorOptions);
     });
   } catch (err) {
-    error = {
-      errCode: 2,
-      errMessage: `XML path extraction error: ${err}`,
-    };
-    docObject.errors = [];
-    docObject
-      .errors
-      .push(error);
-
-    return cb(error);
+    return callback(handleError(docObject, 'XmlPathExtractionError', err));
   }
 
   _.each(mappingTD, (mapping) => {
@@ -161,14 +128,7 @@ business.doTheJob = (docObject, cb) => {
 
   // Check if the docObject has a source id
   if (flagSource === false) {
-    error = {
-      errCode: 3,
-      errMessage: 'No source id found',
-    };
-    docObject.errors = [];
-    docObject.errors.push(error);
-
-    return cb(error);
+    return callback(handleError(docObject, 'NoSourceIdError', new Error('No source id found')));
   }
 
   // If the Conditor type is "Conférence" or "Autre" and an ISSN or EISSN
@@ -188,15 +148,8 @@ business.doTheJob = (docObject, cb) => {
   }
 
   // Check if the Conditor type is set
-  if (typeConditor === undefined) {
-    error = {
-      errCode: 4,
-      errMessage: 'No Conditor type found',
-    };
-    docObject.errors = [];
-    docObject.errors.push(error);
-
-    return cb(error);
+  if (!typeConditor) {
+    return callback(handleError(docObject, 'NoConditorTypeError', new Error('No Conditor type found')));
   }
 
   _.each(extractMetadata, (value, key) => {
@@ -209,7 +162,7 @@ business.doTheJob = (docObject, cb) => {
   docObject.sourceId = docObject[nameID];
   docObject.sourceUid = `${docObject.source}$${docObject[nameID]}`;
 
-  return cb();
+  return callback();
 };
 
 business.matchRegExp = (metadataRegexp, value) => {
@@ -333,5 +286,21 @@ business.extract = (metadata, contextOptions) => {
     return result;
   }
 };
+
+/**
+ * Uses the information from `originalErr` to populate `docObject` then modifies `originalErr` before returning it.
+ * @param {object} docObject The docObject.
+ * @param {string} errName The name of the error.
+ * @param {Error} originalErr The `Error` instance that will be modified then returned.
+ * @returns The modified `Error` instance.
+ */
+function handleError (docObject, errName, originalErr) {
+  docObject.errCode = errName;
+  docObject.errMsg = originalErr.message;
+
+  originalErr.name = errName;
+
+  return originalErr;
+}
 
 module.exports = business;
