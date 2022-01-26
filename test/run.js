@@ -1,7 +1,4 @@
-/* global __dirname, require, process, it */
 /* eslint-env mocha */
-
-'use strict';
 
 const pkg = require('../package.json');
 const path = require('path');
@@ -11,25 +8,24 @@ const chai = require('chai');
 const expect = chai.expect;
 
 const configPkg = require('co-config/package.json');
-console.log("Using co-config, version "+configPkg.version);
+console.log(`Using co-config, version ${configPkg.version}`);
 
-describe(pkg.name + '/index.js', function () {
-  describe('#doTheJob', function () {
+describe(`${pkg.name}/index.js`, () => {
+  describe('#doTheJob', () => {
     testData.map(testPart => {
       testPart.metadata[0].path = path.join(__dirname, testPart.metadata[0].path);
       return testPart;
     }).map(testPart => {
-      it(`should extract data for ${path.basename(testPart.metadata[0].path)}`, function (done) {
-        business.doTheJob(testPart, function (err) {
+      return it(`should extract data for ${path.basename(testPart.metadata[0].path)}`, done => {
+        business.doTheJob(testPart, err => {
           if (err) {
             if (testPart.id === '2' || testPart.id === '3') {
               expect(err).to.be.an('object');
-              expect(err.errMessage).to.equal('erreur d\'identification. Pas d\'id source.');
+              expect(err.errMessage).to.equal('No source id found');
               return done();
-            }
-            else if (testPart.id === '5' || testPart.id === '8') {
+            } else if (testPart.id === '5' || testPart.id === '8') {
               expect(err).to.be.an('object');
-              expect(err.errMessage).to.equal('erreur d\'identification. Pas de type conditor.');
+              expect(err.errMessage).to.equal('No Conditor type found');
               return done();
             }
           }
@@ -100,7 +96,6 @@ describe(pkg.name + '/index.js', function () {
             expect(testPart.xissn).to.be.an('array');
             expect(testPart.xissn.length).to.be.equal(2);
             expect(testPart.title.default).to.not.contains('My custom subtitle');
-            
           } else if (testPart.id === '8') {
             expect(testPart.sourceUid).to.be.equal('hal$hal-00952427');
             expect(testPart.authors.length).to.equal(2);
@@ -125,17 +120,17 @@ describe(pkg.name + '/index.js', function () {
             expect(testPart.electronicPublicationDate).to.be.equal('2014-01-17');
             expect(testPart.typeConditor).to.be.equal('Autre');
           } else if (testPart.id === '9') {
-            expect(testPart.title.default).to.be.equal('Les freins à la collaboration entre le médecin généraliste et le service de protection maternelle et infantile : Etude qualitative réalisée dans le Haut-Rhin')
+            expect(testPart.title.default).to.be.equal('Les freins à la collaboration entre le médecin généraliste et le service de protection maternelle et infantile : Etude qualitative réalisée dans le Haut-Rhin');
           }
           done();
         });
       });
     });
 
-    it('docObject qui doit passer en erreur', function (done) {
-      business.doTheJob(testData[1], function (err) {
+    it('docObject qui doit passer en erreur', done => {
+      business.doTheJob(testData[1], err => {
         expect(err).to.be.an('object');
-        expect(err.errMessage).to.equal('erreur d\'identification. Pas d\'id source.');
+        expect(err.errMessage).to.equal('No source id found');
         done();
       });
     });
