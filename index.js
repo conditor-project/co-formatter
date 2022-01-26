@@ -15,59 +15,60 @@ const namespaces = {
 };
 
 const evalFunctions = {
-  'lower-case': (context, arg) => {
+  'lower-case': context => {
     return context
       .contextNode
       .getAttribute('type')
       .toLowerCase();
   },
   'process-title': (context, values) => {
-    if (!values.nodes || values.nodes.length === 0) return '';
+    const { nodes } = values;
+
+    if (!isNonEmptyArray(nodes)) return '';
 
     let result;
     let mainTitleNode = '';
 
     // Looking for main title
-    for (const nodeTitle of values.nodes) {
-      if (!nodeTitle.hasAttribute('type') || nodeTitle.getAttribute('type') !== 'sub') {
-        mainTitleNode = nodeTitle;
-        result = nodeTitle.textContent;
+    for (const titleNode of nodes) {
+      if (!titleNode.hasAttribute('type') || titleNode.getAttribute('type') !== 'sub') {
+        mainTitleNode = titleNode;
+        result = titleNode.textContent;
         break;
       }
     }
 
-    // Looking for subtitle with the same language as the main title (only for sudoc)
+    // Looking for subtitles with the same language as the main title (only for sudoc)
     const sourceName = context.contextNode.documentElement.getAttribute('source');
     if (sourceName === 'sudoc-theses' || sourceName === 'sudoc-ouvrages') {
-      for (const nodeTitle of values.nodes) {
-        if (nodeTitle.hasAttribute('type') && nodeTitle.getAttribute('type') === 'sub') {
-          if (mainTitleNode.getAttribute('xml:lang') === nodeTitle.getAttribute('xml:lang')) {
-            result += ` : ${nodeTitle.textContent}`;
-          }
-        }
-      }
+      nodes.forEach(titleNode => {
+        const isSubtitleOfSameLanguage = titleNode.hasAttribute('type') &&
+          titleNode.getAttribute('type') === 'sub' &&
+          mainTitleNode.getAttribute('xml:lang') === titleNode.getAttribute('xml:lang');
+
+        if (isSubtitleOfSameLanguage) result += ` : ${titleNode.textContent}`;
+      });
     }
 
     return result;
   },
   'first-of-split': (context, text, separator) => {
-    const elems = _.split(text, separator);
-    const compacted = _.compact(elems);
+    const sanitizedSplit = _.compact(_.split(text, separator));
 
-    return (Array.isArray(compacted) && compacted.length > 0) ? compacted[0] : '';
+    return (isNonEmptyArray(sanitizedSplit)) ? sanitizedSplit[0] : '';
   },
   'deduplicate-by-text': (context, values) => {
     const uniqueValues = [];
     const dedupNodes = [];
 
-    for (const node of values.nodes) {
+    values.nodes.forEach(node => {
       if (!uniqueValues.includes(node.textContent)) {
         uniqueValues.push(node.textContent);
         dedupNodes.push(node);
       }
-    }
+    });
 
-    if (uniqueValues.length > 0) values.nodes = dedupNodes;
+    if (!_.isEmpty(uniqueValues)) values.nodes = dedupNodes;
 
     return values;
   },
@@ -96,35 +97,35 @@ business.doTheJob = (docObject, callback) => {
   });
 
   doc.documentElement.setAttribute('source', docObject.source);
-  let typeConditor;
 
+  let typeConditor;
+  const extractMetadata = {};
+  let flagSource = false;
   const evaluatorOptions = {
     node: doc,
     namespaces,
     functions: evalFunctions,
   };
 
-  const extractMetadata = {};
-  let flagSource = false;
-
   try {
-    _.each(metadataXpaths, (metadata) => {
+    metadataXpaths.forEach(metadata => {
       extractMetadata[metadata.name] = business.extract(metadata, evaluatorOptions);
     });
   } catch (err) {
     return callback(handleError(docObject, 'XmlPathExtractionError', err));
   }
 
-  _.each(mappingTD, (mapping) => {
+  for (const mapping of mappingTD) {
     if (mapping.source.trim() === docObject.source.toLowerCase().trim()) {
-      const td = extractMetadata.documentType;
-      if (td && Array.isArray(td) && td.length > 0 && mapping.mapping[td[0]]) typeConditor = mapping.mapping[td[0]];
+      const { documentType } = extractMetadata;
+      if (isNonEmptyArray(documentType) && mapping.mapping[documentType[0]]) typeConditor = mapping.mapping[documentType[0]];
+
       // Flag set to true when the source id is present
-      if (extractMetadata[mapping.nameID].trim() !== '') {
-        flagSource = true;
-      }
+      if (extractMetadata[mapping.nameID].trim() !== '') flagSource = true;
+
+      break;
     }
-  });
+  }
 
   // Check if the docObject has a source id
   if (flagSource === false) {
@@ -133,17 +134,17 @@ business.doTheJob = (docObject, callback) => {
 
   // If the Conditor type is "Conférence" or "Autre" and an ISSN or EISSN
   // are present then set the Conditor type to "Article"
-  if ((typeConditor === 'Conférence' || typeConditor === 'Conférence') && ((extractMetadata.issn && extractMetadata.issn.length > 0) || (extractMetadata.eissn && extractMetadata.eissn.length > 0))) {
+  if ((typeConditor === 'Conférence' || typeConditor === 'Conférence') && (isNonEmptyString(extractMetadata.issn) || isNonEmptyString(extractMetadata.eissn))) {
     typeConditor = 'Article';
   }
 
   // If the Conditor type is "Thèse" and an ISBN is present then set the Conditor type to "Ouvrage"
-  if (typeConditor === 'Thèse' && extractMetadata.isbn && extractMetadata.isbn.length > 0) {
+  if (typeConditor === 'Thèse' && isNonEmptyString(extractMetadata.isbn)) {
     typeConditor = 'Ouvrage';
   }
 
   // If the Conditor type is "Conférence" and an ISBN is present then set the Conditor type to "Chapitre"
-  if (typeConditor === 'Conférence' && extractMetadata.isbn && extractMetadata.isbn.length > 0) {
+  if (typeConditor === 'Conférence' && isNonEmptyString(extractMetadata.isbn)) {
     typeConditor = 'Chapitre';
   }
 
@@ -286,6 +287,24 @@ business.extract = (metadata, contextOptions) => {
     return result;
   }
 };
+
+/**
+ * Returns `true` if `value` is an array containing at least one element, `false` otherwise.
+ * @param {any} value The value to check.
+ * @returns `true` if `value` is an array containing at least one element, `false` otherwise.
+ */
+function isNonEmptyArray (value) {
+  return _.isArray(value) && !_.isEmpty(value);
+}
+
+/**
+ * Returns `true` if `value` is a string containing at least one character, `false` otherwise.
+ * @param {any} value The value to check.
+ * @returns `true` if `value` is a string containing at least one character, `false` otherwise.
+ */
+function isNonEmptyString (value) {
+  return _.isString(value) && !_.isEmpty(value);
+}
 
 /**
  * Uses the information from `originalErr` to populate `docObject` then modifies `originalErr` before returning it.
