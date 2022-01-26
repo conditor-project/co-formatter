@@ -1,4 +1,4 @@
-const Dom = require('xmldom').DOMParser;
+const Dom = require('@xmldom/xmldom').DOMParser;
 const fs = require('fs');
 const xpath = require('xpath');
 const _ = require('lodash');
