@@ -164,9 +164,7 @@ business.doTheJob = (docObject, callback) => {
     }
 
     // TODO: Try to find a better solution than entirely copying the entity model into the docObject
-    _.each(extractMetadata, (value, key) => {
-      docObject[key] = value;
-    });
+    Object.assign(docObject, extractMetadata);
 
     docObject.typeConditor = typeConditor;
 
