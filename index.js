@@ -153,6 +153,7 @@ business.doTheJob = (docObject, callback) => {
     return callback(handleError(docObject, 'NoConditorTypeError', new Error('No Conditor type found')));
   }
 
+  // TODO: Try to find a better solution than entirely copying the entity model into the docObject
   _.each(extractMetadata, (value, key) => {
     docObject[key] = value;
   });
