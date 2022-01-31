@@ -1,7 +1,6 @@
-[![Build Status](https://travis-ci.org/conditor-project/co-formatter.svg?branch=master)](https://travis-ci.org/conditor-project/co-formatter)
+[![Build and test status](https://github.com/conditor-project/co-formatter/actions/workflows/node.js.yml/badge.svg)](https://github.com/conditor-project/co-formatter/actions/workflows/node.js.yml)
 
-co-formatter
-===============
+# co-formatter
 
 ## Présentation ##
 
@@ -30,7 +29,7 @@ Les champs requis dans le JSON d'entrée sont les suivants :
 
 Le type mime du fichier de métadonnées **doit être** `application/tei+xml`, et le booléen `original` doit valoir `false`.
 
-#### Structure de sortie 
+#### Structure de sortie
 
 Les champs de sortie correspondent aux métadonnées de la notice utiles pour le dédoublonnage, formant ce qu'on appelle le "chapeau" Conditor. Les valeurs de ces champs sont reprises telles quelles, sans aucun post-traitement, mais leur emplacement dans le JSON de sortie reflète une structure bien définie, correspondant aux besoins métier de Corhal et d'ISTEX :
 
@@ -38,9 +37,9 @@ Les champs de sortie correspondent aux métadonnées de la notice utiles pour le
 {
   ...,
   title: {
-    default: "My Title"  
-    fr: "mon titre"  
-    en: "My Title"  
+    default: "My Title"
+    fr: "mon titre"
+    en: "My Title"
   },
   authors: [{
     forename:"John",
@@ -62,7 +61,7 @@ Les champs de sortie correspondent aux métadonnées de la notice utiles pour le
   }
   ...
 }
-  
+
 ```
 
 
@@ -114,7 +113,7 @@ L'exécution se fera donc en appelant cette fonction depuis une instanciation de
     ├── dataset                     // rép de données de tests
     │   └── in
     |       └── test.json          // contient 2 docObjects pris en entrée des TU
-    ├── preview.js                  
+    ├── preview.js
     ├── run.js                      // point d'entrée des TU
     └──
 ```
