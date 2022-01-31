@@ -37,7 +37,7 @@ const inexistantXml = {
 };
 
 const halWithUnknownType = {
-  id: '6',
+  id: '4',
   metadata: [
     {
       path: path.join(__dirname, 'hal-unknown-type.xml'),
@@ -49,7 +49,7 @@ const halWithUnknownType = {
 };
 
 const noSourceId = {
-  id: '8',
+  id: '5',
   metadata: [
     {
       path: path.join(__dirname, 'no-source-id.xml'),
@@ -61,7 +61,7 @@ const noSourceId = {
 };
 
 const hal1 = {
-  id: '4',
+  id: '6',
   source: 'hal',
   metadata: [
     {
@@ -73,7 +73,7 @@ const hal1 = {
 };
 
 const hal2 = {
-  id: '5',
+  id: '7',
   metadata: [
     {
       path: path.join(__dirname, 'hal2.xml'),
@@ -85,7 +85,7 @@ const hal2 = {
 };
 
 const pubmed1 = {
-  id: '9',
+  id: '8',
   metadata: [
     {
       path: path.join(__dirname, 'pubmed1.xml'),
@@ -97,7 +97,7 @@ const pubmed1 = {
 };
 
 const pubmed2 = {
-  id: '10',
+  id: '9',
   metadata: [
     {
       path: path.join(__dirname, 'pubmed2.xml'),
@@ -109,7 +109,7 @@ const pubmed2 = {
 };
 
 const sudoc1 = {
-  id: '11',
+  id: '10',
   metadata: [
     {
       path: path.join(__dirname, 'sudoc1.xml'),
