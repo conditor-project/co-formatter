@@ -90,11 +90,17 @@ business.doTheJob = (docObject, callback) => {
   }
 
   const xml = fs.readFileSync(teiObj.path, 'utf8');
-  const doc = new Dom().parseFromString(xml, 'text/xml', err => {
-    if (err) {
-      return callback(handleError(docObject, 'XmlParsingError', err));
-    }
-  });
+
+  let xmlParsingError;
+  const xmlParsingOptions = {
+    errorHandler (level, errMsg) {
+      xmlParsingError = new Error(errMsg);
+    },
+  };
+  const doc = new Dom(xmlParsingOptions).parseFromString(xml, 'text/xml');
+  if (xmlParsingError) {
+    return callback(handleError(docObject, 'XmlParsingError', xmlParsingError));
+  }
 
   doc.documentElement.setAttribute('source', docObject.source);
 

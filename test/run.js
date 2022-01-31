@@ -18,6 +18,15 @@ describe('#doTheJob', () => {
     });
   });
 
+  it('testData.xmlWithSyntaxError', done => {
+    const docObject = testData.xmlWithSyntaxError;
+    business.doTheJob(docObject, err => {
+      expect(err).to.be.an.instanceOf(Error);
+      expect(err.name).to.be.equal('XmlParsingError');
+      done();
+    });
+  });
+
   it('testData.halWithUnknownType has no Conditor type', done => {
     const docObject = testData.halWithUnknownType;
     business.doTheJob(docObject, err => {
