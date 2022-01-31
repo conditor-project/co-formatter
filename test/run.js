@@ -18,11 +18,20 @@ describe('#doTheJob', () => {
     });
   });
 
-  it('testData.xmlWithSyntaxError', done => {
+  it('testData.xmlWithSyntaxError has a syntax error', done => {
     const docObject = testData.xmlWithSyntaxError;
     business.doTheJob(docObject, err => {
       expect(err).to.be.an.instanceOf(Error);
       expect(err.name).to.be.equal('XmlParsingError');
+      done();
+    });
+  });
+
+  it('testData.inexistantXml has an inexistant XML', done => {
+    const docObject = testData.inexistantXml;
+    business.doTheJob(docObject, err => {
+      expect(err).to.be.an.instanceOf(Error);
+      expect(err.name).to.be.equal('FileNotFoundError');
       done();
     });
   });

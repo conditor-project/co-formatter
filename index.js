@@ -89,88 +89,93 @@ business.doTheJob = (docObject, callback) => {
     return callback(handleError(docObject, 'NoTeiError', new Error('No TEI found in the docObject.metadata')));
   }
 
-  const xml = fs.readFileSync(teiObj.path, 'utf8');
-
-  let xmlParsingError;
-  const xmlParsingOptions = {
-    errorHandler (level, errMsg) {
-      xmlParsingError = new Error(errMsg);
-    },
-  };
-  const doc = new Dom(xmlParsingOptions).parseFromString(xml, 'text/xml');
-  if (xmlParsingError) {
-    return callback(handleError(docObject, 'XmlParsingError', xmlParsingError));
-  }
-
-  doc.documentElement.setAttribute('source', docObject.source);
-
-  let typeConditor;
-  const extractMetadata = {};
-  let flagSource = false;
-  const evaluatorOptions = {
-    node: doc,
-    namespaces,
-    functions: evalFunctions,
-  };
-
-  try {
-    metadataXpaths.forEach(metadata => {
-      extractMetadata[metadata.name] = business.extract(metadata, evaluatorOptions);
-    });
-  } catch (err) {
-    return callback(handleError(docObject, 'XmlPathExtractionError', err));
-  }
-
-  for (const mapping of mappingTD) {
-    if (mapping.source.trim() === docObject.source.toLowerCase().trim()) {
-      const { documentType } = extractMetadata;
-      if (isNonEmptyArray(documentType) && mapping.mapping[documentType[0]]) typeConditor = mapping.mapping[documentType[0]];
-
-      // Flag set to true when the source id is present
-      if (extractMetadata[mapping.nameID].trim() !== '') flagSource = true;
-
-      break;
+  fs.readFile(teiObj.path, 'utf8', (err, xml) => {
+    if (err) {
+      const errName = err.code === 'ENOENT' ? 'FileNotFoundError' : null;
+      return callback(handleError(docObject, errName, err));
     }
-  }
 
-  // Check if the docObject has a source id
-  if (flagSource === false) {
-    return callback(handleError(docObject, 'NoSourceIdError', new Error('No source id found')));
-  }
+    let xmlParsingError;
+    const xmlParsingOptions = {
+      errorHandler (level, errMsg) {
+        xmlParsingError = new Error(errMsg);
+      },
+    };
+    const doc = new Dom(xmlParsingOptions).parseFromString(xml, 'text/xml');
+    if (xmlParsingError) {
+      return callback(handleError(docObject, 'XmlParsingError', xmlParsingError));
+    }
 
-  // If the Conditor type is "Conférence" or "Autre" and an ISSN or EISSN
-  // are present then set the Conditor type to "Article"
-  if ((typeConditor === 'Conférence' || typeConditor === 'Conférence') && (isNonEmptyString(extractMetadata.issn) || isNonEmptyString(extractMetadata.eissn))) {
-    typeConditor = 'Article';
-  }
+    doc.documentElement.setAttribute('source', docObject.source);
 
-  // If the Conditor type is "Thèse" and an ISBN is present then set the Conditor type to "Ouvrage"
-  if (typeConditor === 'Thèse' && isNonEmptyString(extractMetadata.isbn)) {
-    typeConditor = 'Ouvrage';
-  }
+    let typeConditor;
+    const extractMetadata = {};
+    let flagSource = false;
+    const evaluatorOptions = {
+      node: doc,
+      namespaces,
+      functions: evalFunctions,
+    };
 
-  // If the Conditor type is "Conférence" and an ISBN is present then set the Conditor type to "Chapitre"
-  if (typeConditor === 'Conférence' && isNonEmptyString(extractMetadata.isbn)) {
-    typeConditor = 'Chapitre';
-  }
+    try {
+      metadataXpaths.forEach(metadata => {
+        extractMetadata[metadata.name] = business.extract(metadata, evaluatorOptions);
+      });
+    } catch (err) {
+      return callback(handleError(docObject, 'XmlPathExtractionError', err));
+    }
 
-  // Check if the Conditor type is set
-  if (!typeConditor) {
-    return callback(handleError(docObject, 'NoConditorTypeError', new Error('No Conditor type found')));
-  }
+    for (const mapping of mappingTD) {
+      if (mapping.source.trim() === docObject.source.toLowerCase().trim()) {
+        const { documentType } = extractMetadata;
+        if (isNonEmptyArray(documentType) && mapping.mapping[documentType[0]]) typeConditor = mapping.mapping[documentType[0]];
 
-  // TODO: Try to find a better solution than entirely copying the entity model into the docObject
-  _.each(extractMetadata, (value, key) => {
-    docObject[key] = value;
+        // Flag set to true when the source id is present
+        if (extractMetadata[mapping.nameID].trim() !== '') flagSource = true;
+
+        break;
+      }
+    }
+
+    // Check if the docObject has a source id
+    if (flagSource === false) {
+      return callback(handleError(docObject, 'NoSourceIdError', new Error('No source id found')));
+    }
+
+    // If the Conditor type is "Conférence" or "Autre" and an ISSN or EISSN
+    // are present then set the Conditor type to "Article"
+    if ((typeConditor === 'Conférence' || typeConditor === 'Conférence') && (isNonEmptyString(extractMetadata.issn) || isNonEmptyString(extractMetadata.eissn))) {
+      typeConditor = 'Article';
+    }
+
+    // If the Conditor type is "Thèse" and an ISBN is present then set the Conditor type to "Ouvrage"
+    if (typeConditor === 'Thèse' && isNonEmptyString(extractMetadata.isbn)) {
+      typeConditor = 'Ouvrage';
+    }
+
+    // If the Conditor type is "Conférence" and an ISBN is present then set the Conditor type to "Chapitre"
+    if (typeConditor === 'Conférence' && isNonEmptyString(extractMetadata.isbn)) {
+      typeConditor = 'Chapitre';
+    }
+
+    // Check if the Conditor type is set
+    if (!typeConditor) {
+      return callback(handleError(docObject, 'NoConditorTypeError', new Error('No Conditor type found')));
+    }
+
+    // TODO: Try to find a better solution than entirely copying the entity model into the docObject
+    _.each(extractMetadata, (value, key) => {
+      docObject[key] = value;
+    });
+
+    docObject.typeConditor = typeConditor;
+
+    const nameID = sourceIdsMap[docObject.source];
+    docObject.sourceId = docObject[nameID];
+    docObject.sourceUid = `${docObject.source}$${docObject[nameID]}`;
+
+    return callback();
   });
-
-  docObject.typeConditor = typeConditor;
-
-  const nameID = sourceIdsMap[docObject.source];
-  docObject.sourceId = docObject[nameID];
-  docObject.sourceUid = `${docObject.source}$${docObject[nameID]}`;
-
-  return callback();
 };
 
 business.matchRegExp = (metadataRegexp, value) => {
@@ -321,6 +326,8 @@ function isNonEmptyString (value) {
  * @returns The modified `Error` instance.
  */
 function handleError (docObject, errName, originalErr) {
+  if (!errName) errName = 'Error';
+
   docObject.errCode = errName;
   docObject.errMsg = originalErr.message;
 
