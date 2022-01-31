@@ -1,9 +1,11 @@
-const Dom = require('@xmldom/xmldom').DOMParser;
+const { DOMParser } = require('@xmldom/xmldom');
 const fs = require('fs');
 const xpath = require('xpath');
 const _ = require('lodash');
-const metadataXpaths = require('co-config/metadata-xpaths.json');
-const mappingTD = require('co-config/metadata-mappings.json');
+
+const coConfigPath = process.env.CO_CONF ? process.env.CO_CONF : 'co-config';
+const metadataXpaths = require(`${coConfigPath}/metadata-xpaths.json`);
+const mappingTD = require(`${coConfigPath}/metadata-mappings.json`);
 const sourceIdsMap = _.transform(mappingTD, (sourceIds, { source, nameID }) => {
   sourceIds[source] = nameID;
 }, {});
@@ -101,7 +103,7 @@ business.doTheJob = (docObject, callback) => {
         xmlParsingError = new Error(errMsg);
       },
     };
-    const doc = new Dom(xmlParsingOptions).parseFromString(xml, 'text/xml');
+    const doc = new DOMParser(xmlParsingOptions).parseFromString(xml, 'text/xml');
     if (xmlParsingError) {
       return callback(handleError(docObject, 'XmlParsingError', xmlParsingError));
     }
@@ -260,7 +262,7 @@ business.extract = (metadata, contextOptions) => {
     select = xpath.parse(metadata.path).select(contextOptions);
     _.each(select, (iteSelect) => {
       if (!limited || limit > 0) {
-        const docBloc = new Dom().parseFromString(iteSelect.toString(), 'text/xml');
+        const docBloc = new DOMParser().parseFromString(iteSelect.toString(), 'text/xml');
         const evaluatorOptionsBloc = {
           node: docBloc,
           namespaces: namespaces,
