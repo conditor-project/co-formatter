@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const { DOMParser } = require('@xmldom/xmldom');
 const xpath = require('xpath');
-const { matchRegExp, isNonEmptyArray } = require('./utils');
+const { matchRegExp, isNonEmptyArray, isNonEmptyString } = require('./utils');
 
 const namespaces = {
   TEI: 'http://www.tei-c.org/ns/1.0',
@@ -81,7 +81,7 @@ function extract (metadata, contextOptions) {
     select = xpath.parse(metadata.path).evaluateString(contextOptions);
     if (metadata.regexp) select = matchRegExp(metadata, select);
 
-    if (metadata.attributeName && metadata.attributeName.trim() !== '') {
+    if (isNonEmptyString(metadata.attributeName)) {
       const obj = {};
       obj[metadata.attributeName] = select;
       select = obj;
@@ -92,7 +92,7 @@ function extract (metadata, contextOptions) {
     return select;
   } else if (metadata.type === 'boolean' && metadata.path) {
     select = xpath.parse(metadata.path).evaluateBoolean(contextOptions);
-    if (metadata.attributeName && metadata.attributeName.trim() !== '') {
+    if (isNonEmptyString(metadata.attributeName)) {
       const obj = {};
       obj[metadata.attributeName] = select;
       select = obj;
@@ -108,7 +108,7 @@ function extract (metadata, contextOptions) {
       limit = metadata.limit;
     }
 
-    let result = _.values(_.mapValues(metadata.fields, (field, key) => {
+    let result = _.values(_.mapValues(metadata.fields, field => {
       if (!limited || limit > 0) {
         limit--;
         return extract(field, contextOptions);
@@ -116,14 +116,10 @@ function extract (metadata, contextOptions) {
     }));
 
     if (metadata.concat === true && metadata.separator) {
-      let string = '';
-      _.each(result, (field) => {
-        if (string.trim() === '') { string += field; } else { string += metadata.separator + field; }
-      });
-      result = string;
+      result = result.join(metadata.separator);
     }
 
-    if (metadata.attributeName && metadata.attributeName.trim() !== '') {
+    if (isNonEmptyString(metadata.attributeName)) {
       const obj = {};
       obj[metadata.attributeName] = result;
       result = obj;
@@ -132,7 +128,7 @@ function extract (metadata, contextOptions) {
     return result;
   } else if (metadata.type === 'struct' && metadata.fields) {
     const obj = {};
-    _.each(metadata.fields, (field) => {
+    _.each(metadata.fields, field => {
       obj[field.name] = extract(field, contextOptions);
     });
 
@@ -148,7 +144,7 @@ function extract (metadata, contextOptions) {
     }
 
     select = xpath.parse(metadata.path).select(contextOptions);
-    _.each(select, (iteSelect) => {
+    _.each(select, iteSelect => {
       if (!limited || limit > 0) {
         const docBloc = new DOMParser().parseFromString(iteSelect.toString(), 'text/xml');
         const evaluatorOptionsBloc = {
@@ -163,13 +159,9 @@ function extract (metadata, contextOptions) {
       }
     });
     if (metadata.concat === true && metadata.separator) {
-      let string = '';
-      _.each(result, (field) => {
-        if (string.trim() === '') { string += field; } else { string += metadata.separator + field; }
-      });
-      result = string;
+      result = result.join(metadata.separator);
     }
-    if (metadata.attributeName && metadata.attributeName.trim() !== '') {
+    if (isNonEmptyString(metadata.attributeName)) {
       const obj = {};
       obj[metadata.attributeName] = result;
       result = obj;
@@ -178,8 +170,8 @@ function extract (metadata, contextOptions) {
     return result;
   } else if (metadata.type === 'object' && metadata.name && metadata.fields) {
     const result = {};
-    _.each(metadata.fields, (field) => {
-      if (field.name && field.name !== '') {
+    _.each(metadata.fields, field => {
+      if (isNonEmptyString(field.name)) {
         result[field.name] = extract(field, contextOptions);
       }
     });
