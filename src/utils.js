@@ -15,6 +15,15 @@ function matchRegExp (metadataRegexp, value) {
 }
 
 /**
+ * Returns `true` if `value` is an object containing at least one key-value pair, `false` otherwise.
+ * @param {any} value The value to check.
+ * @returns `true` if `value` is an object containing at least one key-value pair, `false` otherwise.
+ */
+function isNonEmptyObject (value) {
+  return _.isPlainObject(value) && !_.isEmpty(value);
+}
+
+/**
  * Returns `true` if `value` is an array containing at least one element, `false` otherwise.
  * @param {any} value The value to check.
  * @returns `true` if `value` is an array containing at least one element, `false` otherwise.
@@ -52,6 +61,7 @@ function handleError (docObject, errName, originalErr) {
 
 module.exports = {
   matchRegExp,
+  isNonEmptyObject,
   isNonEmptyArray,
   isNonEmptyString,
   handleError,

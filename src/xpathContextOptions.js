@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const { DOMParser } = require('@xmldom/xmldom');
 const xpath = require('xpath');
-const { matchRegExp, isNonEmptyArray, isNonEmptyString } = require('./utils');
+const { matchRegExp, isNonEmptyObject, isNonEmptyArray, isNonEmptyString } = require('./utils');
 
 const namespaces = {
   TEI: 'http://www.tei-c.org/ns/1.0',
@@ -77,7 +77,7 @@ const customXPathFunctions = {
 function extract (metadata, contextOptions) {
   let select;
 
-  if (metadata.type === 'simpleString' && metadata.path) {
+  if (metadata.type === 'simpleString' && isNonEmptyString(metadata.path)) {
     select = xpath.parse(metadata.path).evaluateString(contextOptions);
     if (metadata.regexp) select = matchRegExp(metadata, select);
 
@@ -90,7 +90,7 @@ function extract (metadata, contextOptions) {
     if (select === '' && metadata.allowEmpty === false) return undefined;
 
     return select;
-  } else if (metadata.type === 'boolean' && metadata.path) {
+  } else if (metadata.type === 'boolean' && isNonEmptyString(metadata.path)) {
     select = xpath.parse(metadata.path).evaluateBoolean(contextOptions);
     if (isNonEmptyString(metadata.attributeName)) {
       const obj = {};
@@ -99,7 +99,7 @@ function extract (metadata, contextOptions) {
     }
 
     return select;
-  } else if (metadata.type === 'array' && metadata.fields) {
+  } else if (metadata.type === 'array' && isNonEmptyArray(metadata.fields)) {
     let limited = false;
     let limit = 0;
 
@@ -126,14 +126,14 @@ function extract (metadata, contextOptions) {
     }
 
     return result;
-  } else if (metadata.type === 'struct' && metadata.fields) {
+  } else if (metadata.type === 'struct' && isNonEmptyArray(metadata.fields)) {
     const obj = {};
-    _.each(metadata.fields, field => {
+    metadata.fields.forEach(field => {
       obj[field.name] = extract(field, contextOptions);
     });
 
     return obj;
-  } else if (metadata.type === 'bloc' && metadata.path && metadata.fields) {
+  } else if (metadata.type === 'bloc' && isNonEmptyString(metadata.path) && isNonEmptyObject(metadata.fields)) {
     let result = [];
     let limited = false;
     let limit = 0;
@@ -168,9 +168,9 @@ function extract (metadata, contextOptions) {
     }
 
     return result;
-  } else if (metadata.type === 'object' && metadata.name && metadata.fields) {
+  } else if (metadata.type === 'object' && isNonEmptyString(metadata.name) && isNonEmptyArray(metadata.fields)) {
     const result = {};
-    _.each(metadata.fields, field => {
+    metadata.fields.forEach(field => {
       if (isNonEmptyString(field.name)) {
         result[field.name] = extract(field, contextOptions);
       }
