@@ -154,29 +154,25 @@ function extractStruct (metadata, contextOptions) {
  */
 function extractBloc (metadata, contextOptions) {
   let result = [];
-  let limited = false;
-  let limit = 0;
-
-  if (metadata.limit) {
-    limited = true;
-    limit = metadata.limit;
-  }
 
   const select = xpath.parse(metadata.path).select(contextOptions);
-  _.each(select, iteSelect => {
-    if (!limited || limit > 0) {
-      const docBloc = new DOMParser().parseFromString(iteSelect.toString(), 'text/xml');
-      const evaluatorOptionsBloc = {
-        node: docBloc,
-        namespaces: namespaces,
-        functions: customXPathFunctions,
-      };
-      const extractChild = extract(metadata.fields, evaluatorOptionsBloc);
+  for (let i = 0; i < select.length; i++) {
+    const docBloc = new DOMParser().parseFromString(select[i].toString(), 'text/xml');
+    const evaluatorOptionsBloc = {
+      node: docBloc,
+      namespaces: namespaces,
+      functions: customXPathFunctions,
+    };
+    const extractChild = extract(metadata.fields, evaluatorOptionsBloc);
 
-      if (extractChild) result.push(extractChild);
-      limit--;
+    if (extractChild) result.push(extractChild);
+
+    // If a limit is defined and the number of iterations (i + 1) is greater or equal
+    // to the limit, then exit the loop early
+    if (_.isInteger(metadata.limit) && metadata.limit <= i + 1) {
+      break;
     }
-  });
+  }
   if (metadata.concat === true && metadata.separator) {
     result = result.join(metadata.separator);
   }
