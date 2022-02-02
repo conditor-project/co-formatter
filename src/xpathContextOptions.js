@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const { DOMParser } = require('@xmldom/xmldom');
 const xpath = require('xpath');
-const { matchRegExp, isNonEmptyObject, isNonEmptyArray, isNonEmptyString } = require('./utils');
+const { matchRegExp, isNonEmptyObject, isNonEmptyArray, isNonEmptyString, wrapInObject } = require('./utils');
 
 const namespaces = {
   TEI: 'http://www.tei-c.org/ns/1.0',
@@ -69,147 +69,114 @@ const customXPathFunctions = {
   },
 };
 
-/**
- * Extracts a string.
- * @param {object} metadata The metadata info coming from `co-config`.
- * @param {object} contextOptions The context options passed to `xpath` evaluation methods.
- */
-function extractSimpleString (metadata, contextOptions) {
-  let result = xpath.parse(metadata.path).evaluateString(contextOptions);
-  if (metadata.regexp) result = matchRegExp(metadata, result);
+const extractTypeHandlers = {
+  simpleString: (metadata, contextOptions) => {
+    if (!isNonEmptyString(metadata.path)) return;
 
-  if (isNonEmptyString(metadata.attributeName)) {
-    result = wrapInObject(metadata.attributeName, result);
-  }
+    let result = xpath.parse(metadata.path).evaluateString(contextOptions);
+    if (metadata.regexp) result = matchRegExp(metadata, result);
 
-  if (result === '' && metadata.allowEmpty === false) return undefined;
-
-  return result;
-}
-
-/**
- * Extracts a boolean.
- * @param {object} metadata The metadata info coming from `co-config`.
- * @param {object} contextOptions The context options passed to `xpath` evaluation methods.
- */
-function extractBoolean (metadata, contextOptions) {
-  let result = xpath.parse(metadata.path).evaluateBoolean(contextOptions);
-  if (isNonEmptyString(metadata.attributeName)) {
-    result = wrapInObject(metadata.attributeName, result);
-  }
-
-  return result;
-}
-
-/**
- * Extracts an array.
- * @param {object} metadata The metadata info coming from `co-config`.
- * @param {object} contextOptions The context options passed to `xpath` evaluation methods.
- */
-function extractArray (metadata, contextOptions) {
-  let limited = false;
-  let limit = 0;
-
-  if (metadata.limit) {
-    limited = true;
-    limit = metadata.limit;
-  }
-
-  let result = _.values(_.mapValues(metadata.fields, field => {
-    if (!limited || limit > 0) {
-      limit--;
-      return extract(field, contextOptions);
+    if (isNonEmptyString(metadata.attributeName)) {
+      result = wrapInObject(metadata.attributeName, result);
     }
-  }));
 
-  if (metadata.concat === true && metadata.separator) {
-    result = result.join(metadata.separator);
-  }
+    if (result === '' && metadata.allowEmpty === false) return undefined;
 
-  if (isNonEmptyString(metadata.attributeName)) {
-    result = wrapInObject(metadata.attributeName, result);
-  }
+    return result;
+  },
+  boolean: (metadata, contextOptions) => {
+    if (!isNonEmptyString(metadata.path)) return;
 
-  return result;
-}
-
-/**
- * Extracts a struct.
- * @param {object} metadata The metadata info coming from `co-config`.
- * @param {object} contextOptions The context options passed to `xpath` evaluation methods.
- */
-function extractStruct (metadata, contextOptions) {
-  const obj = {};
-  metadata.fields.forEach(field => {
-    obj[field.name] = extract(field, contextOptions);
-  });
-
-  return obj;
-}
-
-/**
- * Extracts a bloc.
- * @param {object} metadata The metadata info coming from `co-config`.
- * @param {object} contextOptions The context options passed to `xpath` evaluation methods.
- */
-function extractBloc (metadata, contextOptions) {
-  let result = [];
-
-  const select = xpath.parse(metadata.path).select(contextOptions);
-  for (let i = 0; i < select.length; i++) {
-    const docBloc = new DOMParser().parseFromString(select[i].toString(), 'text/xml');
-    const evaluatorOptionsBloc = {
-      node: docBloc,
-      namespaces: namespaces,
-      functions: customXPathFunctions,
-    };
-    const extractChild = extract(metadata.fields, evaluatorOptionsBloc);
-
-    if (extractChild) result.push(extractChild);
-
-    // If a limit is defined and the number of iterations (i + 1) is greater or equal
-    // to the limit, then exit the loop early
-    if (_.isInteger(metadata.limit) && metadata.limit <= i + 1) {
-      break;
+    let result = xpath.parse(metadata.path).evaluateBoolean(contextOptions);
+    if (isNonEmptyString(metadata.attributeName)) {
+      result = wrapInObject(metadata.attributeName, result);
     }
-  }
-  if (metadata.concat === true && metadata.separator) {
-    result = result.join(metadata.separator);
-  }
-  if (isNonEmptyString(metadata.attributeName)) {
-    result = wrapInObject(metadata.attributeName, result);
-  }
 
-  return result;
-}
+    return result;
+  },
+  array: (metadata, contextOptions) => {
+    if (!isNonEmptyArray(metadata.fields)) return;
 
-/**
- * Extracts an object
- * @param {object} metadata The metadata info coming from `co-config`.
- * @param {object} contextOptions The context options passed to `xpath` evaluation methods.
- */
-function extractObject (metadata, contextOptions) {
-  const result = {};
-  metadata.fields.forEach(field => {
-    if (isNonEmptyString(field.name)) {
-      result[field.name] = extract(field, contextOptions);
+    let limited = false;
+    let limit = 0;
+
+    if (metadata.limit) {
+      limited = true;
+      limit = metadata.limit;
     }
-  });
 
-  return result;
-}
+    let result = _.values(_.mapValues(metadata.fields, field => {
+      if (!limited || limit > 0) {
+        limit--;
+        return extract(field, contextOptions);
+      }
+    }));
 
-/**
- * Creates an object with a key `keyName` of value `value`.
- * @param {string} keyName The name of the object's key the value will be in.
- * @param {any} value The value to wrap in an object.
- */
-function wrapInObject (keyName, value) {
-  const obj = {};
-  obj[keyName] = value;
+    if (metadata.concat === true && metadata.separator) {
+      result = result.join(metadata.separator);
+    }
 
-  return obj;
-}
+    if (isNonEmptyString(metadata.attributeName)) {
+      result = wrapInObject(metadata.attributeName, result);
+    }
+
+    return result;
+  },
+  struct: (metadata, contextOptions) => {
+    if (!isNonEmptyArray(metadata.fields)) return;
+
+    const obj = {};
+    metadata.fields.forEach(field => {
+      obj[field.name] = extract(field, contextOptions);
+    });
+
+    return obj;
+  },
+  bloc: (metadata, contextOptions) => {
+    if (!isNonEmptyString(metadata.path) || !isNonEmptyObject(metadata.fields)) return;
+
+    let result = [];
+
+    const select = xpath.parse(metadata.path).select(contextOptions);
+    for (let i = 0; i < select.length; i++) {
+      const docBloc = new DOMParser().parseFromString(select[i].toString(), 'text/xml');
+      const evaluatorOptionsBloc = {
+        node: docBloc,
+        namespaces: namespaces,
+        functions: customXPathFunctions,
+      };
+      const extractChild = extract(metadata.fields, evaluatorOptionsBloc);
+
+      if (extractChild) result.push(extractChild);
+
+      // If a limit is defined and the number of iterations (i + 1) is greater or equal
+      // to the limit, then exit the loop early
+      if (_.isInteger(metadata.limit) && metadata.limit <= i + 1) {
+        break;
+      }
+    }
+    if (metadata.concat === true && metadata.separator) {
+      result = result.join(metadata.separator);
+    }
+    if (isNonEmptyString(metadata.attributeName)) {
+      result = wrapInObject(metadata.attributeName, result);
+    }
+
+    return result;
+  },
+  object: (metadata, contextOptions) => {
+    if (!isNonEmptyString(metadata.name) || !isNonEmptyArray(metadata.fields)) return;
+
+    const result = {};
+    metadata.fields.forEach(field => {
+      if (isNonEmptyString(field.name)) {
+        result[field.name] = extract(field, contextOptions);
+      }
+    });
+
+    return result;
+  },
+};
 
 /**
  * Extracts.
@@ -217,19 +184,7 @@ function wrapInObject (keyName, value) {
  * @param {object} contextOptions The context options passed to `xpath` evaluation methods.
  */
 function extract (metadata, contextOptions) {
-  if (metadata.type === 'simpleString' && isNonEmptyString(metadata.path)) {
-    return extractSimpleString(metadata, contextOptions);
-  } else if (metadata.type === 'boolean' && isNonEmptyString(metadata.path)) {
-    return extractBoolean(metadata, contextOptions);
-  } else if (metadata.type === 'array' && isNonEmptyArray(metadata.fields)) {
-    return extractArray(metadata, contextOptions);
-  } else if (metadata.type === 'struct' && isNonEmptyArray(metadata.fields)) {
-    return extractStruct(metadata, contextOptions);
-  } else if (metadata.type === 'bloc' && isNonEmptyString(metadata.path) && isNonEmptyObject(metadata.fields)) {
-    return extractBloc(metadata, contextOptions);
-  } else if (metadata.type === 'object' && isNonEmptyString(metadata.name) && isNonEmptyArray(metadata.fields)) {
-    return extractObject(metadata, contextOptions);
-  }
+  if (extractTypeHandlers[metadata.type]) return extractTypeHandlers[metadata.type](metadata, contextOptions);
 }
 
 module.exports = {
