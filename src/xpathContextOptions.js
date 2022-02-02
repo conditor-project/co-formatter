@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const { DOMParser } = require('@xmldom/xmldom');
 const xpath = require('xpath');
-const { matchRegExp, isNonEmptyObject, isNonEmptyArray, isNonEmptyString, wrapInObject } = require('./utils');
+const { matchRegExp, isNonEmptyObject, isNonEmptyArray, isNonEmptyString } = require('./utils');
 
 const namespaces = {
   TEI: 'http://www.tei-c.org/ns/1.0',
@@ -76,10 +76,6 @@ const extractTypeHandlers = {
     let result = xpath.parse(metadata.path).evaluateString(contextOptions);
     if (metadata.regexp) result = matchRegExp(metadata, result);
 
-    if (isNonEmptyString(metadata.attributeName)) {
-      result = wrapInObject(metadata.attributeName, result);
-    }
-
     if (result === '' && metadata.allowEmpty === false) return undefined;
 
     return result;
@@ -87,12 +83,7 @@ const extractTypeHandlers = {
   boolean: (metadata, contextOptions) => {
     if (!isNonEmptyString(metadata.path)) return;
 
-    let result = xpath.parse(metadata.path).evaluateBoolean(contextOptions);
-    if (isNonEmptyString(metadata.attributeName)) {
-      result = wrapInObject(metadata.attributeName, result);
-    }
-
-    return result;
+    return xpath.parse(metadata.path).evaluateBoolean(contextOptions);
   },
   array: (metadata, contextOptions) => {
     if (!isNonEmptyArray(metadata.fields)) return;
@@ -109,10 +100,6 @@ const extractTypeHandlers = {
 
     if (metadata.concat === true && isNonEmptyString(metadata.separator)) {
       result = result.join(metadata.separator);
-    }
-
-    if (isNonEmptyString(metadata.attributeName)) {
-      result = wrapInObject(metadata.attributeName, result);
     }
 
     return result;
@@ -145,10 +132,6 @@ const extractTypeHandlers = {
       result = result.join(metadata.separator);
     }
 
-    if (isNonEmptyString(metadata.attributeName)) {
-      result = wrapInObject(metadata.attributeName, result);
-    }
-
     return result;
   },
   object: (metadata, contextOptions) => {
@@ -171,7 +154,15 @@ const extractTypeHandlers = {
  * @param {object} contextOptions The context options passed to `xpath` evaluation methods.
  */
 function extract (metadata, contextOptions) {
-  if (extractTypeHandlers[metadata.type]) return extractTypeHandlers[metadata.type](metadata, contextOptions);
+  if (extractTypeHandlers[metadata.type]) {
+    const result = extractTypeHandlers[metadata.type](metadata, contextOptions);
+
+    if (isNonEmptyString(metadata.attributeName)) {
+      return { [metadata.attributeName]: result };
+    }
+
+    return result;
+  }
 }
 
 module.exports = {

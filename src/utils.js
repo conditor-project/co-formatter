@@ -42,18 +42,6 @@ function isNonEmptyString (value) {
 }
 
 /**
- * Creates an object with a key `keyName` of value `value`.
- * @param {string} keyName The name of the object's key the value will be in.
- * @param {any} value The value to wrap in an object.
- */
-function wrapInObject (keyName, value) {
-  const obj = {};
-  obj[keyName] = value;
-
-  return obj;
-}
-
-/**
  * Uses the information from `originalErr` to populate `docObject` then modifies `originalErr` before returning it.
  * @param {object} docObject The docObject.
  * @param {string} errName The name of the error.
@@ -76,6 +64,5 @@ module.exports = {
   isNonEmptyObject,
   isNonEmptyArray,
   isNonEmptyString,
-  wrapInObject,
   handleError,
 };
