@@ -50,7 +50,7 @@ const customXPathFunctions = {
   'first-of-split': (context, text, separator) => {
     const sanitizedSplit = _.compact(_.split(text, separator));
 
-    return (isNonEmptyArray(sanitizedSplit)) ? sanitizedSplit[0] : '';
+    return isNonEmptyArray(sanitizedSplit) ? sanitizedSplit[0] : '';
   },
   'deduplicate-by-text': (context, values) => {
     const uniqueValues = [];
@@ -97,22 +97,17 @@ const extractTypeHandlers = {
   array: (metadata, contextOptions) => {
     if (!isNonEmptyArray(metadata.fields)) return;
 
-    let limited = false;
-    let limit = 0;
+    let result;
+    let iterations = 0;
 
-    if (metadata.limit) {
-      limited = true;
-      limit = metadata.limit;
-    }
-
-    let result = _.values(_.mapValues(metadata.fields, field => {
-      if (!limited || limit > 0) {
-        limit--;
+    result = _.values(_.mapValues(metadata.fields, field => {
+      if (!_.isInteger(metadata.limit) || iterations <= metadata.limit) {
+        iterations++;
         return extract(field, contextOptions);
       }
     }));
 
-    if (metadata.concat === true && metadata.separator) {
+    if (metadata.concat === true && isNonEmptyString(metadata.separator)) {
       result = result.join(metadata.separator);
     }
 
@@ -155,9 +150,11 @@ const extractTypeHandlers = {
         break;
       }
     }
+
     if (metadata.concat === true && metadata.separator) {
       result = result.join(metadata.separator);
     }
+
     if (isNonEmptyString(metadata.attributeName)) {
       result = wrapInObject(metadata.attributeName, result);
     }
