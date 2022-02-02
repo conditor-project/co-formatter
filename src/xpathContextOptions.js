@@ -117,16 +117,6 @@ const extractTypeHandlers = {
 
     return result;
   },
-  struct: (metadata, contextOptions) => {
-    if (!isNonEmptyArray(metadata.fields)) return;
-
-    const obj = {};
-    metadata.fields.forEach(field => {
-      obj[field.name] = extract(field, contextOptions);
-    });
-
-    return obj;
-  },
   bloc: (metadata, contextOptions) => {
     if (!isNonEmptyString(metadata.path) || !isNonEmptyObject(metadata.fields)) return;
 
@@ -162,7 +152,7 @@ const extractTypeHandlers = {
     return result;
   },
   object: (metadata, contextOptions) => {
-    if (!isNonEmptyString(metadata.name) || !isNonEmptyArray(metadata.fields)) return;
+    if (!isNonEmptyArray(metadata.fields)) return;
 
     const result = {};
     metadata.fields.forEach(field => {
