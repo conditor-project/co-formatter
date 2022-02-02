@@ -3,7 +3,8 @@ const fs = require('fs-extra');
 const business = require('../index');
 const testData = require('./dataset/in/docObjects');
 
-const configPkg = require('co-config/package.json');
+const coConfigPath = process.env.CO_CONF ? process.env.CO_CONF : 'co-config';
+const configPkg = require(`${coConfigPath}/package.json`);
 console.log(`Using co-config, version ${configPkg.version}`);
 
 (async function () {
