@@ -75,18 +75,16 @@ const customXPathFunctions = {
  * @param {object} contextOptions The context options passed to `xpath` evaluation methods.
  */
 function extractSimpleString (metadata, contextOptions) {
-  let select = xpath.parse(metadata.path).evaluateString(contextOptions);
-  if (metadata.regexp) select = matchRegExp(metadata, select);
+  let result = xpath.parse(metadata.path).evaluateString(contextOptions);
+  if (metadata.regexp) result = matchRegExp(metadata, result);
 
   if (isNonEmptyString(metadata.attributeName)) {
-    const obj = {};
-    obj[metadata.attributeName] = select;
-    select = obj;
+    result = wrapInObject(metadata.attributeName, result);
   }
 
-  if (select === '' && metadata.allowEmpty === false) return undefined;
+  if (result === '' && metadata.allowEmpty === false) return undefined;
 
-  return select;
+  return result;
 }
 
 /**
@@ -95,14 +93,12 @@ function extractSimpleString (metadata, contextOptions) {
  * @param {object} contextOptions The context options passed to `xpath` evaluation methods.
  */
 function extractBoolean (metadata, contextOptions) {
-  let select = xpath.parse(metadata.path).evaluateBoolean(contextOptions);
+  let result = xpath.parse(metadata.path).evaluateBoolean(contextOptions);
   if (isNonEmptyString(metadata.attributeName)) {
-    const obj = {};
-    obj[metadata.attributeName] = select;
-    select = obj;
+    result = wrapInObject(metadata.attributeName, result);
   }
 
-  return select;
+  return result;
 }
 
 /**
@@ -131,9 +127,7 @@ function extractArray (metadata, contextOptions) {
   }
 
   if (isNonEmptyString(metadata.attributeName)) {
-    const obj = {};
-    obj[metadata.attributeName] = result;
-    result = obj;
+    result = wrapInObject(metadata.attributeName, result);
   }
 
   return result;
@@ -187,9 +181,7 @@ function extractBloc (metadata, contextOptions) {
     result = result.join(metadata.separator);
   }
   if (isNonEmptyString(metadata.attributeName)) {
-    const obj = {};
-    obj[metadata.attributeName] = result;
-    result = obj;
+    result = wrapInObject(metadata.attributeName, result);
   }
 
   return result;
@@ -209,6 +201,18 @@ function extractObject (metadata, contextOptions) {
   });
 
   return result;
+}
+
+/**
+ * Creates an object with a key `keyName` of value `value`.
+ * @param {string} keyName The name of the object's key the value will be in.
+ * @param {any} value The value to wrap in an object.
+ */
+function wrapInObject (keyName, value) {
+  const obj = {};
+  obj[keyName] = value;
+
+  return obj;
 }
 
 /**
