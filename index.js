@@ -1,12 +1,13 @@
 const { DOMParser } = require('@xmldom/xmldom');
 const fs = require('fs');
+const path = require('path');
 const _ = require('lodash');
 const { namespaces, customXPathFunctions, extract } = require('./src/xpathContextOptions');
 const { isNonEmptyArray, isNonEmptyString, handleError } = require('./src/utils');
 
 const coConfigPath = process.env.CO_CONF ? process.env.CO_CONF : 'co-config';
-const metadataXpaths = require(`${coConfigPath}/metadata-xpaths.json`);
-const mappingTD = require(`${coConfigPath}/metadata-mappings.json`);
+const metadataXpaths = require(path.join(coConfigPath, 'metadata-xpaths.json'));
+const mappingTD = require(path.join(coConfigPath, 'metadata-mappings.json'));
 const sourceIdsMap = _.transform(mappingTD, (sourceIds, { source, nameID }) => {
   sourceIds[source] = nameID;
 }, {});
@@ -45,7 +46,7 @@ function doTheJob (docObject, callback) {
 
     doc.documentElement.setAttribute('source', docObject.source);
 
-    let typeConditor;
+    let duplicateGenre;
     const extractMetadata = {};
     let flagSource = false;
     const evaluatorOptions = {
@@ -64,11 +65,11 @@ function doTheJob (docObject, callback) {
 
     for (const mapping of mappingTD) {
       if (mapping.source.trim() === docObject.source.toLowerCase().trim()) {
-        const { documentType } = extractMetadata;
-        if (isNonEmptyArray(documentType) && mapping.mapping[documentType[0]]) typeConditor = mapping.mapping[documentType[0]];
+        const { originalGenre } = extractMetadata;
+        if (isNonEmptyArray(originalGenre) && mapping.mapping[originalGenre[0]]) duplicateGenre = mapping.mapping[originalGenre[0]];
 
         // Flag set to true when the source id is present
-        if (extractMetadata[mapping.nameID].trim() !== '') flagSource = true;
+        if (isNonEmptyString(extractMetadata[mapping.nameID])) flagSource = true;
 
         break;
       }
@@ -81,29 +82,29 @@ function doTheJob (docObject, callback) {
 
     // If the Conditor type is "Conférence" or "Autre" and an ISSN or EISSN
     // are present then set the Conditor type to "Article"
-    if ((typeConditor === 'Conférence' || typeConditor === 'Conférence') && (isNonEmptyString(extractMetadata.issn) || isNonEmptyString(extractMetadata.eissn))) {
-      typeConditor = 'Article';
+    if ((duplicateGenre === 'Conférence' || duplicateGenre === 'Conférence') && (isNonEmptyString(extractMetadata.issn) || isNonEmptyString(extractMetadata.eissn))) {
+      duplicateGenre = 'Article';
     }
 
     // If the Conditor type is "Thèse" and an ISBN is present then set the Conditor type to "Ouvrage"
-    if (typeConditor === 'Thèse' && isNonEmptyString(extractMetadata.isbn)) {
-      typeConditor = 'Ouvrage';
+    if (duplicateGenre === 'Thèse' && isNonEmptyString(extractMetadata.isbn)) {
+      duplicateGenre = 'Ouvrage';
     }
 
     // If the Conditor type is "Conférence" and an ISBN is present then set the Conditor type to "Chapitre"
-    if (typeConditor === 'Conférence' && isNonEmptyString(extractMetadata.isbn)) {
-      typeConditor = 'Chapitre';
+    if (duplicateGenre === 'Conférence' && isNonEmptyString(extractMetadata.isbn)) {
+      duplicateGenre = 'Chapitre';
     }
 
     // Check if the Conditor type is set
-    if (!typeConditor) {
+    if (!duplicateGenre) {
       return callback(handleError(docObject, 'NoConditorTypeError', new Error('No Conditor type found')));
     }
 
     // TODO: Try to find a better solution than entirely copying the entity model into the docObject
     Object.assign(docObject, extractMetadata);
 
-    docObject.typeConditor = typeConditor;
+    _.set(docObject, '_business.duplicateGenre', duplicateGenre);
 
     const nameID = sourceIdsMap[docObject.source];
     docObject.sourceId = docObject[nameID];

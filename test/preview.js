@@ -4,8 +4,8 @@ const business = require('../index');
 const testData = require('./dataset/in/docObjects');
 
 const coConfigPath = process.env.CO_CONF ? process.env.CO_CONF : 'co-config';
-const configPkg = require(`${coConfigPath}/package.json`);
-console.log(`Using co-config, version ${configPkg.version}`);
+const configPkg = require(path.join(coConfigPath, 'package.json'));
+console.info(`Using co-config, version ${configPkg.version}`);
 
 (async function () {
   const outputDir = path.join(__dirname, 'dataset', 'out');
