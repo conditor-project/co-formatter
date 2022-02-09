@@ -1,6 +1,23 @@
 const _ = require('lodash');
 
 /**
+ * Returns the non-abbreviated form of `shortRole`.
+ * @param {string} shortRole The role in its short form.
+ * @returns The non-abbreviated form of `shortRole`.
+ */
+function shortRoleToFullRole (shortRole) {
+  const rolesMapping = {
+    ths: 'thesisAdvisor',
+    pbd: 'publishingDirector',
+    dgg: 'degreeGrantor',
+    tal: 'associatedLaboratory',
+    dos: 'doctoralSchool',
+  };
+
+  return rolesMapping[shortRole];
+}
+
+/**
  * Modifies `value` by modifying it according to the Regexp info in `metadataRegexp`.
  * @param {object} metadataRegexp The Regexp info coming from `co-config`.
  * @param {string} value The string that will get modified according to `metadataRegexp`.
@@ -60,6 +77,7 @@ function handleError (docObject, errName, originalErr) {
 }
 
 module.exports = {
+  shortRoleToFullRole,
   matchRegExp,
   isNonEmptyObject,
   isNonEmptyArray,

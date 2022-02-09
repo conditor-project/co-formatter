@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
 const { namespaces, customXPathFunctions, extract } = require('./src/xpathContextOptions');
-const { isNonEmptyArray, isNonEmptyString, handleError } = require('./src/utils');
+const { shortRoleToFullRole, isNonEmptyArray, isNonEmptyString, handleError } = require('./src/utils');
 
 const coConfigPath = process.env.CO_CONF ? process.env.CO_CONF : 'co-config';
 const metadataXpaths = require(path.join(coConfigPath, 'metadata-xpaths.json'));
@@ -100,6 +100,11 @@ function doTheJob (docObject, callback) {
     if (!duplicateGenre) {
       return callback(handleError(docObject, 'NoConditorTypeError', new Error('No Conditor type found')));
     }
+
+    // Convert the roles to their full form
+    extractMetadata.host.editor.forEach(editor => {
+      editor.roles = shortRoleToFullRole(editor.roles);
+    });
 
     // TODO: Try to find a better solution than entirely copying the entity model into the docObject
     Object.assign(docObject, extractMetadata);
