@@ -149,7 +149,7 @@ const extractTypeHandlers = {
 };
 
 /**
- * Extracts.
+ * Extracts the requested `metadata` from a TEI document.
  * @param {object} metadata The metadata info coming from `co-config`.
  * @param {object} contextOptions The context options passed to `xpath` evaluation methods.
  */
