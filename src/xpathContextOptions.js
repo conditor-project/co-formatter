@@ -52,21 +52,6 @@ const customXPathFunctions = {
 
     return isNonEmptyArray(sanitizedSplit) ? sanitizedSplit[0] : '';
   },
-  'deduplicate-by-text': (context, values) => {
-    const uniqueValues = [];
-    const dedupNodes = [];
-
-    values.nodes.forEach(node => {
-      if (!uniqueValues.includes(node.textContent)) {
-        uniqueValues.push(node.textContent);
-        dedupNodes.push(node);
-      }
-    });
-
-    if (!_.isEmpty(uniqueValues)) values.nodes = dedupNodes;
-
-    return values;
-  },
 };
 
 const extractTypeHandlers = {
