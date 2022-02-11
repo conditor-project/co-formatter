@@ -1,83 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
-    <text>
-        <body>
-            <listBibl>
-                <biblFull>
-                    <titleStmt>
-                        <title xml:lang="fr">Les freins à la collaboration entre le médecin généraliste et le service de protection maternelle et infantile</title>
-                        <title type="sub" xml:lang="fr">Etude qualitative réalisée dans le Haut-Rhin</title>
-                        <title xml:lang="en">Barriers to collaboration between the general practitioner and the maternal-child health center : qualitative research in Haut-Rhin (in France)</title>
-                    </titleStmt>
-                    <editionStmt>
-                        <edition>
-                            <date type="whenDownloaded">2017-12</date>
-                            <date type="whenCreated">2018-05-03</date>
-                        </edition>
-                    </editionStmt>
-                    <publicationStmt>
-                        <distributor>Conditor</distributor>
-                    </publicationStmt>
-                    <note type="thesisOriginal" n="1">Version de soutenance</note>
-                    <sourceDesc>
-                        <biblStruct>
-                            <analytic>
-                                <title xml:lang="fr">Les freins à la collaboration entre le médecin généraliste et le service de protection maternelle et infantile</title>
-                                <title type="sub" xml:lang="fr">Etude qualitative réalisée dans le Haut-Rhin</title>
-                                <title xml:lang="en">Barriers to collaboration between the general practitioner and the maternal-child health center : qualitative research in Haut-Rhin (in France)</title>
-                                <author role="aut">
-                                    <persName>
-                                        <forename type="first">Özlem</forename>
-                                        <surname>Simsek Arslan</surname>
-                                    </persName>
-                                    <idno type="idRef">176729356</idno>
-                                </author>
-                            </analytic>
-                            <monogr>
-                                <editor role="ths">
-                                    <persName>
-                                        <forename type="first">Marie-Josée</forename>
-                                        <surname>Kubler-Leveque</surname>
-                                    </persName>
-                                    <idno type="idRef">084708050</idno>
-                                </editor>
-                                <editor role="dgg">
-                                    <orgName type="institution">Université de Strasbourg</orgName>
-                                    <orgName type="laboratory">Faculté de médecine</orgName>
-                                    <idno type="idRef">173113206</idno>
-                                </editor>
-                                <imprint>
-                                    <date type="dateDefended">2014</date>
-                                    <biblScope unit="pagesNo">1 vol. (302 p.)</biblScope>
-                                </imprint>
-                            </monogr>
-                            <idno type="ppnSudoc">176728937</idno>
-                            <idno type="nnt">2014STRA3002</idno>
-                        </biblStruct>
-                    </sourceDesc>
-                    <profileDesc>
-                        <langUsage>
-                            <language ident="fr">French</language>
-                        </langUsage>
-                        <textClass>
-                            <keywords scheme="rameau">
-                                <term xml:lang="fr" type="topicalName" ref="https://www.idref.fr/027338215">Médecins généralistes</term>
-                                <term xml:lang="fr" type="subdivisionForm" ref="https://www.idref.fr/027253139">Thèses et écrits académiques</term>
-                            </keywords>
-                            <keywords scheme="rameau">
-                                <term xml:lang="fr" type="topicalName" ref="https://www.idref.fr/029746248">Coopération médicale</term>
-                                <term xml:lang="fr" type="subdivisionForm" ref="https://www.idref.fr/027253139">Thèses et écrits académiques</term>
-                            </keywords>
-                            <keywords scheme="fmesh">
-                                <term xml:lang="fr" type="subject" ref="https://www.idref.fr/040736741">Centres de protection maternelle et infantile</term>
-                                <term xml:lang="fr" type="subdivisionForm" ref="https://www.idref.fr/027253139">Thèses et écrits académiques</term>
-                            </keywords>
-                            <classCode scheme="thesisDomain">Médecine générale</classCode>
-                            <classCode scheme="typology">Thèse d&apos;exercice</classCode>
-                        </textClass>
-                    </profileDesc>
-                </biblFull>
-            </listBibl>
-        </body>
-    </text>
+  <text>
+    <body>
+      <listBibl>
+        <biblFull>
+          <titleStmt>
+            <title xml:lang="fr">Les freins à la collaboration entre le médecin généraliste et le service de protection maternelle et infantile</title>
+            <title type="sub" xml:lang="fr">Etude qualitative réalisée dans le Haut-Rhin</title>
+            <title xml:lang="en">Barriers to collaboration between the general practitioner and the maternal-child health center : qualitative research in Haut-Rhin (in France)</title>
+          </titleStmt>
+          <editionStmt>
+            <edition>
+              <date type="whenDownloaded">2017-12</date>
+              <date type="whenCreated">2018-05-03</date>
+            </edition>
+          </editionStmt>
+          <publicationStmt>
+            <distributor>Conditor</distributor>
+          </publicationStmt>
+          <note type="thesisOriginal" n="1">Version de soutenance</note>
+          <sourceDesc>
+            <biblStruct>
+              <analytic>
+                <title xml:lang="fr">Les freins à la collaboration entre le médecin généraliste et le service de protection maternelle et infantile</title>
+                <title type="sub" xml:lang="fr">Etude qualitative réalisée dans le Haut-Rhin</title>
+                <title xml:lang="en">Barriers to collaboration between the general practitioner and the maternal-child health center : qualitative research in Haut-Rhin (in France)</title>
+                <author role="aut">
+                  <persName>
+                    <forename type="first">Özlem</forename>
+                    <surname>Simsek Arslan</surname>
+                  </persName>
+                  <idno type="idRef">176729356</idno>
+                </author>
+              </analytic>
+              <monogr>
+                <editor role="ths">
+                  <persName>
+                    <forename type="first">Marie-Josée</forename>
+                    <surname>Kubler-Leveque</surname>
+                  </persName>
+                  <idno type="idRef">084708050</idno>
+                </editor>
+                <editor role="dgg">
+                  <orgName type="institution">Université de Strasbourg</orgName>
+                  <orgName type="laboratory">Faculté de médecine</orgName>
+                  <idno type="idRef">173113206</idno>
+                </editor>
+                <imprint>
+                  <date type="dateDefended">2014</date>
+                  <biblScope unit="pagesNo">1 vol. (302 p.)</biblScope>
+                </imprint>
+              </monogr>
+              <idno type="ppnSudoc">176728937</idno>
+              <idno type="nnt">2014STRA3002</idno>
+            </biblStruct>
+          </sourceDesc>
+          <profileDesc>
+            <langUsage>
+              <language ident="fr">French</language>
+            </langUsage>
+            <textClass>
+              <keywords scheme="rameau">
+                <term xml:lang="fr" type="topicalName" ref="https://www.idref.fr/027338215">Médecins généralistes</term>
+                <term xml:lang="fr" type="subdivisionForm" ref="https://www.idref.fr/027253139">Thèses et écrits académiques</term>
+              </keywords>
+              <keywords scheme="rameau">
+                <term xml:lang="fr" type="topicalName" ref="https://www.idref.fr/029746248">Coopération médicale</term>
+                <term xml:lang="fr" type="subdivisionForm" ref="https://www.idref.fr/027253139">Thèses et écrits académiques</term>
+              </keywords>
+              <keywords scheme="fmesh">
+                <term xml:lang="fr" type="subject" ref="https://www.idref.fr/040736741">Centres de protection maternelle et infantile</term>
+                <term xml:lang="fr" type="subdivisionForm" ref="https://www.idref.fr/027253139">Thèses et écrits académiques</term>
+              </keywords>
+              <classCode scheme="thesisDomain">Médecine générale</classCode>
+              <classCode scheme="typology">Thèse d&apos;exercice</classCode>
+            </textClass>
+          </profileDesc>
+        </biblFull>
+      </listBibl>
+    </body>
+  </text>
 </TEI>

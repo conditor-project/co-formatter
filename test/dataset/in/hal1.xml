@@ -19,7 +19,7 @@
                   <idno origin="HAL" type="halauthorid">460031</idno>
                   <email origin="HAL" type="md5">f6e6998158659519523d91197b67bc0d</email>
                   <email origin="HAL" type="domain">univ-fcomte.fr</email>
-            <!--      <affiliation origin="HAL" ref="#struct-57629"/>  -->
+                  <!-- <affiliation origin="HAL" ref="#struct-57629"/> -->
                   <affiliation origin="HAL" type="HAL">Laboratoire Chrono-environnement</affiliation>
                 </author>
                 <author origin="HAL" role="aut">
@@ -28,7 +28,7 @@
                     <surname origin="HAL">Berny</surname>
                   </persName>
                   <idno origin="HAL" type="halauthorid">370098</idno>
-             <!--  <affiliation origin="HAL" ref="#struct-200138"/>  -->
+                  <!-- <affiliation origin="HAL" ref="#struct-200138"/> -->
                   <affiliation origin="HAL" type="HAL">Laboratoire de pharmacie - toxicologie</affiliation>
                 </author>
                 <author origin="HAL" role="aut">
@@ -37,7 +37,7 @@
                     <surname origin="HAL">Couval</surname>
                   </persName>
                   <idno origin="HAL" type="halauthorid">762273</idno>
-                   <!--  <affiliation origin="HAL" ref="#struct-206330"/>  -->
+                   <!-- <affiliation origin="HAL" ref="#struct-206330"/> -->
                   <affiliation origin="HAL" type="HAL">Fédération Régionale de Défense contre les Organismes Nuisibles</affiliation>
                 </author>
                 <author origin="HAL" role="aut">
@@ -46,7 +46,7 @@
                     <surname origin="HAL">Decors</surname>
                   </persName>
                   <idno origin="HAL" type="halauthorid">963831</idno>
-         <!--   <affiliation origin="HAL" ref="#struct-240988"/>  -->
+                  <!-- <affiliation origin="HAL" ref="#struct-240988"/> -->
                   <affiliation origin="HAL" type="HAL">Office National de la Chasse et de la Faune Sauvage</affiliation>
                 </author>
                 <author origin="HAL" role="aut">
@@ -55,7 +55,7 @@
                     <surname origin="HAL">Jacquot</surname>
                   </persName>
                   <idno origin="HAL" type="halauthorid">778917</idno>
-                <!--  <affiliation origin="HAL" ref="#struct-57629"/>  -->
+                  <!-- <affiliation origin="HAL" ref="#struct-57629"/> -->
                   <affiliation origin="HAL" type="HAL">Laboratoire Chrono-environnement</affiliation>
                 </author>
                 <author origin="HAL" role="aut">
@@ -64,7 +64,7 @@
                     <surname origin="HAL">Queffélec</surname>
                   </persName>
                   <idno origin="HAL" type="halauthorid">1116279</idno>
-                <!--  <affiliation origin="HAL" ref="#struct-410297"/>  -->
+                  <!-- <affiliation origin="HAL" ref="#struct-410297"/> -->
                   <affiliation origin="HAL" type="HAL">Centre National d’Informations Toxicologiques Vétérinaires</affiliation>
                 </author>
                 <author origin="HAL" role="aut">
@@ -73,7 +73,7 @@
                     <surname origin="HAL">Quintaine</surname>
                   </persName>
                   <idno origin="HAL" type="halauthorid">963833</idno>
-                 <!--  <affiliation origin="HAL" ref="#struct-240988"/>  -->
+                  <!-- <affiliation origin="HAL" ref="#struct-240988"/> -->
                   <affiliation origin="HAL" type="HAL">Office National de la Chasse et de la Faune Sauvage</affiliation>
                 </author>
                 <author origin="HAL" role="aut">
@@ -89,10 +89,10 @@
                   <idno origin="HAL" type="VIAF">test-viaf</idno>
                   <email origin="HAL" type="md5">e9bb977de5fe502aacfead5a35d95934</email>
                   <email origin="HAL" type="domain">univ-fcomte.fr</email>
-         <!--   <ptr type="url" target="http://chrono-environnement.univ-fcomte.fr/spip.php?article232"/>
-                  <affiliation origin="HAL" ref="#struct-56663"/>  -->
+                  <!-- <ptr type="url" target="http://chrono-environnement.univ-fcomte.fr/spip.php?article232"/>
+                  <affiliation origin="HAL" ref="#struct-56663"/> -->
                   <affiliation origin="HAL" type="HAL">Institut Universitaire de France</affiliation>
-          <!--  <affiliation origin="HAL" ref="#struct-57629"/>  -->
+                  <!-- <affiliation origin="HAL" ref="#struct-57629"/> -->
                   <affiliation origin="HAL" type="HAL">Laboratoire Chrono-environnement</affiliation>
                 </author>
               </analytic>

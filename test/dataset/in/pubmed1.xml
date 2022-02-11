@@ -6,7 +6,7 @@
         <biblFull>
           <titleStmt>
             <title xml:lang="en">Are Differences in Disability-Free Life Expectancy by Gender, Race, and Education Widening at Older Ages?</title>
-            <!--Les auteurs sont dans la description bibliographique, chemin : TEI/text/body/listBibl/biblFull/sourceDesc/biblStruct/analytic/author ou TEI/text/body/listBibl/biblFull/sourceDesc/biblStruct/monogr/author-->
+            <!-- Les auteurs sont dans la description bibliographique, chemin : TEI/text/body/listBibl/biblFull/sourceDesc/biblStruct/analytic/author ou TEI/text/body/listBibl/biblFull/sourceDesc/biblStruct/monogr/author -->
             <funder>
               <idno type="grantId">P30 AG017265</idno>
               <name>NIA NIH HHS</name>
