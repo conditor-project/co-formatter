@@ -47,11 +47,6 @@ const customXPathFunctions = {
 
     return result;
   },
-  'first-of-split': (context, text, separator) => {
-    const sanitizedSplit = _.compact(_.split(text, separator));
-
-    return isNonEmptyArray(sanitizedSplit) ? sanitizedSplit[0] : '';
-  },
 };
 
 const extractTypeHandlers = {
