@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
 const { namespaces, customXPathFunctions, extract } = require('./src/xpathContextOptions');
-const { shortRoleToFullRole, isNonEmptyArray, isNonEmptyString, handleError } = require('./src/utils');
+const { shortRoleToFullRole, isNonEmptyString, handleError } = require('./src/utils');
 
 const coConfigPath = process.env.CO_CONF ? process.env.CO_CONF : 'co-config';
 const metadataXpaths = require(path.join(coConfigPath, 'metadata-xpaths.json'));
@@ -66,7 +66,7 @@ function doTheJob (docObject, callback) {
     for (const mapping of mappingTD) {
       if (mapping.source.trim() === docObject.source.toLowerCase().trim()) {
         const { originalGenre } = extractMetadata;
-        if (isNonEmptyArray(originalGenre) && mapping.mapping[originalGenre[0]]) duplicateGenre = mapping.mapping[originalGenre[0]];
+        if (mapping.mapping[originalGenre]) duplicateGenre = mapping.mapping[originalGenre];
 
         // Flag set to true when the source id is present
         if (isNonEmptyString(extractMetadata[mapping.nameID])) flagSource = true;

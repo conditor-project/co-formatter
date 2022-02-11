@@ -64,12 +64,12 @@ describe('#doTheJob', () => {
       expect(docObject.authorNames).to.equal('Coeurdassier Michaël Berny Philippe Couval Geoffroy Decors Anouk Jacquot Manon Queffélec S Quintaine Thomas Giraudoux Patrick');
       expect(docObject.title.default).to.equal('Limiting the accidental poisoning of wild and domesticated animals due to the chemical pesticides used to control water vole outbreaks: progress to date');
       expect(docObject.title.fr).to.equal('Évolution des effets non intentionnels de la lutte chimique contre le campagnol terrestre sur la faune sauvage et domestique');
-      expect(docObject.host.issn[0]).to.equal('0429-2766');
+      expect(docObject.host.issn).to.equal('0429-2766');
       expect(docObject.host.pages.range).to.equal('327-335');
       expect(docObject.host.volume).to.equal('1');
       expect(docObject.host.issue).to.equal('220');
       expect(docObject.halId).to.equal('hal-01103402');
-      expect(docObject.authors[7].idHal).to.equal('2179');
+      expect(docObject.authors[7].idHal).to.contain('2179');
       expect(docObject.authors[7].halAuthorId).to.contain('828346');
       expect(docObject._business.duplicateGenre).to.equal('Article');
       expect(docObject.authors[7].orcId[0]).to.equal('http://orcid.org/0000-0003-2376-0136');
@@ -77,7 +77,7 @@ describe('#doTheJob', () => {
       expect(docObject.doi).to.equal('test-doi');
       expect(docObject._business.hasDoi).to.be.true;
       expect(docObject.authors[7].viaf[0]).to.equal('test-viaf');
-      expect(docObject.originalGenre[0]).to.equal('ART');
+      expect(docObject.originalGenre).to.equal('ART');
       expect(docObject._business.duplicateGenre).to.equal('Article');
       expect(docObject.host.title).to.equal('Fourrages');
       expect(docObject.host.publicationDate).to.equal('2014');
@@ -123,8 +123,8 @@ describe('#doTheJob', () => {
       expect(docObject.pmId).to.equal('23554029');
       expect(docObject.sourceId).to.equal('23554029');
       expect(docObject.sourceUid).to.equal('pubmed$23554029');
-      expect(docObject._business.xPublicationDate.length).to.equal(2);
-      expect(docObject._business.xissn.length).to.equal(2);
+      expect(docObject._business.xPublicationDate).to.equal('2013-04-03');
+      expect(docObject._business.xissn).to.equal('1099-1573');
       expect(docObject.title.default).to.not.contain('My custom subtitle');
       done();
     });
@@ -136,11 +136,11 @@ describe('#doTheJob', () => {
       expect(err).to.be.undefined;
       expect(docObject.title.default).to.equal('Les freins à la collaboration entre le médecin généraliste et le service de protection maternelle et infantile : Etude qualitative réalisée dans le Haut-Rhin');
       expect(docObject.host.editor[0].fullname).to.equal('Marie-Josée Kubler-Leveque');
-      expect(docObject.host.editor[0].idRef[0]).to.equal('084708050');
+      expect(docObject.host.editor[0].idRef).to.equal('084708050');
       expect(docObject.host.editor[0].roles).to.equal('thesisAdvisor');
       expect(docObject.host.editor[0].orgName).to.be.empty;
       expect(docObject.host.editor[1].fullname).to.be.empty;
-      expect(docObject.host.editor[1].idRef[0]).to.equal('173113206');
+      expect(docObject.host.editor[1].idRef).to.equal('173113206');
       expect(docObject.host.editor[1].roles).to.equal('degreeGrantor');
       expect(docObject.host.editor[1].orgName).to.equal('Université de Strasbourg');
       done();
