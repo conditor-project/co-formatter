@@ -1,7 +1,7 @@
 {
   "name": "co-formatter",
   "version": "1.9.1",
-  "description": "module d'extraction et de reformatage de notice",
+  "description": "Module to extract data from a TEI file",
   "main": "index.js",
   "directories": {
     "test": "test"
