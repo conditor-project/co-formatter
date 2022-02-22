@@ -38,7 +38,8 @@
                   </persName>
                   <email type="md5">328d8366dd0189e9bedf89ce4ca8b5a0</email>
                   <email type="domain">univ-fcomte.fr</email>
-                  <affiliation n="struct-57629">Université Bourgogne Franche-Comté [COMUE] UBFC, UMR6249, Centre National de la Recherche Scientifique CNRS, Université de Franche-Comté UFC, Laboratoire Chrono-environnement - UFC (UMR 6249) LCE, UFR Sciences et Techniques - 16, route de Gray - 25030 Besançon Cedex, FR
+                  <affiliation n="struct-57629">
+                    Université Bourgogne Franche-Comté [COMUE] UBFC, UMR6249, Centre National de la Recherche Scientifique CNRS, Université de Franche-Comté UFC, Laboratoire Chrono-environnement - UFC (UMR 6249) LCE, UFR Sciences et Techniques - 16, route de Gray - 25030 Besançon Cedex, FR
                     <org type="laboratory">
                       <orgName>Laboratoire Chrono-environnement - UFC (UMR 6249)</orgName>
                       <orgName type="acronym">LCE</orgName>
@@ -46,7 +47,7 @@
                       <desc>
                         <address>
                           <addrLine>UFR Sciences et Techniques - 16, route de Gray - 25030 Besançon Cedex</addrLine>
-                          <country key="FR"/>
+                          <country key="FR" />
                         </address>
                       </desc>
                       <idno type="halStructureId">struct-57629</idno>
@@ -79,14 +80,15 @@
                   <idno type="isni">isni-mudry</idno>
                   <idno type="idRef">idRef-mudry</idno>
                 </author>
-                 <author role="aut">
+                <author role="aut">
                   <persName>
                     <forename>Alain</forename>
                     <surname>Bidon</surname>
                   </persName>
                   <email type="md5">328d8366dd0189e9bedf89ce4ca8b5a1</email>
                   <email type="domain">univ-trucmuche.fr</email>
-                  <affiliation n="struct-999">Université de Trucmuche 12345 Bidule Cedex, FR
+                  <affiliation n="struct-999">
+                    Université de Trucmuche 12345 Bidule Cedex, FR
                     <org type="laboratory">
                       <orgName>Laboratoire Toto (UMR 888)</orgName>
                       <orgName type="acronym">LT</orgName>
@@ -94,7 +96,7 @@
                       <desc>
                         <address>
                           <addrLine>Labo Toto - 1, route de l'église - 12345 Bidule Cedex</addrLine>
-                          <country key="FR"/>
+                          <country key="FR" />
                         </address>
                       </desc>
                       <org type="institution">

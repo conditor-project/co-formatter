@@ -5,7 +5,8 @@
       <listBibl>
         <biblFull>
           <titleStmt>
-            <title xml:lang="en">Clinical study to assess the efficacy and safety of a citrus polyphenolic extract of red orange, grapefruit, and orange (Sinetrol-XPur) on weight management and metabolic parameters in healthy overweight individuals.</title>            <!--Les auteurs sont dans la description bibliographique biblStruct : TEI/text/body/listBibl/biblFull/sourceDesc/biblStruct/analytic/author ou monogr/author--></titleStmt>
+            <title xml:lang="en">Clinical study to assess the efficacy and safety of a citrus polyphenolic extract of red orange, grapefruit, and orange (Sinetrol-XPur) on weight management and metabolic parameters in healthy overweight individuals.</title> <!--Les auteurs sont dans la description bibliographique biblStruct : TEI/text/body/listBibl/biblFull/sourceDesc/biblStruct/analytic/author ou monogr/author-->
+          </titleStmt>
           <editionStmt>
             <edition>
               <date type="whenDownloaded">2018-07-24</date>
@@ -29,7 +30,9 @@
                     <forename>Constantin</forename>
                     <surname>Dallas</surname>
                   </persName>
-                  <affiliation>Fytexia, 3 rue d'Athènes-VIA EUROPA, 34350, Vendres, France.<country key="FR"/>
+                  <affiliation>
+                    Fytexia, 3 rue d'Athènes-VIA EUROPA, 34350, Vendres, France.
+                    <country key="FR" />
                   </affiliation>
                 </author>
                 <author role="aut">
@@ -65,15 +68,15 @@
               </analytic>
               <monogr>
                 <idno type="eissn">1099-1573</idno>
-                <idno type="issn">1099-1573</idno>
+                <idno type="issn">bidon 1099-1573</idno>
                 <title level="j">Phytotherapy research : PTR</title>
                 <title level="j" type="abbrevIso">Phytother Res</title>
                 <imprint>
-                    <date type="datePub">2013-04-03</date>
-                    <date type="dateEpub">2012-12-01</date>
-                    <biblScope unit="volume">28</biblScope>
-                    <biblScope unit="issue">2</biblScope>
-                    <biblScope unit="pp">212-8</biblScope>
+                  <date type="datePub">2013-04-03</date>
+                  <date type="dateEpub">2012-12-01</date>
+                  <biblScope unit="volume">28</biblScope>
+                  <biblScope unit="issue">2</biblScope>
+                  <biblScope unit="pp">212-8</biblScope>
                 </imprint>
               </monogr>
               <idno type="pubmed">23554029</idno>
@@ -82,7 +85,7 @@
           </sourceDesc>
           <profileDesc>
             <langUsage>
-              <language ident="en"/>
+              <language ident="en" />
             </langUsage>
             <textClass>
               <keywords scheme="meshHeading">
@@ -183,13 +186,22 @@
                 <term type="registryNumber">GAN16C9B8O</term>
               </keywords>
               <keywords scheme="author">
-                <term type="author">citrus extract</term>
-                <term type="author">inflammation</term>
-                <term type="author">overweight</term>
-                <term type="author">oxidative stress</term>
-                <term type="author">polyphenols</term>
-                <term type="author">weight management</term>
+                <term type="author">ancienne feuille de style citrus extract</term>
+                <term type="author">ancienne feuille de style inflammation</term>
+                <term type="author">ancienne feuille de style overweight</term>
+                <term type="author">ancienne feuille de style oxidative stress</term>
+                <term type="author">ancienne feuille de style polyphenols</term>
+                <term type="author">ancienne feuille de style weight management</term>
               </keywords>
+              <keywords scheme="author">
+                <term xml:lang="en">new feuille de style citrus extract</term>
+                <term xml:lang="en">new feuille de styleinflammation</term>
+                <term xml:lang="en">new feuille de styleoverweight</term>
+                <term xml:lang="en">new feuille de styleoxidative stress</term>
+                <term xml:lang="en">new feuille de stylepolyphenols</term>
+                <term xml:lang="en">new feuille de styleweight management</term>
+              </keywords>
+
               <classCode scheme="typology">Journal Article</classCode>
               <classCode scheme="typology">Randomized Controlled Trial</classCode>
             </textClass>

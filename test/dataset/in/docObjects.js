@@ -84,8 +84,32 @@ const hal2 = {
   source: 'hal',
 };
 
-const pubmed1 = {
+const halMeeting = {
   id: '8',
+  metadata: [
+    {
+      path: path.join(__dirname, 'hal_meeting.xml'),
+      mime: 'application/tei+xml',
+      original: false,
+    },
+  ],
+  source: 'hal',
+};
+
+const halMonogr = {
+  id: '9',
+  metadata: [
+    {
+      path: path.join(__dirname, 'hal_monogr.xml'),
+      mime: 'application/tei+xml',
+      original: false,
+    },
+  ],
+  source: 'hal',
+};
+
+const pubmed1 = {
+  id: '10',
   metadata: [
     {
       path: path.join(__dirname, 'pubmed1.xml'),
@@ -97,7 +121,7 @@ const pubmed1 = {
 };
 
 const pubmed2 = {
-  id: '9',
+  id: '11',
   metadata: [
     {
       path: path.join(__dirname, 'pubmed2.xml'),
@@ -109,7 +133,7 @@ const pubmed2 = {
 };
 
 const sudoc1 = {
-  id: '10',
+  id: '12',
   metadata: [
     {
       path: path.join(__dirname, 'sudoc1.xml'),
@@ -128,6 +152,8 @@ module.exports = {
   noSourceId,
   hal1,
   hal2,
+  halMeeting,
+  halMonogr,
   pubmed1,
   pubmed2,
   sudoc1,
