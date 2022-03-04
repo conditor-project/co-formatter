@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-env mocha */
 
+const path = require('path');
 const business = require('../index');
 const testData = require('./dataset/in/docObjects');
 const { expect } = require('chai');
 
 const coConfigPath = process.env.CO_CONF ? process.env.CO_CONF : 'co-config';
-const configPkg = require(`${coConfigPath}/package.json`);
+const configPkg = require(path.join(coConfigPath, 'package.json'));
 console.log(`Using co-config, version ${configPkg.version}`);
 
 describe('#doTheJob', () => {
