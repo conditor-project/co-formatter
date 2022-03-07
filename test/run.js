@@ -155,8 +155,8 @@ describe('#doTheJob', () => {
       expect(docObject.sourceUid).to.equal('pubmed$23554029');
       expect(docObject.host.issn).to.equal('bidon 1099-1573');
       expect(docObject.host.eissn).to.equal('1099-1573');
-      expect(docObject._business.xissn).to.equal('bidon 1099-1573,1099-1573');
-      expect(docObject._business.xPublicationDate).to.equal('2013-04-03,2012-12-01');
+      expect(docObject._business.xissn).to.have.members(['bidon 1099-1573', '1099-1573']);
+      expect(docObject._business.xPublicationDate).to.have.members(['2013-04-03', '2012-12-01']);
       expect(docObject.title.default).to.not.contain('My custom subtitle');
       done();
     });
