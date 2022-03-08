@@ -79,7 +79,8 @@ const extractTypeHandlers = {
     }));
 
     if (metadata.concat === true && isNonEmptyString(metadata.separator)) {
-      result = result.join(metadata.separator);
+      // Only keep the non empty strings of the results then join them
+      result = _.compact(result).join(metadata.separator);
     }
 
     return result;

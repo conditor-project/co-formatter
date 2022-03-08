@@ -175,6 +175,9 @@ describe('#doTheJob', () => {
       expect(docObject.host.editor[1].idRef).to.equal('173113206');
       expect(docObject.host.editor[1].roles).to.equal('degreeGrantor');
       expect(docObject.host.editor[1].orgName).to.equal('Université de Strasbourg');
+      expect(docObject.keywords.fr.author).to.have.members(['bidon Encéphalopathie épileptique précoce', 'bidon Nouveau-Né']);
+      expect(docObject.keywords.fr.mesh).to.have.members(['Centres de protection maternelle et infantile']);
+      expect(docObject.keywords.fr.rameau).to.have.members(['Médecins généralistes--Thèses et écrits académiques', 'Coopération médicale--Thèses et écrits académiques']);
       done();
     });
   });

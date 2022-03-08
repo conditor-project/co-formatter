@@ -96,10 +96,10 @@
                 </term>
               </keywords>
               <keywords scheme="author">
-                <term xml:lang="und">bidon Encéphalopathie épileptique précoce</term>
+                <term xml:lang="fr">bidon Encéphalopathie épileptique précoce</term>
               </keywords>
               <keywords scheme="author">
-                <term xml:lang="und">bidon Nouveau-Né</term>
+                <term xml:lang="fr">bidon Nouveau-Né</term>
                 <keywords scheme="rameau">
                   <term xml:lang="fr" type="topicalName" ref="https://www.idref.fr/029746248">
                     <term>Coopération médicale</term>
@@ -115,10 +115,10 @@
                     <term>Centres de protection maternelle et infantile</term>
                     <idno type="idRef">040736741</idno>
                   </term>
-                  <term xml:lang="fr" type="subdivisionTopic" ref="https://www.idref.fr/027253139">
+                  <!-- <term xml:lang="fr" type="subdivisionTopic" ref="https://www.idref.fr/027253139">
                     <term>Thèses et écrits académiques</term>
                     <idno type="idRef">027253139</idno>
-                  </term>
+                  </term> -->
                 </keywords>
                 <classCode scheme="thesisDomain">Médecine générale</classCode>
                 <classCode scheme="Dewey">bidon 616.99</classCode>
