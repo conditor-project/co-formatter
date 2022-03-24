@@ -52,7 +52,7 @@ Les champs de sortie correspondent aux métadonnées de la notice utiles pour le
     },
     // ...
   },
-  "_business": {
+  "business": {
     "first3AuthorNamesWithInitials": "J Good",
     // ...
   }

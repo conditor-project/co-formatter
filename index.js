@@ -109,7 +109,7 @@ function doTheJob (docObject, callback) {
     // TODO: Try to find a better solution than entirely copying the entity model into the docObject
     Object.assign(docObject, extractMetadata);
 
-    _.set(docObject, '_business.duplicateGenre', duplicateGenre);
+    _.set(docObject, 'business.duplicateGenre', duplicateGenre);
 
     const nameID = sourceIdsMap[docObject.source];
     docObject.sourceId = docObject[nameID];

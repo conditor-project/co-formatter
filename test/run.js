@@ -73,14 +73,14 @@ describe('#doTheJob', () => {
       expect(docObject.authors[7].idHal).to.contain('2179');
       expect(docObject.authors[7].halAuthorId).to.contain('828346');
       expect(docObject.authors[7].isni).to.contain('bidon isni');
-      expect(docObject._business.duplicateGenre).to.equal('Article');
+      expect(docObject.business.duplicateGenre).to.equal('Article');
       expect(docObject.authors[7].orcId[0]).to.equal('https://orcid.org/0000-0003-2376-0136');
       expect(docObject.source).to.equal('hal');
       expect(docObject.doi).to.equal('bidon doi');
-      expect(docObject._business.hasDoi).to.be.true;
+      expect(docObject.business.hasDoi).to.be.true;
       expect(docObject.authors[7].viaf[0]).to.equal('bidon viaf');
       expect(docObject.originalGenre).to.equal('ART');
-      expect(docObject._business.duplicateGenre).to.equal('Article');
+      expect(docObject.business.duplicateGenre).to.equal('Article');
       expect(docObject.host.title).to.equal('Fourrages');
       expect(docObject.host.publicationDate).to.equal('2014');
       expect(docObject.sourceId).to.equal('hal-01103402');
@@ -136,10 +136,10 @@ describe('#doTheJob', () => {
     business.doTheJob(docObject, err => {
       expect(err).to.be.undefined;
       expect(docObject.pmId).to.equal('29681672');
-      expect(docObject._business.hasDoi).to.be.true;
+      expect(docObject.business.hasDoi).to.be.true;
       expect(docObject.title.default).to.contain('Are Differences in Disability-Free Life Expectancy');
       expect(docObject.host.publicationDate).to.equal('2014-06');
-      expect(docObject._business.duplicateGenre).to.equal('Article');
+      expect(docObject.business.duplicateGenre).to.equal('Article');
       expect(docObject.sourceId).to.equal('29681672');
       expect(docObject.sourceUid).to.equal('pubmed$29681672');
       done();
@@ -155,8 +155,8 @@ describe('#doTheJob', () => {
       expect(docObject.sourceUid).to.equal('pubmed$23554029');
       expect(docObject.host.issn).to.equal('bidon 1099-1573');
       expect(docObject.host.eissn).to.equal('1099-1573');
-      expect(docObject._business.xissn).to.have.members(['bidon 1099-1573', '1099-1573']);
-      expect(docObject._business.xPublicationDate).to.have.members(['2013-04-03', '2012-12-01']);
+      expect(docObject.business.xissn).to.have.members(['bidon 1099-1573', '1099-1573']);
+      expect(docObject.business.xPublicationDate).to.have.members(['2013-04-03', '2012-12-01']);
       expect(docObject.title.default).to.not.contain('My custom subtitle');
       done();
     });
