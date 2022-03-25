@@ -21,7 +21,7 @@ const customXPathFunctions = {
 
     if (!isNonEmptyArray(nodes)) return '';
 
-    let result='';
+    let result = '';
     let mainTitleNode = '';
 
     // Looking for main title
