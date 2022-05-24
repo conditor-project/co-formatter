@@ -1,14 +1,11 @@
 const { DOMParser } = require('@xmldom/xmldom');
 const fs = require('fs');
-const path = require('path');
 const _ = require('lodash');
 const { namespaces, customXPathFunctions, extract } = require('./src/xpathContextOptions');
 const { shortRoleToFullRole, isNonEmptyString, handleError } = require('./src/utils');
+const { metadata: { mappings, metadataXpaths } } = require('corhal-config');
 
-const coConfigPath = process.env.CO_CONF ? process.env.CO_CONF : 'co-config';
-const metadataXpaths = require(path.join(coConfigPath, 'metadata-xpaths.json'));
-const mappingTD = require(path.join(coConfigPath, 'metadata-mappings.json'));
-const sourceIdsMap = _.transform(mappingTD, (sourceIds, { source, nameID }) => {
+const sourceIdsMap = _.transform(mappings, (sourceIds, { source, nameID }) => {
   sourceIds[source] = nameID;
 }, {});
 
@@ -63,7 +60,7 @@ function doTheJob (docObject, callback) {
       return callback(handleError(docObject, 'XmlPathExtractionError', err));
     }
 
-    for (const mapping of mappingTD) {
+    for (const mapping of mappings) {
       if (mapping.source.trim() === docObject.source.toLowerCase().trim()) {
         const { originalGenre } = extractMetadata;
         if (mapping.mapping[originalGenre]) duplicateGenre = mapping.mapping[originalGenre];

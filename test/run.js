@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-env mocha */
 
-const path = require('path');
 const business = require('../index');
 const testData = require('./dataset/in/docObjects');
 const { expect } = require('chai');
+const corhalConfig = require('corhal-config/package.json');
 
-const coConfigPath = process.env.CO_CONF ? process.env.CO_CONF : 'co-config';
-const configPkg = require(path.join(coConfigPath, 'package.json'));
-console.log(`Using co-config, version ${configPkg.version}`);
+// const coConfigPath = process.env.CO_CONF ? process.env.CO_CONF : 'co-config';
+// const configPkg = require(path.join(coConfigPath, 'package.json'));
+console.log(`Using corhalConfig, version ${corhalConfig.version}`);
 
 describe('#doTheJob', () => {
   it('testData.emptyXml has no source id', done => {
