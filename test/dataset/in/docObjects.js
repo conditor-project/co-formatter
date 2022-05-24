@@ -84,6 +84,18 @@ const hal2 = {
   source: 'hal',
 };
 
+const hal3 = {
+  id: '71',
+  metadata: [
+    {
+      path: path.join(__dirname, 'hal3.xml'),
+      mime: 'application/tei+xml',
+      original: false,
+    },
+  ],
+  source: 'hal',
+};
+
 const halMeeting = {
   id: '8',
   metadata: [
@@ -152,6 +164,7 @@ module.exports = {
   noSourceId,
   hal1,
   hal2,
+  hal3,
   halMeeting,
   halMonogr,
   pubmed1,

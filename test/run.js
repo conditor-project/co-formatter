@@ -6,8 +6,6 @@ const testData = require('./dataset/in/docObjects');
 const { expect } = require('chai');
 const corhalConfig = require('corhal-config/package.json');
 
-// const coConfigPath = process.env.CO_CONF ? process.env.CO_CONF : 'co-config';
-// const configPkg = require(path.join(coConfigPath, 'package.json'));
 console.log(`Using corhalConfig, version ${corhalConfig.version}`);
 
 describe('#doTheJob', () => {
@@ -101,6 +99,20 @@ describe('#doTheJob', () => {
       expect(docObject.authors[0].affiliations[0].address).to.contain('Norwegian University of Science and Technology');
       expect(docObject.authors[1].affiliations[1].ref).to.equal('struct-22594');
       expect(docObject.authors[1].affiliations[1].address).to.contain('Université de Bourgogne UB');
+      done();
+    });
+  });
+
+  it('Data successfully extracted from testData.hal3', done => {
+    const docObject = testData.hal3;
+    business.doTheJob(docObject, err => {
+      expect(err).to.be.undefined;
+      expect(docObject.title.fr).to.be.equal('La dimension pamphlétaire dans le roman francophone subsaharien postcolonial : Mongo Béti, Perpétue et l’habitude du malheur, Fatoumata Kéita, Sous fer, Ahmadou Kourouma, En attendant le vote des bêtes sauvages');
+      expect(docObject.sourceId).to.equal('tel-03227836');
+      expect(docObject.sourceUid).to.equal('hal$tel-03227836');
+      expect(docObject.business.xPublicationDate).to.have.members(['2021-01-27']);
+      expect(docObject.authors[0].surname).to.equal('Diarra');
+      expect(docObject.authors[0].halAuthorId).to.have.members(['12295960']);
       done();
     });
   });
