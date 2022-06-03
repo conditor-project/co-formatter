@@ -170,6 +170,12 @@ describe('#doTheJob', () => {
       expect(docObject.business.xissn).to.have.members(['bidon 1099-1573', '1099-1573']);
       expect(docObject.business.xPublicationDate).to.have.members(['2013-04-03', '2012-12-01']);
       expect(docObject.title.default).to.not.contain('My custom subtitle');
+      expect(docObject.authors[5].fullname).to.equal('Maurice Cloarec');
+      expect(docObject.authors[6].fullname).to.equal('French Covid-19 Paediatric Inflammation Consortium');
+      for (const author of docObject.authors) {
+        expect(author?.fullname).to.be.not.undefined;
+        expect(author.fullname.trim()).to.not.equal('');
+      }
       done();
     });
   });
@@ -182,8 +188,8 @@ describe('#doTheJob', () => {
       expect(docObject.host.editor[0].fullname).to.equal('Marie-Josée Kubler-Leveque');
       expect(docObject.host.editor[0].idRef).to.equal('084708050');
       expect(docObject.host.editor[0].roles).to.equal('thesisAdvisor');
-      expect(docObject.host.editor[0].orgName).to.be.empty;
-      expect(docObject.host.editor[1].fullname).to.be.empty;
+      expect(docObject.host.editor[0].orgName).to.be.undefined;
+      expect(docObject.host.editor[1].fullname).to.be.undefined;
       expect(docObject.host.editor[1].idRef).to.equal('173113206');
       expect(docObject.host.editor[1].roles).to.equal('degreeGrantor');
       expect(docObject.host.editor[1].orgName).to.equal('Université de Strasbourg');

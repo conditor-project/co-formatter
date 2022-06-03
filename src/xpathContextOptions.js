@@ -51,13 +51,16 @@ const customXPathFunctions = {
 
 const extractTypeHandlers = {
   simpleString: (metadata, contextOptions) => {
-    if (!isNonEmptyString(metadata.path)) return;
-
-    let result = xpath.parse(metadata.path).evaluateString(contextOptions);
-    if (metadata.regexp) result = matchRegExp(metadata, result);
-
+    if (!isNonEmptyString(metadata.path) && !isNonEmptyArray(metadata.path)) return;
+    // get xpaths as array of string
+    const xpathArray = _.concat([], metadata.path);
+    // evaluate all xpaths
+    let result = _.map(xpathArray, (metadataXPath) => xpath.parse(metadataXPath).evaluateString(contextOptions));
+    // if regex option is set, apply it on each result
+    if (metadata.regexp) result = _.map(result, (value) => matchRegExp(metadata, value));
+    // remove empty values (needed for xpath with no-result evaluation )
+    result = _.compact(result)[0];
     if (result === '' && metadata.allowEmpty === false) return undefined;
-
     return result;
   },
   boolean: (metadata, contextOptions) => {
