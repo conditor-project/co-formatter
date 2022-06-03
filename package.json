@@ -1,6 +1,6 @@
 {
   "name": "co-formatter",
-  "version": "1.9.2",
+  "version": "1.10.0",
   "description": "Module to extract data from a TEI file",
   "main": "index.js",
   "directories": {
