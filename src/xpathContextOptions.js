@@ -98,7 +98,7 @@ const extractTypeHandlers = {
       const docBloc = new DOMParser().parseFromString(select[i].toString(), 'text/xml');
       const evaluatorOptionsBloc = {
         node: docBloc,
-        namespaces: namespaces,
+        namespaces,
         functions: customXPathFunctions,
       };
       const extractChild = extract(metadata.fields, evaluatorOptionsBloc);
