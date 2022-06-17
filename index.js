@@ -111,6 +111,7 @@ function doTheJob (docObject, callback) {
     const nameID = sourceIdsMap[docObject.source];
     docObject.sourceId = docObject[nameID];
     docObject.sourceUid = `${docObject.source}$${docObject[nameID]}`;
+    docObject.sourceUidChain = `!${docObject.sourceUid}!`;
 
     return callback();
   });
