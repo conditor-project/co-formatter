@@ -99,7 +99,7 @@ function doTheJob (docObject, callback) {
     }
 
     // Convert the roles to their full form
-    extractMetadata.host.editor.forEach(editor => {
+    extractMetadata.host.editors.forEach(editor => {
       editor.roles = shortRoleToFullRole(editor.roles);
     });
 

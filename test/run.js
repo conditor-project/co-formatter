@@ -60,7 +60,6 @@ describe('#doTheJob', () => {
       expect(err).to.be.undefined;
       expect(docObject.first3AuthorNames).to.equal('Coeurdassier Michael Berny Philippe Couval Geoffroy');
       expect(docObject.first3AuthorNamesWithInitials).to.equal('Coeurdassier M Berny P Couval G');
-      expect(docObject.authorNames).to.equal('Coeurdassier Michael Berny Philippe Couval Geoffroy Decors Anouk Jacquot Manon Queffélec S Quintaine Thomas Giraudoux Patrick');
       expect(docObject.title.default).to.equal('Limiting the accidental poisoning of wild and domesticated animals due to the chemical pesticides used to control water vole outbreaks: progress to date');
       expect(docObject.title.fr).to.equal('Évolution des effets non intentionnels de la lutte chimique contre le campagnol terrestre sur la faune sauvage et domestique');
       expect(docObject.host.issn).to.equal('04292766');
@@ -186,14 +185,14 @@ describe('#doTheJob', () => {
     business.doTheJob(docObject, err => {
       expect(err).to.be.undefined;
       expect(docObject.title.default).to.equal('Les freins à la collaboration entre le médecin généraliste et le service de protection maternelle et infantile : Etude qualitative réalisée dans le Haut-Rhin');
-      expect(docObject.host.editor[0].fullname).to.equal('Marie-Josée Kubler-Leveque');
-      expect(docObject.host.editor[0].idRef).to.equal('084708050');
-      expect(docObject.host.editor[0].roles).to.equal('thesisAdvisor');
-      expect(docObject.host.editor[0].orgName).to.be.undefined;
-      expect(docObject.host.editor[1].fullname).to.be.undefined;
-      expect(docObject.host.editor[1].idRef).to.equal('173113206');
-      expect(docObject.host.editor[1].roles).to.equal('degreeGrantor');
-      expect(docObject.host.editor[1].orgName).to.equal('Université de Strasbourg');
+      expect(docObject.host.editors[0].fullname).to.equal('Marie-Josée Kubler-Leveque');
+      expect(docObject.host.editors[0].idRef).to.equal('084708050');
+      expect(docObject.host.editors[0].roles).to.equal('thesisAdvisor');
+      expect(docObject.host.editors[0].orgName).to.be.undefined;
+      expect(docObject.host.editors[1].fullname).to.be.undefined;
+      expect(docObject.host.editors[1].idRef).to.equal('173113206');
+      expect(docObject.host.editors[1].roles).to.equal('degreeGrantor');
+      expect(docObject.host.editors[1].orgName).to.equal('Université de Strasbourg');
       expect(docObject.keywords.fr.author).to.have.members(['bidon Encéphalopathie épileptique précoce', 'bidon Nouveau-Né']);
       expect(docObject.keywords.fr.mesh).to.have.members(['Centres de protection maternelle et infantile']);
       expect(docObject.keywords.fr.rameau).to.have.members(['Médecins généralistes--Thèses et écrits académiques', 'Coopération médicale--Thèses et écrits académiques']);
