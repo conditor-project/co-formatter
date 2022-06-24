@@ -64,6 +64,7 @@ describe('#doTheJob', () => {
       expect(docObject.title.fr).to.equal('Évolution des effets non intentionnels de la lutte chimique contre le campagnol terrestre sur la faune sauvage et domestique');
       expect(docObject.host.issn).to.equal('04292766');
       expect(docObject.host.pages.range).to.equal('327-335');
+      expect(docObject.business.pageRange[0]).to.equal('327-335');
       expect(docObject.host.volume).to.equal('bidon volume');
       expect(docObject.host.issue).to.equal('220');
       expect(docObject.halId).to.equal('hal-01103402');
