@@ -383,6 +383,7 @@
               <keywords scheme="mesh">
                 <term xml:lang="en">AVK</term>
               </keywords>
+              <classCode scheme="halDomain" n="sdv">Life Sciences [q-bio]</classCode>
               <classCode scheme="halDomain" n="sdv.ee">Life Sciences [q-bio]/Ecology, environment</classCode>
               <classCode scheme="typology" n="ART">ART</classCode>
             </textClass>

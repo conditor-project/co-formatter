@@ -58,8 +58,8 @@ describe('#doTheJob', () => {
     const docObject = testData.hal1;
     business.doTheJob(docObject, err => {
       expect(err).to.be.undefined;
-      expect(docObject.first3AuthorNames).to.equal('Coeurdassier Michael Berny Philippe Couval Geoffroy');
-      expect(docObject.first3AuthorNamesWithInitials).to.equal('Coeurdassier M Berny P Couval G');
+      expect(docObject.business.first3AuthorNames).to.equal('Coeurdassier Michael Berny Philippe Couval Geoffroy');
+      expect(docObject.business.first3AuthorNamesWithInitials).to.equal('Coeurdassier M Berny P Couval G');
       expect(docObject.title.default).to.equal('Limiting the accidental poisoning of wild and domesticated animals due to the chemical pesticides used to control water vole outbreaks: progress to date');
       expect(docObject.title.fr).to.equal('Évolution des effets non intentionnels de la lutte chimique contre le campagnol terrestre sur la faune sauvage et domestique');
       expect(docObject.host.issn).to.equal('04292766');
@@ -88,6 +88,8 @@ describe('#doTheJob', () => {
       expect(docObject.abstract.fr.length).to.be.greaterThan(0);
       expect(docObject.arxiv).to.be.equal('bidon doit être extrait 1602.06857');
       expect(docObject.authors[7].idRef[0]).to.be.equal('https://www.idref.fr/059300507');
+      expect(docObject.classifications.hal[0].code).to.be.equal('sdv');
+      expect(docObject.classifications.hal[1].en).to.be.equal('Life Sciences [q-bio]/Ecology, environment');
       done();
     });
   });
