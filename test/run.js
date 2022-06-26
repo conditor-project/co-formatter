@@ -75,7 +75,7 @@ describe('#doTheJob', () => {
       expect(docObject.authors[7].orcId[0]).to.equal('https://orcid.org/0000-0003-2376-0136');
       expect(docObject.source).to.equal('hal');
       expect(docObject.doi).to.equal('bidon doi');
-      expect(docObject.sourceUidChain).to.equal('!hal$hal-01103402!');
+      expect(docObject.business.sourceUidChain).to.equal('!hal$hal-01103402!');
       expect(docObject.business.hasDoi).to.be.true;
       expect(docObject.authors[7].viaf[0]).to.equal('bidon viaf');
       expect(docObject.originalGenre).to.equal('ART');
