@@ -99,7 +99,7 @@ function doTheJob (docObject, callback) {
     }
 
     // Convert the roles to their full form
-    extractMetadata.host.editor.forEach(editor => {
+    extractMetadata.host.editors.forEach(editor => {
       editor.roles = shortRoleToFullRole(editor.roles);
     });
 
@@ -111,6 +111,7 @@ function doTheJob (docObject, callback) {
     const nameID = sourceIdsMap[docObject.source];
     docObject.sourceId = docObject[nameID];
     docObject.sourceUid = `${docObject.source}$${docObject[nameID]}`;
+    docObject.business.sourceUidChain = `!${docObject.sourceUid}!`;
 
     return callback();
   });
