@@ -1,19 +1,19 @@
 const _ = require('lodash');
 
+const rolesMapping = {
+  ths: 'thesisAdvisor',
+  pbd: 'publishingDirector',
+  dgg: 'degreeGrantor',
+  tal: 'associatedLaboratory',
+  dos: 'doctoralSchool',
+};
+
 /**
  * Returns the non-abbreviated form of `shortRole`.
  * @param {string} shortRole The role in its short form.
  * @returns The non-abbreviated form of `shortRole`.
  */
 function shortRoleToFullRole (shortRole) {
-  const rolesMapping = {
-    ths: 'thesisAdvisor',
-    pbd: 'publishingDirector',
-    dgg: 'degreeGrantor',
-    tal: 'associatedLaboratory',
-    dos: 'doctoralSchool',
-  };
-
   return rolesMapping[shortRole];
 }
 
