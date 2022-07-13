@@ -14,7 +14,7 @@
   "license": "CECILL-2.1",
   "dependencies": {
     "@xmldom/xmldom": "^0.8.0",
-    "corhal-config": "git+https://github.com/istex/corhal-config.git",
+    "corhal-config": "git+https://git@github.com/istex/corhal-config",
     "lodash": "^4.17.21",
     "xpath": "^0.0.32"
   },
