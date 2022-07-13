@@ -1,4 +1,4 @@
-[![Build and test status](https://github.com/conditor-project/co-formatter/actions/workflows/node.js.yml/badge.svg)](https://github.com/conditor-project/co-formatter/actions/workflows/node.js.yml)
+[![Build and test status](https://github.com/conditor-project/co-formatter/actions/workflows/tests.yml/badge.svg)](https://github.com/conditor-project/co-formatter/actions/workflows/tests.yml)
 
 # co-formatter
 
